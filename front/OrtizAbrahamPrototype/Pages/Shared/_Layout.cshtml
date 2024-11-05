@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="icon" type="image/png" href="~/images/logoyolotzin.svg" />
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/OrtizAbrahamPrototype.styles.css" asp-append-version="true" />
+    @* Import Open Sans *@
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    @* Import Montserrat*@
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    @*Import Icons*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+    <header>
+        @*Navbar row*@
+       <nav class="navbar navbar-dark navbar-expand-md navbar-toggleable-md">
+            <div class="container-fluid justify-content-between">
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+              
+                <a class="navbar-brand d-flex align-items-center" asp-area="" asp-page="/Index">
+                    <img src="~/images/logoyolotzin.svg" alt="Logo Yolotzin" class="d-inline-block align-content-center navbar-logo" />
+                    <h1 class="title-brand">Yolotzin</h1>
+                </a>
+
+                <div class="navbar-collapse collapse d-md-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="link-container">
+                            <a class="link-text" asp-area="" asp-page="/Index">Home</a>
+                        </li>
+                        <li class="link-container">
+                            <a class="link-text" asp-area="" asp-page="/AboutUs">About Us</a>
+                        </li>
+                        <li class="link-container">
+                            <a class="link-text" asp-area="" asp-page="/Classes">Classes</a>
+                        </li>
+                    </ul>
+                    <button type="button" class="btn button-search my-3 my-md-0">
+                        Log in
+                    </button>
+                </div>          
+            </div>
+        </nav>
+    </header>
+    @*Main row (rendered pages)*@
+    <div class="container-fluid p-0">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    @*Footer row*@
+    <footer class="container-fluid m-0 p-0">
+        <div class="row footer-container">
+            <div class="col-md-3 container-footer-logo">
+                <img src="~/images/logoyolotzin.svg" alt="Logo Yolotzin" class="d-inline-block align-content-center footer-image" />
+                <p>Director: Jose Luis Mejia Contreras </p>
+                <div class="contact-info-footer">
+                    <a href="tel:+1234567890" class="contact-icon-footer" aria-label="Phone">
+                        <i class="fas fa-phone"></i> +1 234 567 890
+                    </a>
+                    <a href="mailto:mail@yolo.com" class="contact-icon-footer" aria-label="Email">
+                        <i class="fas fa-envelope"></i> mail@yolo.com
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 stay-touch-container mt-5 mt-md-0">
+                <h3 class="sub-title-footer">Stay in touch!</h3>
+                <p class="join-text">Join our Newsletter to receive notifications from us!</p>
+                <form class="newsteller-container">
+                    <input class="form-control email-input" type="search" placeholder="example@email.com" aria-label="Search">
+                    <button class="btn button-sign" type="submit">Sign up</button>
+                </form>
+                <div class="social-icons">
+                    <a aria-label="Facebook" class="icon"><i class="fab fa-facebook-f"></i></a>
+                    <a aria-label="Instagram" class="icon"><i class="fab fa-instagram"></i></a>
+                    <a aria-label="YouTube" class="icon"><i class="fab fa-youtube"></i></a>
+                    <a aria-label="TikTok" class="icon"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="col-md-3 where-container mt-5 mt-md-0">
+                <h3 class="sub-title-footer">Where are we?</h3>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26005.02210515992!2d-97.55245872089841!3d35.43925000000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87b21449024279f7%3A0x4d726aac674135f1!2sY%C3%BAmare%20Mexican%20Folkloric%20Dancers%20Inc.!5e0!3m2!1ses-419!2sus!4v1730217211439!5m2!1ses-419!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" no-referrer class="maps-location"></iframe>
+            </div>
+
+            <div class="col-md-3 links-footer-container mt-5 mt-md-0">
+                <h3 class="sub-title-footer">Navigation</h3> 
+                <a class="links-footer" asp-area="" asp-page="/Index">Home</a>
+                <a class="links-footer" asp-area="" asp-page="/AboutUs">About Us</a>
+                <a class="links-footer" asp-area="" asp-page="/Classes">Classes</a>
+                <a class="links-footer" asp-area="">FAQs</a>
+            </div>
+        </div>
+        
+        
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
