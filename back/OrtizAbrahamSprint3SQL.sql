@@ -200,5 +200,3 @@ GO
 --	u.username = 'johndoe'
 
 --GO
-
-select * from Style

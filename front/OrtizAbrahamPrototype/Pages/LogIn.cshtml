@@ -6,16 +6,42 @@
 
 <form method="post">
     <div>
-        <h1>Usuarios texto</h1>
-        <input type="text" asp-for="Username" />
+        <h1>Welcome to Yolotzin community!</h1>
+        <p>Please enter the following information</p>
+    </div>
 
+    <div>
+        <label>Enter your first name:</label>
+        <input asp-for="FirstName" type="text" />
     </div>
     <div>
-        <h1>Usuarios Lista</h1>
-        <select id="ddlStyleName" name="StyleNameID" asp-for="StyleNameID" asp-items="@Model.listofstylesdances">
-            <option value="0">Select the dance style</option>
-        </select>
+        <label>Enter your last name:</label>
+        <input asp-for="LastName" type="text" />
+    </div>
+    <div>
+        <label>Enter your email:</label>
+        <input asp-for="EmailAddress" type="text" />
+    </div>
+    <div>
+        <label>Enter your phone number:</label>
+        <input asp-for="PhoneNumber" type="tel" />
+    </div>
+    <div>
+        <label>Enter your birthday:</label>
+        <input asp-for="Birthday" type="date" />
+    </div>
+    <div>
+        <label>Enter your username:</label>
+        <input asp-for="Username" type="text" />
+    </div>
+    <div>
+        <label>Enter your password</label>
+        <input asp-for="UserPassword" type="text" />
+    </div>
 
+    <div>
+        <input asp-page-handler="ClearForm" type="submit" value="Clear Form"/>
+        <input asp-page-handler="AddUser" type="submit" value="Add User"/>
     </div>
 
 </form>

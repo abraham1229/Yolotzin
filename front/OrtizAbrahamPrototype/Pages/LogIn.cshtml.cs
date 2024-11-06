@@ -10,9 +10,20 @@ namespace OrtizAbrahamSprint3.Pages
 {
     public class LogInModel : PageModel
     {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string EmailAddress { get; set; }
+        public string PhoneNumber { get; set; }
+        public DateOnly Birthday { get; set; }
         public string Username { get; set; }
+        public string UserPassword { get; set; }
+
         [BindProperty]
         public string StyleNameID { get; set; }
+
+        [BindProperty]
+        public Users MyUsers { get; set; }
+
         //Use the SelecList class from drop down list
         public SelectList listofstylesdances { get; set; }
 
@@ -30,6 +41,13 @@ namespace OrtizAbrahamSprint3.Pages
             ////populate de dropdown list
             listofstylesdances = new SelectList(_myApplicationDbContext.Levels, "LevelID", "LevelName");
             return Page();
+        }
+
+        public async Task<IActionResult> OnPostAddUser()
+        {
+            _myApplicationDbContext.Users.Add(MyUsers);
+            await _myApplicationDbContext.SaveChangesAsync();
+            return RedirectToPage("./Index");
         }
     }
 }
