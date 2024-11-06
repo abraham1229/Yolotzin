@@ -81,21 +81,30 @@ p {
     flex-grow: 0;
 }
 
+.button-log-in {
+    background: var(--accent-color);
+    margin-left: 0.5vw;
+    height: 2.5em;
+    color: var(--secondary-color);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    letter-spacing: 0;
+} 
+
 .button-search {
     background: var(--accent-color);
     margin-left: 0.5vw;
     height: 2.5em;
     color: var(--secondary-color);
     transition: background-color 0.3s ease, transform 0.3s ease; 
-} 
+}
 
-.button-search:hover {
+.button-search:hover, .button-log-in:hover {
     background-color: var(--secondary-color);
     color: var(--accent-color);
     transform: scale(1.05);
 }
 
-.button-search:active {
+.button-search:active, .button-log-in:active {
     transform: scale(0.95);
 }
 

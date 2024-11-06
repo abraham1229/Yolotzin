@@ -1,0 +1,21 @@
+﻿@page
+@model OrtizAbrahamSprint3.Pages.LogInModel
+@{
+    ViewData["Title"] = "Log in";
+}
+
+<form method="post">
+    <div>
+        <h1>Usuarios texto</h1>
+        <input type="text" asp-for="Username" />
+
+    </div>
+    <div>
+        <h1>Usuarios Lista</h1>
+        <select id="ddlStyleName" name="StyleNameID" asp-for="StyleNameID" asp-items="@Model.listofstylesdances">
+            <option value="0">Select the dance style</option>
+        </select>
+
+    </div>
+
+</form>

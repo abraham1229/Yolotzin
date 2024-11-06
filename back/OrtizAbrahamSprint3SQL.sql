@@ -60,8 +60,8 @@ CREATE TABLE dbo.Classes
 (
 	ClassID int IDENTITY(1,1) NOT NULL CONSTRAINT pkClassID PRIMARY KEY,
 	Price decimal(5,2) NOT NULL, 
-	ClassHourStart time NOT NULL,
-	ClassHourFinish time NOT NUll,
+	ClassHourStart varchar(4) NOT NULL,
+	ClassHourFinish varchar(4) NOT NUll,
 	AgeRangeID int not null constraint fkClassesToAgeRange Foreign Key REFERENCES dbo.AgeRange(AgeRangeID),
 	LevelID int not null constraint fkClassesToLevel Foreign Key REFERENCES dbo.Levels(LevelID),
 	StyleID int not null constraint fkClassesToStyle Foreign Key REFERENCES dbo.Style(StyleID),
@@ -135,23 +135,23 @@ GO
 INSERT INTO dbo.Classes
 (Price,ClassHourStart,ClassHourFinish,AgeRangeID,LevelID,StyleID,WeekDaysID)
 VALUES 
-(200.00, '15:00:00', '17:00:00', 1, 1, 1, 1),
-(200.00, '15:00:00', '17:00:00', 1, 2, 1, 2),
-(200.00, '17:00:00', '19:00:00', 2, 1, 1, 1),
-(180.00, '17:00:00', '19:00:00', 2, 2, 1, 2),
-(180.00, '19:00:00', '21:00:00', 2, 3, 1, 4),
-(150.00, '09:00:00', '11:00:00', 3, 1, 1, 3),
-(150.00, '11:00:00', '13:00:00', 3, 2, 1, 3),
-(150.00, '13:00:00', '15:00:00', 3, 3, 1, 4),
-(150.00, '15:00:00', '17:00:00', 4, 1, 2, 1),
-(150.00, '15:00:00', '17:00:00', 4, 2, 2, 1),
-(150.00, '17:00:00', '19:00:00', 4, 3, 2, 1),
-(150.00, '17:00:00', '19:00:00', 4, 1, 3, 1),
-(150.00, '19:00:00', '21:00:00', 4, 2, 3, 1),
-(150.00, '09:00:00', '11:00:00', 4, 3, 3, 1),
-(150.00, '11:00:00', '13:00:00', 4, 1, 4, 1),
-(150.00, '13:00:00', '15:00:00', 4, 2, 4, 1),
-(150.00, '15:00:00', '17:00:00', 4, 3, 4, 1)
+(200.00, '15', '17', 1, 1, 1, 1),
+(200.00, '15', '17', 1, 2, 1, 2),
+(200.00, '17', '19', 2, 1, 1, 1),
+(180.00, '17', '19', 2, 2, 1, 2),
+(180.00, '19', '21', 2, 3, 1, 4),
+(150.00, '09', '11', 3, 1, 1, 3),
+(150.00, '11', '13', 3, 2, 1, 3),
+(150.00, '13', '15', 3, 3, 1, 4),
+(150.00, '15', '17', 4, 1, 2, 1),
+(150.00, '15', '17', 4, 2, 2, 1),
+(150.00, '17', '19', 4, 3, 2, 1),
+(150.00, '17', '19', 4, 1, 3, 1),
+(150.00, '19', '21', 4, 2, 3, 1),
+(150.00, '09', '11', 4, 3, 3, 1),
+(150.00, '11', '13', 4, 1, 4, 1),
+(150.00, '13', '15', 4, 2, 4, 1),
+(150.00, '15', '17', 4, 3, 4, 1)
 GO
 
 --Users Table
@@ -173,30 +173,32 @@ VALUES
 (7, 3)
 GO
 
-Select * from Users
+--Select * from Users
 
-SELECT 
-	u.FirstName,
-	u.LastName,
-	u.EmailAddress,
-	ar.RangeName AS AgeRange,
-	s.StyleName AS Style,
-	l.LevelName AS Level,
-	c.ClassHourStart,
-	c.ClassHourFinish
-FROM 
-    dbo.ClassUser cu
-JOIN 
-    dbo.Users u ON cu.UserID = u.UserID
-JOIN 
-    dbo.Classes c ON cu.ClassID = c.ClassID
-JOIN 
-    dbo.AgeRange ar ON c.AgeRangeID = ar.AgeRangeID
-JOIN 
-    dbo.Style s ON c.StyleID = s.StyleID
-JOIN 
-    dbo.Levels l ON c.LevelID = l.LevelID
-WHERE 
-	u.username = 'johndoe'
+--SELECT 
+--	u.FirstName,
+--	u.LastName,
+--	u.EmailAddress,
+--	ar.RangeName AS AgeRange,
+--	s.StyleName AS Style,
+--	l.LevelName AS Level,
+--	c.ClassHourStart,
+--	c.ClassHourFinish
+--FROM 
+--    dbo.ClassUser cu
+--JOIN 
+--    dbo.Users u ON cu.UserID = u.UserID
+--JOIN 
+--    dbo.Classes c ON cu.ClassID = c.ClassID
+--JOIN 
+--    dbo.AgeRange ar ON c.AgeRangeID = ar.AgeRangeID
+--JOIN 
+--    dbo.Style s ON c.StyleID = s.StyleID
+--JOIN 
+--    dbo.Levels l ON c.LevelID = l.LevelID
+--WHERE 
+--	u.username = 'johndoe'
 
-GO
+--GO
+
+select * from Style

@@ -1,4 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using OrtizAbrahamSprint3.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+
+
+builder.Services.AddDbContext<MyApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ??
+    throw new InvalidOperationException("Connect string not found")));
 
 // Add services to the container.
 builder.Services.AddRazorPages();
