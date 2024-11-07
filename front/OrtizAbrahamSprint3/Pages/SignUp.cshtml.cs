@@ -1,14 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using OrtizAbrahamSprint3.Data;
 using OrtizAbrahamSprint3.Data.Entities;
+using OrtizAbrahamSprint3.Data;
 using System.ComponentModel.DataAnnotations;
-
 
 namespace OrtizAbrahamSprint3.Pages
 {
-    public class LogInModel : PageModel
+    public class SignUpModel : PageModel
     {
         [BindProperty]
         [RegularExpression(@"^[a-zA-Z'-]+$", ErrorMessage = "Only letters, hyphens, and apostrophes are allowed.")]
@@ -56,23 +55,23 @@ namespace OrtizAbrahamSprint3.Pages
         private readonly MyApplicationDbContext _myApplicationDbContext;
 
         //The following code injects out database context into our razor page model. 
-        public LogInModel(MyApplicationDbContext myApplicationDbContext)
+        public SignUpModel(MyApplicationDbContext myApplicationDbContext)
         {
             _myApplicationDbContext = myApplicationDbContext;
         }
 
-        //public IActionResult OnGet()
-        //{
-        //    ////populate de dropdown list
-        //    listofstylesdances = new SelectList(_myApplicationDbContext.Levels, "LevelID", "LevelName");
-        //    return Page();
-        //}
+        public IActionResult OnGet()
+        {
+            ////populate de dropdown list
+            listofstylesdances = new SelectList(_myApplicationDbContext.Levels, "LevelID", "LevelName");
+            return Page();
+        }
 
-        //public async Task<IActionResult> OnPostAddUser()
-        //{
-        //    _myApplicationDbContext.Users.Add(MyUsers);
-        //    await _myApplicationDbContext.SaveChangesAsync();
-        //    return RedirectToPage("./Index");
-        //}
-}
+        public async Task<IActionResult> OnPostAddUser()
+        {
+            _myApplicationDbContext.Users.Add(MyUsers);
+            await _myApplicationDbContext.SaveChangesAsync();
+            return RedirectToPage("./Index");
+        }
+    }
 }
