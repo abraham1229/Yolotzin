@@ -5,6 +5,7 @@ use FA24_ksaortizc
 
 --Drop table if exist
 DROP TABLE if exists dbo.ClassUser
+DROP TABLE if exists dbo.Parent
 DROP TABLE if exists dbo.Users
 DROP TABLE if exists dbo.Classes
 DROP TABLE if exists dbo.WeekDays
@@ -85,6 +86,20 @@ CREATE TABLE dbo.Users
 )
 GO
 
+--Parent table for users with tutor
+CREATE TABLE dbo.Parent
+(
+    ParentID int IDENTITY(1,1) NOT NULL CONSTRAINT pkParentID PRIMARY KEY,
+    FirstName varchar(30) NOT NULL,
+    LastName varchar(30) NOT NULL,
+    EmailAddress varchar(100) NOT NULL,
+    PhoneNumber varchar(15) NOT NULL,
+	Birthday date NOT NULL,
+    UserID int NOT NULL CONSTRAINT fkParentToUsers FOREIGN KEY REFERENCES dbo.Users(UserID)
+)
+GO
+
+
 --Create table many to many for users and classes
 CREATE TABLE dbo.ClassUser
 (
@@ -162,6 +177,12 @@ VALUES
 ('Jane', 'Smith', 'jane.smith@example.com', '555-5678', '2010-02-02', 'janesmith', 'password456'),
 ('Alice', 'Johnson', 'alice.johnson@example.com', '555-8765', '1988-03-03', 'alicej', 'password789')
 GO
+
+--Parent table
+INSERT INTO dbo.Parent
+(FirstName, LastName, EmailAddress, PhoneNumber, Birthday,UserID)
+VALUES
+('Juan', 'Serino', 'juan.ser@example.com', '555-1234', '2019-01-01',1)
 
 --ClassUser Table
 INSERT INTO dbo.ClassUser 
