@@ -9,6 +9,7 @@ DROP TABLE if exists dbo.Parent
 DROP TABLE if exists dbo.Users
 DROP TABLE if exists dbo.Classes
 DROP TABLE if exists dbo.WeekDays
+DROP TABLE if exists dbo.Instructor
 DROP TABLE if exists dbo.Style
 DROP TABLE if exists dbo.Levels
 DROP TABLE if exists dbo.AgeRange
@@ -21,6 +22,7 @@ GO
 --Create tables
 --Children tables for classes and users
 --Create AgeRange Table
+--To make sure the age range classes is clear
 CREATE TABLE dbo.AgeRange
 (
 	AgeRangeID int IDENTITY(1,1) NOT NULL CONSTRAINT pkAgeRangeID PRIMARY KEY,
@@ -31,6 +33,7 @@ CREATE TABLE dbo.AgeRange
 GO
 
 --Create Levels table
+--To store all the possible levels
 CREATE TABLE dbo.Levels
 (
 	LevelID int IDENTITY(1,1) NOT NULL CONSTRAINT pkLevelID PRIMARY KEY,
@@ -39,6 +42,7 @@ CREATE TABLE dbo.Levels
 GO
 
 --Create Style table
+--To store all the possible styles
 CREATE TABLE dbo.Style
 (
 	StyleID int IDENTITY(1,1) NOT NULL CONSTRAINT pkStyleID PRIMARY KEY,
@@ -47,6 +51,7 @@ CREATE TABLE dbo.Style
 GO
 
 --Create Days table
+--To store the days options for every class
 CREATE TABLE dbo.WeekDays
 (
 	WeekDaysID int IDENTITY(1,1) NOT NULL CONSTRAINT pkWeekDaysID PRIMARY KEY,
@@ -54,9 +59,22 @@ CREATE TABLE dbo.WeekDays
 )
 GO
 
+--Create Instuctor table
+--To store all the possible instructors
+CREATE TABLE dbo.Instructor
+(
+	InstructorID int IDENTITY(1,1) NOT NULL CONSTRAINT pkInstructorID PRIMARY KEY,
+	FirstName varchar(30) NOT NULL,
+	LastName varchar(30) NOT NULL,
+	EmailAddress varchar(100) NOT NULL UNIQUE, 
+	PhoneNumber varchar(15) NOT NULL UNIQUE,
+	Birthday date NOT NULL
+)
+GO
 
 --Parent table and children table for many to many groups
 --Create classes table
+--To store all the classes available in the moment
 CREATE TABLE dbo.Classes
 (
 	ClassID int IDENTITY(1,1) NOT NULL CONSTRAINT pkClassID PRIMARY KEY,
@@ -66,12 +84,15 @@ CREATE TABLE dbo.Classes
 	AgeRangeID int not null constraint fkClassesToAgeRange Foreign Key REFERENCES dbo.AgeRange(AgeRangeID),
 	LevelID int not null constraint fkClassesToLevel Foreign Key REFERENCES dbo.Levels(LevelID),
 	StyleID int not null constraint fkClassesToStyle Foreign Key REFERENCES dbo.Style(StyleID),
-	WeekDaysID int not null constraint fkClassesToWeekDays Foreign Key REFERENCES dbo.WeekDays(WeekDaysID)
+	WeekDaysID int not null constraint fkClassesToWeekDays Foreign Key REFERENCES dbo.WeekDays(WeekDaysID),
+	InstructorID int not null constraint fkClassesToInstructor Foreign Key REFERENCES dbo.Instructor(InstructorID)
+
 )
 GO
 
 --Child table for the many to many classes
 --Create users table
+--To store all the users
 CREATE TABLE dbo.Users
 (
 	UserID int IDENTITY(1,1) NOT NULL CONSTRAINT pkUserID PRIMARY KEY,
@@ -87,6 +108,7 @@ CREATE TABLE dbo.Users
 GO
 
 --Parent table for users with tutor
+--To store user's parent if the user is underage
 CREATE TABLE dbo.Parent
 (
     ParentID int IDENTITY(1,1) NOT NULL CONSTRAINT pkParentID PRIMARY KEY,
@@ -101,6 +123,7 @@ GO
 
 
 --Create table many to many for users and classes
+--To store all the users in each class (many to many)
 CREATE TABLE dbo.ClassUser
 (
 	ClassUserID int IDENTITY(1,1) NOT NULL CONSTRAINT pkClassUserID PRIMARY KEY,
@@ -146,43 +169,50 @@ VALUES
 ('Mon/Wed'),('Thu/Tue'),('Fri/Sun'),('Mon-Fri')
 GO
 
+--Instructor table
+INSERT INTO dbo.Instructor
+(FirstName, LastName, EmailAddress, PhoneNumber, Birthday)
+VALUES
+('Luis', 'Mejia', 'luis@gmail.com', '+52555-1234', '1975-03-10')
+
+
 --Classes Table
 INSERT INTO dbo.Classes
-(Price,ClassHourStart,ClassHourFinish,AgeRangeID,LevelID,StyleID,WeekDaysID)
+(Price,ClassHourStart,ClassHourFinish,AgeRangeID,LevelID,StyleID,WeekDaysID, InstructorID)
 VALUES 
-(200.00, '15', '17', 1, 1, 1, 1),
-(200.00, '15', '17', 1, 2, 1, 2),
-(200.00, '17', '19', 2, 1, 1, 1),
-(180.00, '17', '19', 2, 2, 1, 2),
-(180.00, '19', '21', 2, 3, 1, 4),
-(150.00, '09', '11', 3, 1, 1, 3),
-(150.00, '11', '13', 3, 2, 1, 3),
-(150.00, '13', '15', 3, 3, 1, 4),
-(150.00, '15', '17', 4, 1, 2, 1),
-(150.00, '15', '17', 4, 2, 2, 1),
-(150.00, '17', '19', 4, 3, 2, 1),
-(150.00, '17', '19', 4, 1, 3, 1),
-(150.00, '19', '21', 4, 2, 3, 1),
-(150.00, '09', '11', 4, 3, 3, 1),
-(150.00, '11', '13', 4, 1, 4, 1),
-(150.00, '13', '15', 4, 2, 4, 1),
-(150.00, '15', '17', 4, 3, 4, 1)
+(200.00, '15', '17', 1, 1, 1, 1, 1),
+(200.00, '15', '17', 1, 2, 1, 2, 1),
+(200.00, '17', '19', 2, 1, 1, 1, 1),
+(180.00, '17', '19', 2, 2, 1, 2, 1),
+(180.00, '19', '21', 2, 3, 1, 4, 1),
+(150.00, '09', '11', 3, 1, 1, 3, 1),
+(150.00, '11', '13', 3, 2, 1, 3, 1),
+(150.00, '13', '15', 3, 3, 1, 4, 1),
+(150.00, '15', '17', 4, 1, 2, 1, 1),
+(150.00, '15', '17', 4, 2, 2, 1, 1),
+(150.00, '17', '19', 4, 3, 2, 1, 1),
+(150.00, '17', '19', 4, 1, 3, 1, 1),
+(150.00, '19', '21', 4, 2, 3, 1, 1),
+(150.00, '09', '11', 4, 3, 3, 1, 1),
+(150.00, '11', '13', 4, 1, 4, 1, 1),
+(150.00, '13', '15', 4, 2, 4, 1, 1),
+(150.00, '15', '17', 4, 3, 4, 1, 1)
 GO
 
 --Users Table
 INSERT INTO dbo.Users 
 (FirstName, LastName, EmailAddress, PhoneNumber, Birthday, Username, UserPassword)
 VALUES 
-('John', 'Doe', 'john.doe@example.com', '555-1234', '2019-01-01', 'johndoe', 'password123'),
-('Jane', 'Smith', 'jane.smith@example.com', '555-5678', '2010-02-02', 'janesmith', 'password456'),
-('Alice', 'Johnson', 'alice.johnson@example.com', '555-8765', '1988-03-03', 'alicej', 'password789')
+('John', 'Doe', 'john.doe@hotmail.com', '555-1234', '2019-01-01', 'johndoe', 'Dance532%@#'),
+('Jane', 'Smith', 'jane.smith@gmail.com', '555-5678', '2010-02-02', 'janesmith', 'Folk323#$.'),
+('Alice', 'Johnson', 'alice.johnson@gmail.com', '555-8765', '1988-03-03', 'alicej', 'Jazz88392k#%')
 GO
 
 --Parent table
 INSERT INTO dbo.Parent
 (FirstName, LastName, EmailAddress, PhoneNumber, Birthday,UserID)
 VALUES
-('Juan', 'Serino', 'juan.ser@example.com', '555-1234', '2019-01-01',1)
+('Juan', 'Serino', 'juan.ser@hotmail.com', '555-1234', '2019-01-01',1)
 
 --ClassUser Table
 INSERT INTO dbo.ClassUser 
@@ -193,8 +223,6 @@ VALUES
 (13, 2),
 (7, 3)
 GO
-
---Select * from Users
 
 --SELECT 
 --	u.FirstName,
@@ -217,7 +245,5 @@ GO
 --    dbo.Style s ON c.StyleID = s.StyleID
 --JOIN 
 --    dbo.Levels l ON c.LevelID = l.LevelID
---WHERE 
---	u.username = 'johndoe'
 
 --GO

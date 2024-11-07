@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "UOf1fxNQ1eS8O5yxapLUV0JOFh5HnjkNQal9dbZVLMA=",
+  "Hash": "cPjvoSqhGScJSfNFAqPjXqJnDS+du1zQ4wKTb0jA+Ls=",
   "Source": "OrtizAbrahamSprint3",
   "BasePath": "_content/OrtizAbrahamSprint3",
   "Mode": "Default",
@@ -775,25 +775,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\home\\cta\\classes.jpg"
-    },
-    {
-      "Identity": "C:\\Users\\Abraham1229\\OneDrive\\Documentos\\Web aplication development\\Yolotzin\\front\\OrtizAbrahamSprint3\\wwwroot\\images\\home\\cta\\classes2.jpg",
-      "SourceId": "OrtizAbrahamSprint3",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Abraham1229\\OneDrive\\Documentos\\Web aplication development\\Yolotzin\\front\\OrtizAbrahamSprint3\\wwwroot\\",
-      "BasePath": "_content/OrtizAbrahamSprint3",
-      "RelativePath": "images/home/cta/classes2.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\home\\cta\\classes2.jpg"
     },
     {
       "Identity": "C:\\Users\\Abraham1229\\OneDrive\\Documentos\\Web aplication development\\Yolotzin\\front\\OrtizAbrahamSprint3\\wwwroot\\images\\home\\cta\\memories.jpg",
