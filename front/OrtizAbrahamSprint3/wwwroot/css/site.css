@@ -210,8 +210,8 @@ p {
 }
 
 .button-sign:hover {
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
+    background-color: var(--secondary-color);
+    color: var(--accent-color);
     transform: scale(1.05);
 }
 
@@ -645,6 +645,7 @@ p {
     overflow: hidden;
     display: flex;
     justify-content: center;
+    padding-right:0;
 }
 
 @media (min-width: 768px) {
