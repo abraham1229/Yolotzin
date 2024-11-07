@@ -6,7 +6,7 @@ namespace OrtizAbrahamSprint3.Data.Entities
     {
         [Key]
         public int ClassID { get; set; }
-        public double Price { get; set; }
+        public decimal Price { get; set; }
         public string ClassHourStart { get; set; }
         public string ClassHourFinish { get; set; }
         public int AgeRangeID { get; set; }
