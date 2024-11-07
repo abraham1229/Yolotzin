@@ -1097,5 +1097,133 @@ p {
 }
 
 
-/*Style for login page*/
 
+
+
+/*Style for signup*/
+
+/*Style for the title rows*/
+.sign-up-title {
+    margin-top: 2em;
+    margin-bottom: 1em;
+    display: flex;
+    flex-direction: column;
+}
+
+.sign-up-title h1 {
+    display: flex;
+    justify-content: center;
+}
+
+.sign-up-title p {
+    display: flex;
+    justify-content: center;
+}
+
+/*Style for data rows*/
+.all-data-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--layout-color);
+    width: 40em;
+    margin: auto;
+    padding-top: 1em;
+    border-radius: 1em;
+    margin-bottom: 3em;
+}
+
+.enter-data-container {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin-bottom: 1em;
+
+}
+
+.enter-data-container label {
+    padding-left: 0.5vw;
+    margin-bottom: 0.5em;
+    
+}
+
+.enter-data-container input {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: 0;
+    padding: 0 0.8em;
+    border-radius: 1em;
+    width: 100%;
+}
+
+/*Style for buttons*/
+.data-buttons-container {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
+
+.clear-button {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    border-radius: 0.5em;
+    background-color: #d72447;
+    border: 0;
+    transition: transform 0.3s ease;
+}
+
+.submit-button {
+    margin-bottom: 1em;
+    border-radius: 0.5em;
+    background-color: #39aa2a;
+    border: 0;
+    transition: transform 0.3s ease;
+}
+
+.clear-button:hover, .submit-button:hover {
+    transform: scale(1.008,1.03);
+}
+
+.clear-button:active, .submit-button:active {
+    transform: scale(1);
+}
+
+@media (max-width: 768px) {
+
+    .sign-up-title {
+        width: 90vw;
+        margin: auto;
+        margin-top: 2em;
+        text-align: center;
+    }
+
+    .sign-up-title p {
+        font-size: 1.2em;
+        margin-bottom: 0.5em;
+    }
+
+    .all-data-container {
+        width:80vw;
+    }
+}
+
+/*Styles for sign in */
+.link-to-sign-up-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    width: 40em;
+    color: var(--secondary-color);
+    background-color: var(--accent-color);
+    margin: auto;
+    border-radius: 1em;
+}
+
+.link-to-sign-up-container p {
+}
+
+.link-to-sign-up-container a {
+    font-size: 1.5em;
+}

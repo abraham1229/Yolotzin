@@ -5,56 +5,63 @@
 }
 
 
+@*Title rows*@
+<div class="sign-up-title">
+    <h1>Ready to join to YOLOTZIN?</h1>
+    <p>Please enter the following information</p>
+</div>
 
-<form method="post" class="login-container">
-    <div>
-        <h1>Welcome to Yolotzin community!</h1>
-        <p>Please enter the following information</p>
-    </div>
-
-    <div>
-        <label>Enter your first name:</label>
+@*Form rows*@
+<form method="post" class="all-data-container">   
+    @*First name row*@
+    <div class="enter-data-container">
+        <label>First name</label>
         <input asp-for="FirstName" type="text" />
         <span asp-validation-for="FirstName"></span>
     </div>
-    <div>
-        <label>Enter your last name:</label>
+    @*Last name row*@
+    <div class="enter-data-container">
+        <label>Last name</label>
         <input asp-for="LastName" type="text" />
         <span asp-validation-for="LastName"></span>
     </div>
-    <div>
-        <label>Enter your email:</label>
+    @*Email row*@
+    <div class="enter-data-container">
+        <label>Email</label>
         <input asp-for="EmailAddress" type="text" />
         <span asp-validation-for="EmailAddress"></span>
 
     </div>
-    <div>
-        <label>Enter your phone number:</label>
+    @*Phone number row*@
+    <div class="enter-data-container">
+        <label>Phone number</label>
         <input asp-for="PhoneNumber" type="tel" />
         <span asp-validation-for="PhoneNumber"></span>
 
     </div>
-    <div>
-        <label>Enter your birthday:</label>
+    @*Date of birth row*@
+    <div class="enter-data-container">
+        <label>Date of birth</label>
         <input asp-for="Birthday" type="date" />
         <span asp-validation-for="Birthday"></span>
 
     </div>
-    <div>
-        <label>Enter your username:</label>
+    @*Username row*@
+    <div class="enter-data-container">
+        <label>Username</label>
         <input asp-for="Username" type="text" />
         <span asp-validation-for="Username"></span>
     </div>
-    <div>
-        <label>Enter your password</label>
+    @*Password row*@
+    <div class="enter-data-container">
+        <label>Password</label>
         <input asp-for="UserPassword" type="text" />
         <span asp-validation-for="UserPassword"></span>
     </div>
-
-    <div>
-        <input asp-page-handler="ClearForm" type="submit" value="Clear Form" />
-        <input asp-page-handler="AddUser" type="submit" value="Add User" />
+    @*Buttons rows*@
+    <div class="data-buttons-container">
+        <input asp-page-handler="ClearForm" type="submit" value="Clear Form" class="clear-button"/>
+        <input asp-page-handler="AddUser" type="submit" value="Add User" class="submit-button"/>
     </div>
-
 </form>
 
