@@ -4,8 +4,9 @@
     --secondary-color: #FDFFFF; /* Twilight blue*/
     --layout-color: #1E1E1E; /*Gray*/
     --accent-color: #D72483; /* Cerise*/
-    --error-color: #d72447;
-    --success-color: #39aa2a;
+    --reset-color: #504f4fe9;
+    --submit-color: #eb266e;
+    --error-color: #fd1515;
 }
 
 /*Style for all the webpage*/
@@ -676,14 +677,19 @@ p {
 
 @media (max-width: 768px) {
     .title-unique-container {
+        max-width: 90vw;
+        margin: auto;
         margin-top: 3em;
-        align-content: center !important;
-        align-items: center !important;
+        align-content: center;
+        align-items: center;
         padding-left: 0;
     }
+    .title-unique {
+        text-align: center;
+    }
+
     .title-unique-container p {
         font-size: 1.2rem;
-        max-width: 90vw;
     }
 
     .col-md-5.title-unique-container {
@@ -740,10 +746,16 @@ p {
 
 @media (max-width: 768px) {
     .title-journey-container {
+        max-width: 85vw;
+        margin: auto;
         margin-top: 3em;
-        align-content: center !important;
-        align-items: center !important;
+        align-content: center;
+        align-items: center;
         padding-right: 0;
+    }
+
+    .title-journey {
+        text-align: center;
     }
 
     .title-journey-container p {
@@ -985,6 +997,10 @@ p {
         justify-content: center;
         margin-bottom: 1em;
     }
+    
+    .title-classes span {
+        padding-left: 0.17em;
+    }
 
     .paragraph-classes {
         display: none;
@@ -1154,7 +1170,7 @@ p {
     background-color: var(--primary-color);
     color: var(--secondary-color);
     border: 0;
-    padding: 0 0.8em;
+    padding: 0.5em 0.8em;
     border-radius: 1em;
     width: 100%;
 }
@@ -1174,9 +1190,11 @@ p {
 
 .clear-button {
     margin-top: 1em;
+    font-weight: 700;
     margin-bottom: 1em;
     border-radius: 0.5em;
-    background-color: var(--error-color);
+    color: var(--secondary-color);
+    background-color: var(--reset-color);
     border: 0;
     transition: transform 0.3s ease;
     padding: 0.5em 0;
@@ -1184,15 +1202,18 @@ p {
 
 .submit-button {
     margin-bottom: 1em;
+    font-weight: 700;
     border-radius: 0.5em;
-    background-color: var(--success-color);
+    color: var(--secondary-color);
+    background-color: var(--submit-color);
     border: 0;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, color 0.3s ease;
     padding: 0.5em 0;
 }
 
 .clear-button:hover, .submit-button:hover {
     transform: scale(1.01,1.05);
+    color: var(--primary-color);
 }
 
 .clear-button:active, .submit-button:active {
@@ -1243,16 +1264,16 @@ p {
     font-size: 1.5em;
     text-decoration: none;
     color: var(--primary-color);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .link-to-sign-container a:hover {
-    text-decoration: underline;
+    color: var(--secondary-color);
     transform: scale(1.05);
 }
 
 .link-to-sign-container a:active {
-    text-decoration: underline;
+    color: var(--secondary-color);
     transform: scale(0.95);
 }
 
