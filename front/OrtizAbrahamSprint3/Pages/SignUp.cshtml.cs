@@ -60,18 +60,18 @@ namespace OrtizAbrahamSprint3.Pages
             _myApplicationDbContext = myApplicationDbContext;
         }
 
-        public IActionResult OnGet()
-        {
-            ////populate de dropdown list
-            listofstylesdances = new SelectList(_myApplicationDbContext.Levels, "LevelID", "LevelName");
-            return Page();
-        }
+        //public IActionResult OnGet()
+        //{
+        //    ////populate de dropdown list
+        //    listofstylesdances = new SelectList(_myApplicationDbContext.Levels, "LevelID", "LevelName");
+        //    return Page();
+        //}
 
-        public async Task<IActionResult> OnPostAddUser()
-        {
-            _myApplicationDbContext.Users.Add(MyUsers);
-            await _myApplicationDbContext.SaveChangesAsync();
-            return RedirectToPage("./Index");
-        }
+        //public async Task<IActionResult> OnPostAddUser()
+        //{
+        //    _myApplicationDbContext.Users.Add(MyUsers);
+        //    await _myApplicationDbContext.SaveChangesAsync();
+        //    return RedirectToPage("./Index");
+        //}
     }
 }

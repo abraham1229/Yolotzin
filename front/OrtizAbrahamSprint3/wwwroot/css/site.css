@@ -4,6 +4,8 @@
     --secondary-color: #FDFFFF; /* Twilight blue*/
     --layout-color: #1E1E1E; /*Gray*/
     --accent-color: #D72483; /* Cerise*/
+    --error-color: #d72447;
+    --success-color: #39aa2a;
 }
 
 /*Style for all the webpage*/
@@ -1157,6 +1159,12 @@ p {
     width: 100%;
 }
 
+.enter-data-container span {
+    color: var(--error-color);
+    margin-top: 0.5em;
+    padding-left: 0.5vw;
+}
+
 /*Style for buttons*/
 .data-buttons-container {
     display: flex;
@@ -1168,25 +1176,27 @@ p {
     margin-top: 1em;
     margin-bottom: 1em;
     border-radius: 0.5em;
-    background-color: #d72447;
+    background-color: var(--error-color);
     border: 0;
     transition: transform 0.3s ease;
+    padding: 0.5em 0;
 }
 
 .submit-button {
     margin-bottom: 1em;
     border-radius: 0.5em;
-    background-color: #39aa2a;
+    background-color: var(--success-color);
     border: 0;
     transition: transform 0.3s ease;
+    padding: 0.5em 0;
 }
 
 .clear-button:hover, .submit-button:hover {
-    transform: scale(1.008,1.03);
+    transform: scale(1.01,1.05);
 }
 
 .clear-button:active, .submit-button:active {
-    transform: scale(1);
+    transform: scale(0.99,0.95);
 }
 
 @media (max-width: 768px) {
@@ -1209,7 +1219,7 @@ p {
 }
 
 /*Styles for sign in */
-.link-to-sign-up-container {
+.link-to-sign-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1219,11 +1229,40 @@ p {
     background-color: var(--accent-color);
     margin: auto;
     border-radius: 1em;
+    padding: 1em 0.5em;
+    margin-bottom: 2em;
 }
 
-.link-to-sign-up-container p {
+.link-to-sign-container p {
+    margin: 0;
 }
 
-.link-to-sign-up-container a {
+.link-to-sign-container a {
+    margin: 0;
+    padding-left: 1em;
     font-size: 1.5em;
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: transform 0.3s ease;
+}
+
+.link-to-sign-container a:hover {
+    text-decoration: underline;
+    transform: scale(1.05);
+}
+
+.link-to-sign-container a:active {
+    text-decoration: underline;
+    transform: scale(0.95);
+}
+
+@media (max-width: 768px) {
+    .link-to-sign-container {
+        width: 90vw;
+        flex-direction: column;
+    }
+
+    .link-to-sign-container a  {
+        padding-left: 0;
+    }
 }

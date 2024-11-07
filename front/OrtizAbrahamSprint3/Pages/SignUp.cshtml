@@ -18,7 +18,7 @@
         <label>First name</label>
         <input asp-for="FirstName" type="text" />
         <span asp-validation-for="FirstName"></span>
-    </div>
+    </div> 
     @*Last name row*@
     <div class="enter-data-container">
         <label>Last name</label>
@@ -65,3 +65,9 @@
     </div>
 </form>
 
+
+@*Link to sign in row*@
+<div class="link-to-sign-container">
+    <p>Do you want to sign in?</p>
+    <a asp-area="" asp-page="/SignIn">Sign in</a>
+</div>
