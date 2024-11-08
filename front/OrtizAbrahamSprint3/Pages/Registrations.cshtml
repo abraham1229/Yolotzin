@@ -8,48 +8,63 @@
 @*Title rows*@
 <div class="sign-up-title">
     <h1>Enroll a class here!</h1>
+    <p>Please select the desire options</p>
 </div>
 
 @*Form rows*@
 <form method="post" class="all-data-container">
-    @*First name row*@
+    @*Instructor row*@
     <div class="enter-data-container">
-        <label>First name</label>
-        <input asp-for="FirstName" type="text" />
-        <span asp-validation-for="FirstName"></span>
+        <label>Instructor</label>
+        <select name="InstructorID" asp-for="InstructorID" asp-items="@Model.listofinstructors">
+            <option value="0"> Select the instuctor </option>
+        </select>
+        <span asp-validation-for="InstructorID"></span>
     </div>
-    @*Last name row*@
+    @*Style row*@
     <div class="enter-data-container">
-        <label>Last name</label>
-        <input asp-for="LastName" type="text" />
-        <span asp-validation-for="LastName"></span>
+        <label>Style</label>
+        <select name="StyleID" asp-for="StyleID" asp-items="@Model.listofstyles">
+            <option value="0"> Select the style </option>
+        </select>
+        <span asp-validation-for="StyleID"></span>
     </div>
-    @*Email row*@
+    @*Level row*@
     <div class="enter-data-container">
-        <label>Email</label>
-        <input asp-for="EmailAddress" type="text" />
-        <span asp-validation-for="EmailAddress"></span>
+        <label>Level</label>
+        <select name="LevelID" asp-for="LevelID" asp-items="@Model.listoflevels">
+            <option value="0"> Select the level </option>
+        </select>
+        <span asp-validation-for="LevelID"></span>
+    </div>
+    @*Age range row*@
+    <div class="enter-data-container">
+        <label>Age range</label>
+        <select name="AgeRangeID" asp-for="AgeRangeID" asp-items="@Model.listofagerange">
+            <option value="0"> Select the age range </option>
+        </select>
+        <span asp-validation-for="AgeRangeID"></span>
+    </div>
+    @*Week days row*@
+    <div class="enter-data-container">
+        <label>Days of the week</label>
+        <select name="WeekDaysID" asp-for="WeekDaysID" asp-items="@Model.listofweekdays">
+            <option value="0"> Select the weeks of the day </option>
+        </select>
+        <span asp-validation-for="WeekDaysID"></span>
+    </div>
+    @*Buttons rows*@
+    <div class="data-buttons-container">
+        <input asp-page-handler="ClearForm" type="submit" value="Clear Form" class="clear-button" />
+        <input asp-page-handler="AddUser" type="submit" value="Add User" class="submit-button" />
+    </div>
 
-    </div>
-    @*Phone number row*@
-    <div class="enter-data-container">
-        <label>Phone number</label>
-        <input asp-for="PhoneNumber" type="tel" />
-        <span asp-validation-for="PhoneNumber"></span>
-
-    </div>
-    @*Date of birth row*@
-    <div class="enter-data-container">
-        <label>Date of birth</label>
-        <input asp-for="Birthday" type="date" />
-        <span>@Model.MessageAgeRange</span>
-
-    </div>
+    
 </form>
 
 
 @*Link to sign in row*@
 <div class="link-to-sign-container">
-    <p>Do you want to sign in?</p>
+    <p>Haven't you logged in yet?</p>
     <a asp-area="" asp-page="/SignIn">Sign in</a>
 </div>

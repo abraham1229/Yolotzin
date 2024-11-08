@@ -1191,7 +1191,7 @@ p {
 }
 
 .clear-button {
-    margin-top: 1em;
+    margin-top: 0.5em;
     font-weight: 700;
     margin-bottom: 1em;
     border-radius: 0.5em;
@@ -1288,4 +1288,16 @@ p {
     .link-to-sign-container a  {
         padding-left: 0;
     }
+}
+
+
+/*Styles for select lists*/
+.enter-data-container select {
+    border-radius: 1em;
+    padding: 0.5em;
+    border: 0;
+    font-weight: 350;
+}
+
+.enter-data-container option {
 }

@@ -224,29 +224,48 @@ VALUES
 (7, 3)
 GO
 
+--SELECT 
+--	u.FirstName,
+--	u.LastName,
+--	u.EmailAddress,
+--	ar.RangeName AS AgeRange,
+--	s.StyleName AS Style,
+--	l.LevelName AS Level,
+--	c.StartHour,
+--	c.EndHour,
+--	t.FirstName
+--FROM 
+--    dbo.ClassUser cu
+--JOIN 
+--    dbo.Users u ON cu.UserID = u.UserID
+--JOIN 
+--    dbo.Classes c ON cu.ClassID = c.ClassID
+--JOIN 
+--    dbo.AgeRange ar ON c.AgeRangeID = ar.AgeRangeID
+--JOIN 
+--    dbo.Style s ON c.StyleID = s.StyleID
+--JOIN 
+--    dbo.Levels l ON c.LevelID = l.LevelID
+--JOIN
+--	dbo.Instructor t ON c.InstructorID = t.InstructorID
+
+--GO
+
 SELECT 
-	u.FirstName,
-	u.LastName,
-	u.EmailAddress,
-	ar.RangeName AS AgeRange,
+	i.FirstName AS Name,
 	s.StyleName AS Style,
 	l.LevelName AS Level,
-	c.StartHour,
-	c.EndHour,
-	t.FirstName
-FROM 
-    dbo.ClassUser cu
-JOIN 
-    dbo.Users u ON cu.UserID = u.UserID
-JOIN 
-    dbo.Classes c ON cu.ClassID = c.ClassID
-JOIN 
-    dbo.AgeRange ar ON c.AgeRangeID = ar.AgeRangeID
-JOIN 
-    dbo.Style s ON c.StyleID = s.StyleID
-JOIN 
-    dbo.Levels l ON c.LevelID = l.LevelID
+	ag.RangeName AS 'Age Range',
+	wd.WeekDaysName AS 'Days of the week'
+FROM
+	dbo.Classes c
 JOIN
-	dbo.Instructor t ON c.InstructorID = t.InstructorID
-
-GO
+	dbo.Instructor i ON c.InstructorID = i.InstructorID
+JOIN
+	dbo.Style s ON c.StyleID = s.StyleID
+JOIN 
+	dbo.Levels l ON c.LevelID = l.LevelID
+JOIN
+	dbo.AgeRange ag ON c.AgeRangeID = ag.AgeRangeID
+JOIN
+	dbo.WeekDays wd ON c.WeekDaysID = wd.WeekDaysID
