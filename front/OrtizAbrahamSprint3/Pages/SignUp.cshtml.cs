@@ -4,7 +4,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using OrtizAbrahamSprint3.Data.Entities;
 using OrtizAbrahamSprint3.Data;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 
+
+//Preguntar como hacer que guarde el anio, de la misma manera
 namespace OrtizAbrahamSprint3.Pages
 {
     public class SignUpModel : PageModel
@@ -83,14 +87,60 @@ namespace OrtizAbrahamSprint3.Pages
         {
             // Calculate age
             int age = CalculateAge(Birthday);
+
+            // Validate the age range 
             if (age < 4 || age > 120)
             {
-                MessageAgeRange = "The age must be between 4 and 120";
-                return Page();
+                MessageAgeRange = "We are sorry, you need to be older than 4 and younger than 120";
             }
-            _myApplicationDbContext.Users.Add(MyUsers);
-            await _myApplicationDbContext.SaveChangesAsync();
-            return RedirectToPage("./Index");
+
+            try
+            {
+                _myApplicationDbContext.Users.Add(MyUsers);
+                await _myApplicationDbContext.SaveChangesAsync();
+                return RedirectToPage("./Index");
+            }
+
+            //Check if there are errors
+            catch (DbUpdateException ex)
+            {
+                if (ex.InnerException is SqlException sqlEx && sqlEx.Number == 2627)
+                {
+                    // Checks for each unique constraint and adds corresponding errors
+                    bool hasError = false;
+
+                    //Error for email adrress alreday in use
+                    if (sqlEx.Message.Contains("UQ__Users__49A14740AEAD3FD2"))
+                    {
+                        ModelState.AddModelError("EmailAddress", "This email address is already in use.");
+                        hasError = true;
+                    }
+                    //Error for phone number alreday in use
+                    if (sqlEx.Message.Contains("UQ__Users__85FB4E38A995260E")) 
+                    {
+                        ModelState.AddModelError("PhoneNumber", "This phone number is already in use.");
+                        hasError = true;
+                    }
+                    //Error for username alreday in use
+                    if (sqlEx.Message.Contains("UQ__Users__536C85E48E43F32B")) 
+                    {
+                        ModelState.AddModelError("Username", "This username is already taken.");
+                        hasError = true;
+                    }
+                    //Another error
+                    if (!hasError)
+                    {
+                        ModelState.AddModelError("", "A unique constraint error occurred.");
+                    }
+                }
+                else
+                {
+                    // Handle any other unexpected errors
+                    ModelState.AddModelError("", "An unexpected error occurred. Please try again.");
+                }
+            }
+
+            return Page();
         }
     }
 }

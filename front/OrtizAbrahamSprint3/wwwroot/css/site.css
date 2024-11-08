@@ -1118,7 +1118,7 @@ p {
 
 
 
-/*Style for signup*/
+/*Styles for the forms*/
 
 /*Style for the title rows*/
 .sign-up-title {
@@ -1173,6 +1173,7 @@ p {
     padding: 0.5em 0.8em;
     border-radius: 1em;
     width: 100%;
+    color-scheme: dark;
 }
 
 .enter-data-container span {
@@ -1239,7 +1240,7 @@ p {
     }
 }
 
-/*Styles for sign in */
+/*Styles for links to other pages*/
 .link-to-sign-container {
     display: flex;
     justify-content: center;
