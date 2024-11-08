@@ -3,7 +3,7 @@ use FA24_ksaortizc
 
 
 
---Drop table if exist
+--Drop table if exist (9 tables)
 DROP TABLE if exists dbo.ClassUser
 DROP TABLE if exists dbo.Parent
 DROP TABLE if exists dbo.Users
@@ -79,8 +79,8 @@ CREATE TABLE dbo.Classes
 (
 	ClassID int IDENTITY(1,1) NOT NULL CONSTRAINT pkClassID PRIMARY KEY,
 	Price decimal(5,2) NOT NULL, 
-	ClassHourStart varchar(4) NOT NULL,
-	ClassHourFinish varchar(4) NOT NUll,
+	StartHour varchar(4) NOT NULL,
+	EndHour varchar(4) NOT NUll,
 	AgeRangeID int not null constraint fkClassesToAgeRange Foreign Key REFERENCES dbo.AgeRange(AgeRangeID),
 	LevelID int not null constraint fkClassesToLevel Foreign Key REFERENCES dbo.Levels(LevelID),
 	StyleID int not null constraint fkClassesToStyle Foreign Key REFERENCES dbo.Style(StyleID),
@@ -178,7 +178,7 @@ VALUES
 
 --Classes Table
 INSERT INTO dbo.Classes
-(Price,ClassHourStart,ClassHourFinish,AgeRangeID,LevelID,StyleID,WeekDaysID, InstructorID)
+(Price,StartHour,EndHour,AgeRangeID,LevelID,StyleID,WeekDaysID, InstructorID)
 VALUES 
 (200.00, '15', '17', 1, 1, 1, 1, 1),
 (200.00, '15', '17', 1, 2, 1, 2, 1),
@@ -231,8 +231,8 @@ SELECT
 	ar.RangeName AS AgeRange,
 	s.StyleName AS Style,
 	l.LevelName AS Level,
-	c.ClassHourStart,
-	c.ClassHourFinish,
+	c.StartHour,
+	c.EndHour,
 	t.FirstName
 FROM 
     dbo.ClassUser cu

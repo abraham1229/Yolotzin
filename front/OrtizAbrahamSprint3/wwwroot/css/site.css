@@ -1057,6 +1057,7 @@ p {
     cursor: pointer;
     font-size: 1.3em;
     transition: color 0.3s ease, transform 0.3s ease;
+    text-decoration: none;
 }
 
 .level-btn:hover {
