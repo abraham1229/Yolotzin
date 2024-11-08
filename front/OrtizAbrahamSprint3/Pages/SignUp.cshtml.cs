@@ -60,18 +60,37 @@ namespace OrtizAbrahamSprint3.Pages
             _myApplicationDbContext = myApplicationDbContext;
         }
 
+        //Display error message for age
+        public string MessageAgeRange { get; set; }
+
+        // Method to calculate age based on the birthday
+        private int CalculateAge(DateOnly birthDate)
+        {
+            var today = DateOnly.FromDateTime(DateTime.Today);
+            int age = today.Year - birthDate.Year;
+            if (birthDate > today.AddYears(-age)) age--;
+            return age;
+        }
+
         //public IActionResult OnGet()
         //{
-        //    ////populate de dropdown list
+        //    //populate de dropdown list
         //    listofstylesdances = new SelectList(_myApplicationDbContext.Levels, "LevelID", "LevelName");
         //    return Page();
         //}
 
-        //public async Task<IActionResult> OnPostAddUser()
-        //{
-        //    _myApplicationDbContext.Users.Add(MyUsers);
-        //    await _myApplicationDbContext.SaveChangesAsync();
-        //    return RedirectToPage("./Index");
-        //}
+        public async Task<IActionResult> OnPostAddUser()
+        {
+            // Calculate age
+            int age = CalculateAge(Birthday);
+            if (age < 4 || age > 120)
+            {
+                MessageAgeRange = "The age must be between 4 and 120";
+                return Page();
+            }
+            _myApplicationDbContext.Users.Add(MyUsers);
+            await _myApplicationDbContext.SaveChangesAsync();
+            return RedirectToPage("./Index");
+        }
     }
 }
