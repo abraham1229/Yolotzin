@@ -32,7 +32,7 @@
               "RelativeDocumentMoniker": "Pages\\SignUp.cshtml.cs",
               "ToolTip": "C:\\Users\\Abraham1229\\OneDrive\\Documentos\\Web aplication development\\Yolotzin\\front\\OrtizAbrahamSprint3\\Pages\\SignUp.cshtml.cs",
               "RelativeToolTip": "Pages\\SignUp.cshtml.cs",
-              "ViewState": "AgIAAIMAAAAAAAAAAAAswJ4AAAAuAAAAAAAAAA==",
+              "ViewState": "AgIAAHoAAAAAAAAAAAAswH4AAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-09T14:57:11.576Z",
               "EditorCaption": ""
@@ -47,8 +47,7 @@
               "RelativeToolTip": "Pages\\SignUp.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-09T14:57:10.638Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-09T14:57:10.638Z"
             },
             {
               "$type": "Document",
@@ -60,8 +59,7 @@
               "RelativeToolTip": "wwwroot\\css\\site.css",
               "ViewState": "AgIAAHAEAAAAAAAAAAAAAIUEAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-11-08T22:30:44.21Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-08T22:30:44.21Z"
             }
           ]
         }

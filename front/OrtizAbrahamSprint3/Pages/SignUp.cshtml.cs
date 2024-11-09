@@ -122,21 +122,9 @@ namespace OrtizAbrahamSprint3.Pages
         {
             ClassNameDisplayGuardian = "hide";
             ClassNameDisplayUser = String.Empty;
-            
-            //Delete validations
-            ModelState.Remove("FirstNameGuardian");
-            ModelState.Remove("LastNameGuardian");
-            ModelState.Remove("EmailAddressGuardian");
-            ModelState.Remove("PhoneNumberGuardian");
-            ModelState.Remove("BirthdayGuardian");
 
-            ModelState.Remove("FirstNameUser");
-            ModelState.Remove("LastNameUser");
-            ModelState.Remove("EmailAddressUser");
-            ModelState.Remove("PhoneNumberUser");
-            ModelState.Remove("BirthdayUser");
-            ModelState.Remove("Username");
-            ModelState.Remove("UserPassword");
+            //Delete validations
+            ModelState.Clear();
         }
 
         public void OnPostYes()
@@ -144,19 +132,7 @@ namespace OrtizAbrahamSprint3.Pages
             ClassNameDisplayGuardian = String.Empty;
             ClassNameDisplayUser = String.Empty;
             //Delete validations
-            ModelState.Remove("FirstNameGuardian");
-            ModelState.Remove("LastNameGuardian");
-            ModelState.Remove("EmailAddressGuardian");
-            ModelState.Remove("PhoneNumberGuardian");
-            ModelState.Remove("BirthdayGuardian");
-
-            ModelState.Remove("FirstNameUser");
-            ModelState.Remove("LastNameUser");
-            ModelState.Remove("EmailAddressUser");
-            ModelState.Remove("PhoneNumberUser");
-            ModelState.Remove("BirthdayUser");
-            ModelState.Remove("Username");
-            ModelState.Remove("UserPassword");
+            ModelState.Clear();
         }
 
 
