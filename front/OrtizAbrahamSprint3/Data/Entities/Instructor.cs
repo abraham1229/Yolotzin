@@ -6,10 +6,10 @@ namespace OrtizAbrahamSprint3.Data.Entities
     {
         [Key]
         public int InstructorID { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string EmailAddress { get; set; }
-        public string PhoneNumber { get; set; }
-        public DateOnly Birthday { get; set; }
+        public string FirstNameInstructor { get; set; }
+        public string LastNameInstructor { get; set; }
+        public string EmailAddressInstructor { get; set; }
+        public string PhoneNumberInstructor { get; set; }
+        public DateOnly BirthdayInstructor { get; set; }
     }
 }

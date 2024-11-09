@@ -2,10 +2,8 @@ use FA24_ksaortizc
 
 
 
-
 --Drop table if exist (9 tables)
 DROP TABLE if exists dbo.ClassUser
-DROP TABLE if exists dbo.Parent
 DROP TABLE if exists dbo.Users
 DROP TABLE if exists dbo.Classes
 DROP TABLE if exists dbo.WeekDays
@@ -64,11 +62,11 @@ GO
 CREATE TABLE dbo.Instructor
 (
 	InstructorID int IDENTITY(1,1) NOT NULL CONSTRAINT pkInstructorID PRIMARY KEY,
-	FirstName varchar(30) NOT NULL,
-	LastName varchar(30) NOT NULL,
-	EmailAddress varchar(100) NOT NULL UNIQUE, 
-	PhoneNumber varchar(15) NOT NULL UNIQUE,
-	Birthday date NOT NULL
+	FirstNameInstructor varchar(30) NOT NULL,
+	LastNameInstructor varchar(30) NOT NULL,
+	EmailAddressInstructor varchar(100) NOT NULL UNIQUE, 
+	PhoneNumberInstructor varchar(15) NOT NULL UNIQUE,
+	BirthdayInstructor date NOT NULL
 )
 GO
 
@@ -96,31 +94,21 @@ GO
 CREATE TABLE dbo.Users
 (
 	UserID int IDENTITY(1,1) NOT NULL CONSTRAINT pkUserID PRIMARY KEY,
-	FirstName varchar(30) NOT NULL,
-	LastName varchar(30) NOT NULL,
-	EmailAddress varchar(100) NOT NULL UNIQUE, 
-	PhoneNumber varchar(15) NOT NULL UNIQUE,
-	Birthday date NOT NULL,
+	FirstNameUser varchar(30) NOT NULL,
+	LastNameUser varchar(30) NOT NULL,
+	EmailAddressUser varchar(100) NOT NULL UNIQUE, 
+	PhoneNumberUser varchar(15) NOT NULL UNIQUE,
+	BirthdayUser date NOT NULL,
+	FirstNameGuardian varchar(30),
+    LastNameGuardian varchar(30),
+    EmailAddressGuardian varchar(100),
+    PhoneNumberGuardian varchar(15),
+	BirthdayGuardian date,
 	Username varchar(50) NOT NULL UNIQUE,
 	UserPassword varchar(20) NOT NULL,
 	UserCreationDate date NOT NULL DEFAULT GETDATE()
 )
 GO
-
---Parent table for users with tutor
---To store user's parent if the user is underage
-CREATE TABLE dbo.Parent
-(
-    ParentID int IDENTITY(1,1) NOT NULL CONSTRAINT pkParentID PRIMARY KEY,
-    FirstName varchar(30) NOT NULL,
-    LastName varchar(30) NOT NULL,
-    EmailAddress varchar(100) NOT NULL,
-    PhoneNumber varchar(15) NOT NULL,
-	Birthday date NOT NULL,
-    UserID int NOT NULL CONSTRAINT fkParentToUsers FOREIGN KEY REFERENCES dbo.Users(UserID)
-)
-GO
-
 
 --Create table many to many for users and classes
 --To store all the users in each class (many to many)
@@ -171,7 +159,7 @@ GO
 
 --Instructor table
 INSERT INTO dbo.Instructor
-(FirstName, LastName, EmailAddress, PhoneNumber, Birthday)
+(FirstNameInstructor, LastNameInstructor, EmailAddressInstructor, PhoneNumberInstructor, BirthdayInstructor)
 VALUES
 ('Luis', 'Mejia', 'luis@gmail.com', '+52555-1234', '1975-03-10')
 
@@ -201,18 +189,17 @@ GO
 
 --Users Table
 INSERT INTO dbo.Users 
-(FirstName, LastName, EmailAddress, PhoneNumber, Birthday, Username, UserPassword)
+(FirstNameUser, LastNameUser, EmailAddressUser, PhoneNumberUser, BirthdayUser, FirstNameGuardian, LastNameGuardian, EmailAddressGuardian, PhoneNumberGuardian, BirthdayGuardian, Username, UserPassword)
 VALUES 
-('John', 'Doe', 'john.doe@hotmail.com', '555-1234', '2019-01-01', 'johndoe', 'Dance532%@#'),
+('John', 'Doe', 'john.doe@hotmail.com', '555-1234', '2019-01-01','Juan', 'Serino', 'juan.ser@hotmail.com', '555-1234', '2019-01-01', 'johndoe', 'Dance532%@#')
+GO
+
+INSERT INTO dbo.Users 
+(FirstNameUser, LastNameUser, EmailAddressUser, PhoneNumberUser, BirthdayUser, Username, UserPassword)
+VALUES 
 ('Jane', 'Smith', 'jane.smith@gmail.com', '555-5678', '2010-02-02', 'janesmith', 'Folk323#$.'),
 ('Alice', 'Johnson', 'alice.johnson@gmail.com', '555-8765', '1988-03-03', 'alicej', 'Jazz88392k#%')
 GO
-
---Parent table
-INSERT INTO dbo.Parent
-(FirstName, LastName, EmailAddress, PhoneNumber, Birthday,UserID)
-VALUES
-('Juan', 'Serino', 'juan.ser@hotmail.com', '555-1234', '2019-01-01',1)
 
 --ClassUser Table
 INSERT INTO dbo.ClassUser 
@@ -252,7 +239,7 @@ GO
 --GO
 
 SELECT 
-	i.FirstName AS Name,
+	i.FirstNameInstructor AS Name,
 	s.StyleName AS Style,
 	l.LevelName AS Level,
 	ag.RangeName AS 'Age Range',

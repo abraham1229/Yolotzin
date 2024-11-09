@@ -6,36 +6,40 @@ using OrtizAbrahamSprint3.Data;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Metadata.Ecma335;
 
 
 //Preguntar como hacer que guarde el anio, de la misma manera
 namespace OrtizAbrahamSprint3.Pages
 {
     public class SignUpModel : PageModel
-    {
+    {   
+        //Tutor information
+
+        //User information
         [BindProperty]
         [RegularExpression(@"^[a-zA-Z'-]+$", ErrorMessage = "Only letters, hyphens, and apostrophes are allowed.")]
         [Required(ErrorMessage = "Please enter your first name")]
-        public string FirstName { get; set; }
+        public string FirstNameUser { get; set; }
 
         [RegularExpression(@"^[a-zA-Z'-]+$", ErrorMessage = "Only letters, hyphens, and apostrophes are allowed.")]
         [BindProperty]
         [Required(ErrorMessage = "Please enter your last name")]
-        public string LastName { get; set; }
+        public string LastNameUser { get; set; }
 
         [BindProperty]
         [RegularExpression(@"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$", ErrorMessage = "Please enter a valid email address.")]
         [Required(ErrorMessage = "Please enter your email address")]
-        public string EmailAddress { get; set; }
+        public string EmailAddressUser { get; set; }
 
         [BindProperty]
         [RegularExpression(@"^\+?\d{0,3}[-.\s]?\(?\d{1,4}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,9}$", ErrorMessage = "Please enter a valid phone number.")]
         [Required(ErrorMessage = "Please enter your phone number")]
-        public string PhoneNumber { get; set; }
+        public string PhoneNumberUser { get; set; }
 
         [BindProperty]
         [Required(ErrorMessage = "Please enter your birthday")]
-        public DateOnly Birthday { get; set; }
+        public DateOnly BirthdayUser { get; set; }
 
         [BindProperty]
         [RegularExpression(@"^[a-zA-Z0-9_.-]{5,20}$", ErrorMessage = "Username must be 5-20 characters long and may contain letters, numbers, underscores, and dashes.")]
@@ -67,6 +71,9 @@ namespace OrtizAbrahamSprint3.Pages
         //Display error message for age
         public string MessageAgeRange { get; set; }
 
+        //Change the name of the class if the user is underage
+        public string ClassNameDisplay { get; set; } = "sign-up-title";
+
         // Method to calculate age based on the birthday
         private int CalculateAge(DateOnly birthDate)
         {
@@ -76,17 +83,31 @@ namespace OrtizAbrahamSprint3.Pages
             return age;
         }
 
-        //public IActionResult OnGet()
-        //{
-        //    //populate de dropdown list
-        //    listofstylesdances = new SelectList(_myApplicationDbContext.Levels, "LevelID", "LevelName");
-        //    return Page();
-        //}
+        public void OnGet()
+        {
+            //populate de dropdown list
+            //listofstylesdances = new SelectList(_myApplicationDbContext.Levels, "LevelID", "LevelName");
+            //return Page();
+
+            ClassNameDisplay = "sign-up-title";
+        }
+
+        public void OnPostNo()
+        {
+            ClassNameDisplay = "sign-up-title-hide";
+        }
+
+        public void OnPostYes()
+        {
+            ClassNameDisplay = "sign-up-title";
+        }
+
+
 
         public async Task<IActionResult> OnPostAddUser()
         {
             // Calculate age
-            int age = CalculateAge(Birthday);
+            int age = CalculateAge(BirthdayUser);
 
             // Validate the age range 
             if (age < 4 || age > 120)

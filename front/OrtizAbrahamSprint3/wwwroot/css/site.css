@@ -1122,6 +1122,10 @@ p {
 /*Styles for the forms*/
 
 /*Style for the title rows*/
+.sign-up-title-hide {
+    display: none;
+}
+
 .sign-up-title {
     margin-top: 2em;
     margin-bottom: 1em;

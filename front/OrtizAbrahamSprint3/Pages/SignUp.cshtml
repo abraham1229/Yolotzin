@@ -11,38 +11,57 @@
     <p>Please enter the following information</p>
 </div>
 
-@*Form rows*@
-<form method="post" class="all-data-container">   
+@*Row to ask for the age*@
+
+<form method="post" class="all-data-container">
+    <div class="enter-data-container">
+        <label>Are you under 18 years old?</label>
+    </div>
+
+    @*Buttons rows*@
+    <div class="data-buttons-container">
+        <input asp-page-handler="No" type="submit" value="No" class="clear-button" />
+        <input asp-page-handler="Yes" type="submit" value="Yes" class="submit-button" />
+    </div>
+</form>
+
+<form method="post" class="all-data-container">
+
+    <h2 class="">Tutor information</h2>
+
+
+
+    <h2>Student information</h2>
     @*First name row*@
     <div class="enter-data-container">
         <label>First name</label>
-        <input asp-for="FirstName" type="text" />
-        <span asp-validation-for="FirstName"></span>
+        <input asp-for="FirstNameUser" type="text" />
+        <span asp-validation-for="FirstNameUser"></span>
     </div> 
     @*Last name row*@
     <div class="enter-data-container">
         <label>Last name</label>
-        <input asp-for="LastName" type="text" />
-        <span asp-validation-for="LastName"></span>
+        <input asp-for="LastNameUser" type="text" />
+        <span asp-validation-for="LastNameUser"></span>
     </div>
     @*Email row*@
     <div class="enter-data-container">
         <label>Email</label>
-        <input asp-for="EmailAddress" type="text" />
-        <span asp-validation-for="EmailAddress"></span>
+        <input asp-for="EmailAddressUser" type="text" />
+        <span asp-validation-for="EmailAddressUser"></span>
 
     </div>
     @*Phone number row*@
     <div class="enter-data-container">
         <label>Phone number</label>
-        <input asp-for="PhoneNumber" type="tel" />
-        <span asp-validation-for="PhoneNumber"></span>
+        <input asp-for="PhoneNumberUser" type="tel" />
+        <span asp-validation-for="PhoneNumberUser"></span>
 
     </div>
     @*Date of birth row*@
     <div class="enter-data-container">
         <label>Date of birth</label>
-        <input asp-for="Birthday" type="date" />
+        <input asp-for="BirthdayUser" type="date" />
         <span>@Model.MessageAgeRange</span>
 
     </div>

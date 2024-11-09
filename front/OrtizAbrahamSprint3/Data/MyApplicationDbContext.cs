@@ -11,7 +11,6 @@ namespace OrtizAbrahamSprint3.Data
         { }
         //Tables 
         public DbSet<ClassUser> ClassUser { get; set; }
-        public DbSet<Parent> Parent { get; set; }
         public DbSet<Users> Users { get; set; }
         public DbSet<Classes> Classes { get; set; }
         public DbSet<WeekDays> WeekDays { get; set; }
