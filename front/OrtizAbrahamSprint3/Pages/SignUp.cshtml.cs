@@ -9,12 +9,35 @@ using Microsoft.EntityFrameworkCore;
 using System.Reflection.Metadata.Ecma335;
 
 
-//Preguntar como hacer que guarde el anio, de la misma manera
 namespace OrtizAbrahamSprint3.Pages
 {
     public class SignUpModel : PageModel
-    {   
+    {
         //Tutor information
+        //User information
+        [BindProperty]
+        [RegularExpression(@"^[a-zA-Z'-]+$", ErrorMessage = "Only letters, hyphens, and apostrophes are allowed.")]
+        [Required(ErrorMessage = "Please enter your first name")]
+        public string FirstNameGuardian { get; set; }
+
+        [RegularExpression(@"^[a-zA-Z'-]+$", ErrorMessage = "Only letters, hyphens, and apostrophes are allowed.")]
+        [BindProperty]
+        [Required(ErrorMessage = "Please enter your last name")]
+        public string LastNameGuardian { get; set; }
+
+        [BindProperty]
+        [RegularExpression(@"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$", ErrorMessage = "Please enter a valid email address.")]
+        [Required(ErrorMessage = "Please enter your email address")]
+        public string EmailAddressGuardian { get; set; }
+
+        [BindProperty]
+        [RegularExpression(@"^\+?\d{0,3}[-.\s]?\(?\d{1,4}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,9}$", ErrorMessage = "Please enter a valid phone number.")]
+        [Required(ErrorMessage = "Please enter your phone number")]
+        public string PhoneNumberGuardian { get; set; }
+
+        [BindProperty]
+        [Required(ErrorMessage = "Please enter your birthday")]
+        public DateOnly BirthdayGuardian { get; set; }
 
         //User information
         [BindProperty]
@@ -69,10 +92,12 @@ namespace OrtizAbrahamSprint3.Pages
         }
 
         //Display error message for age
-        public string MessageAgeRange { get; set; }
+        public string MessageAgeRangeGuardian { get; set; }
+        public string MessageAgeRangeUser { get; set; }
 
         //Change the name of the class if the user is underage
-        public string ClassNameDisplay { get; set; } = "sign-up-title";
+        public string ClassNameDisplayGuardian { get; set; } = "hide";
+        public string ClassNameDisplayUser { get; set; } = "hide";
 
         // Method to calculate age based on the birthday
         private int CalculateAge(DateOnly birthDate)
@@ -89,17 +114,49 @@ namespace OrtizAbrahamSprint3.Pages
             //listofstylesdances = new SelectList(_myApplicationDbContext.Levels, "LevelID", "LevelName");
             //return Page();
 
-            ClassNameDisplay = "sign-up-title";
+            ClassNameDisplayGuardian = "hide";
+            ClassNameDisplayUser = "hide";
         }
 
         public void OnPostNo()
         {
-            ClassNameDisplay = "sign-up-title-hide";
+            ClassNameDisplayGuardian = "hide";
+            ClassNameDisplayUser = String.Empty;
+            
+            //Delete validations
+            ModelState.Remove("FirstNameGuardian");
+            ModelState.Remove("LastNameGuardian");
+            ModelState.Remove("EmailAddressGuardian");
+            ModelState.Remove("PhoneNumberGuardian");
+            ModelState.Remove("BirthdayGuardian");
+
+            ModelState.Remove("FirstNameUser");
+            ModelState.Remove("LastNameUser");
+            ModelState.Remove("EmailAddressUser");
+            ModelState.Remove("PhoneNumberUser");
+            ModelState.Remove("BirthdayUser");
+            ModelState.Remove("Username");
+            ModelState.Remove("UserPassword");
         }
 
         public void OnPostYes()
         {
-            ClassNameDisplay = "sign-up-title";
+            ClassNameDisplayGuardian = String.Empty;
+            ClassNameDisplayUser = String.Empty;
+            //Delete validations
+            ModelState.Remove("FirstNameGuardian");
+            ModelState.Remove("LastNameGuardian");
+            ModelState.Remove("EmailAddressGuardian");
+            ModelState.Remove("PhoneNumberGuardian");
+            ModelState.Remove("BirthdayGuardian");
+
+            ModelState.Remove("FirstNameUser");
+            ModelState.Remove("LastNameUser");
+            ModelState.Remove("EmailAddressUser");
+            ModelState.Remove("PhoneNumberUser");
+            ModelState.Remove("BirthdayUser");
+            ModelState.Remove("Username");
+            ModelState.Remove("UserPassword");
         }
 
 
@@ -107,12 +164,17 @@ namespace OrtizAbrahamSprint3.Pages
         public async Task<IActionResult> OnPostAddUser()
         {
             // Calculate age
-            int age = CalculateAge(BirthdayUser);
+            int ageGuardian = CalculateAge(BirthdayGuardian);
+            int ageUser = CalculateAge(BirthdayUser);
 
             // Validate the age range 
-            if (age < 4 || age > 120)
+            if (ageGuardian < 8 || ageGuardian > 120)
             {
-                MessageAgeRange = "We are sorry, you need to be older than 4 and younger than 120";
+                MessageAgeRangeUser = "Guardians must be between 18 and 120";
+            }
+            if (ageUser < 4 || ageUser > 120)
+            {
+                MessageAgeRangeUser = "Users must be between 4 and 120";
             }
 
             try

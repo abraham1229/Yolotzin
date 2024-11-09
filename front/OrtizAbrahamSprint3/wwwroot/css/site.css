@@ -1122,9 +1122,6 @@ p {
 /*Styles for the forms*/
 
 /*Style for the title rows*/
-.sign-up-title-hide {
-    display: none;
-}
 
 .sign-up-title {
     margin-top: 2em;
@@ -1155,6 +1152,10 @@ p {
     padding-top: 1em;
     border-radius: 1em;
     margin-bottom: 3em;
+}
+
+.all-data-container h2 {
+    margin-top: 0.5em;
 }
 
 .enter-data-container {
@@ -1224,6 +1225,10 @@ p {
 
 .clear-button:active, .submit-button:active {
     transform: scale(0.99,0.95);
+}
+
+.hide {
+    display: none;
 }
 
 @media (max-width: 768px) {
