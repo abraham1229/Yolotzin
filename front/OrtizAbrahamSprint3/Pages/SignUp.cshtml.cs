@@ -14,39 +14,38 @@ namespace OrtizAbrahamSprint3.Pages
     public class SignUpModel : PageModel
     {
         //Tutor information
-        //User information
         [BindProperty]
-        [RegularExpression(@"^[a-zA-Z'-]+$", ErrorMessage = "Only letters, hyphens, and apostrophes are allowed.")]
-        [Required(ErrorMessage = "Please enter your first name")]
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Only letters are allowed.")]
+        [Required(ErrorMessage = "Please enter guardian's first name")]
         public string FirstNameGuardian { get; set; }
 
-        [RegularExpression(@"^[a-zA-Z'-]+$", ErrorMessage = "Only letters, hyphens, and apostrophes are allowed.")]
         [BindProperty]
-        [Required(ErrorMessage = "Please enter your last name")]
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Only letters are allowed.")]
+        [Required(ErrorMessage = "Please enter guardian's last name")]
         public string LastNameGuardian { get; set; }
 
         [BindProperty]
         [RegularExpression(@"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$", ErrorMessage = "Please enter a valid email address.")]
-        [Required(ErrorMessage = "Please enter your email address")]
+        [Required(ErrorMessage = "Please enter guardian's email address")]
         public string EmailAddressGuardian { get; set; }
 
         [BindProperty]
         [RegularExpression(@"^\+?\d{0,3}[-.\s]?\(?\d{1,4}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,9}$", ErrorMessage = "Please enter a valid phone number.")]
-        [Required(ErrorMessage = "Please enter your phone number")]
+        [Required(ErrorMessage = "Please enter guardian's phone number")]
         public string PhoneNumberGuardian { get; set; }
 
         [BindProperty]
-        [Required(ErrorMessage = "Please enter your birthday")]
+        [Required(ErrorMessage = "Please enter guardian's birthday")]
         public DateOnly BirthdayGuardian { get; set; }
 
         //User information
         [BindProperty]
-        [RegularExpression(@"^[a-zA-Z'-]+$", ErrorMessage = "Only letters, hyphens, and apostrophes are allowed.")]
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Only letters are allowed.")]
         [Required(ErrorMessage = "Please enter your first name")]
         public string FirstNameUser { get; set; }
 
-        [RegularExpression(@"^[a-zA-Z'-]+$", ErrorMessage = "Only letters, hyphens, and apostrophes are allowed.")]
         [BindProperty]
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Only letters are allowed.")]
         [Required(ErrorMessage = "Please enter your last name")]
         public string LastNameUser { get; set; }
 
@@ -73,9 +72,7 @@ namespace OrtizAbrahamSprint3.Pages
         [Required(ErrorMessage = "Please enter your password")]
         public string UserPassword { get; set; }
 
-        [BindProperty]
-        public string StyleNameID { get; set; }
-
+        //Bind the property to post into the database
         [BindProperty]
         public Users MyUsers { get; set; }
 
@@ -96,11 +93,11 @@ namespace OrtizAbrahamSprint3.Pages
         public string MessageAgeRangeUser { get; set; }
 
         //Change the name of the class if the user is underage
-        public string ClassNameDisplayGuardian { get; set; } = "hide";
-        public string ClassNameDisplayUser { get; set; } = "hide";
+        public string ClassNameDisplayGuardian { get; set; } 
+        public string ClassNameDisplayUser { get; set; }
 
         // Method to calculate age based on the birthday
-        private int CalculateAge(DateOnly birthDate)
+        static int CalculateAge(DateOnly birthDate)
         {
             var today = DateOnly.FromDateTime(DateTime.Today);
             int age = today.Year - birthDate.Year;
@@ -135,6 +132,29 @@ namespace OrtizAbrahamSprint3.Pages
             ModelState.Clear();
         }
 
+        public void OnPostClearForm()
+        {
+
+            // Limpiar propiedades del formulario
+            FirstNameGuardian = String.Empty;
+            LastNameGuardian = String.Empty;
+            EmailAddressGuardian = String.Empty;
+            PhoneNumberGuardian = String.Empty;
+            BirthdayGuardian = default;
+
+            FirstNameUser = String.Empty;
+            LastNameUser = String.Empty;
+            EmailAddressUser = String.Empty;
+            PhoneNumberUser = String.Empty;
+            BirthdayUser = default;
+
+            Username = String.Empty;
+            UserPassword = String.Empty;
+
+            // Limpiar ModelState
+            ModelState.Clear();
+
+        }
 
 
         public async Task<IActionResult> OnPostAddUser()
@@ -143,15 +163,25 @@ namespace OrtizAbrahamSprint3.Pages
             int ageGuardian = CalculateAge(BirthdayGuardian);
             int ageUser = CalculateAge(BirthdayUser);
 
+
             // Validate the age range 
-            if (ageGuardian < 8 || ageGuardian > 120)
+
+            if (ClassNameDisplayGuardian == "hide")
             {
-                MessageAgeRangeUser = "Guardians must be between 18 and 120";
+                if (ageUser <= 18 || ageUser > 120)
+                {
+                    MessageAgeRangeUser = "You need to asing a guardian if you are underage";
+                }
             }
-            if (ageUser < 4 || ageUser > 120)
+            else
             {
-                MessageAgeRangeUser = "Users must be between 4 and 120";
+                if (ageUser <- 4 || ageUser > 120)
+                {
+                    MessageAgeRangeUser = "Users must be between 4 and 120";
+                }
             }
+
+            
 
             try
             {
