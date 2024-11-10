@@ -94,7 +94,6 @@ namespace OrtizAbrahamSprint3.Pages
 
         //Change the name of the class if the user is underage
         public string ClassNameDisplayGuardian { get; set; } 
-        public string ClassNameDisplayUser { get; set; }
 
         // Method to calculate age based on the birthday
         static int CalculateAge(DateOnly birthDate)
@@ -112,24 +111,6 @@ namespace OrtizAbrahamSprint3.Pages
             //return Page();
 
             ClassNameDisplayGuardian = "hide";
-            ClassNameDisplayUser = "hide";
-        }
-
-        public void OnPostNo()
-        {
-            ClassNameDisplayGuardian = "hide";
-            ClassNameDisplayUser = String.Empty;
-
-            //Delete validations
-            ModelState.Clear();
-        }
-
-        public void OnPostYes()
-        {
-            ClassNameDisplayGuardian = String.Empty;
-            ClassNameDisplayUser = String.Empty;
-            //Delete validations
-            ModelState.Clear();
         }
 
         public void OnPostClearForm()
@@ -179,6 +160,15 @@ namespace OrtizAbrahamSprint3.Pages
                 {
                     MessageAgeRangeUser = "Users must be between 4 and 120";
                 }
+            }
+
+            if (ageUser >=18 )
+            {
+                ClassNameDisplayGuardian = "hide";
+            }
+            else
+            {
+                ClassNameDisplayGuardian = String.Empty;
             }
 
             
