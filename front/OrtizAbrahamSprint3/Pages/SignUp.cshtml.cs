@@ -67,6 +67,7 @@ namespace OrtizAbrahamSprint3.Pages
         [RegularExpression(@"^[a-zA-Z0-9_.-]{5,20}$", ErrorMessage = "Username must be 5-20 characters long and may contain letters, numbers, underscores, and dashes.")]
         [Required(ErrorMessage = "Please enter your username")]
         public string Username { get; set; }
+
         [BindProperty]
         [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$", ErrorMessage = "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.")]
         [Required(ErrorMessage = "Please enter your password")]
@@ -93,7 +94,8 @@ namespace OrtizAbrahamSprint3.Pages
         public string MessageAgeRangeUser { get; set; }
 
         //Change the name of the class if the user is underage
-        public string ClassNameDisplayGuardian { get; set; } 
+        [BindProperty]
+        public string ClassNameDisplayGuardian { get; set; } = "hide";
 
         // Method to calculate age based on the birthday
         static int CalculateAge(DateOnly birthDate)
@@ -109,8 +111,6 @@ namespace OrtizAbrahamSprint3.Pages
             //populate de dropdown list
             //listofstylesdances = new SelectList(_myApplicationDbContext.Levels, "LevelID", "LevelName");
             //return Page();
-
-            ClassNameDisplayGuardian = "hide";
         }
 
         public void OnPostClearForm()
@@ -146,35 +146,30 @@ namespace OrtizAbrahamSprint3.Pages
 
 
             // Validate the age range 
+            //If the user is not in the range
+            if (ageUser < 4 || ageUser > 120)
+            {
+                MessageAgeRangeUser = "Users must be between 4 and 120";
 
-            if (ClassNameDisplayGuardian == "hide")
-            {
-                if (ageUser <= 18 || ageUser > 120)
-                {
-                    MessageAgeRangeUser = "You need to asing a guardian if you are underage";
-                }
             }
-            else
+            //If the user needs a guardian
+            else if (ageUser < 18 && ageGuardian > 120)
             {
-                if (ageUser <- 4 || ageUser > 120)
-                {
-                    MessageAgeRangeUser = "Users must be between 4 and 120";
-                }
-            }
-
-            if (ageUser >=18 )
-            {
-                ClassNameDisplayGuardian = "hide";
-            }
-            else
-            {
+                //Show guardians section
                 ClassNameDisplayGuardian = String.Empty;
+                //Delete guardians modal
+                ModelState.Remove("FirstNameGuardian");
+                ModelState.Remove("LastNameGuardian");
+                ModelState.Remove("EmailAddressGuardian");
+                ModelState.Remove("PhoneNumberGuardian");
+                ModelState.Remove("BirthdayGuardian");
+                return Page();
             }
 
-            
 
             try
             {
+                MyUsers.UserCreationDate = DateOnly.FromDateTime(DateTime.Today);
                 _myApplicationDbContext.Users.Add(MyUsers);
                 await _myApplicationDbContext.SaveChangesAsync();
                 return RedirectToPage("./Index");
@@ -191,17 +186,17 @@ namespace OrtizAbrahamSprint3.Pages
                     //Error for email adrress alreday in use
                     if (sqlEx.Message.Contains("UQ__Users__49A14740AEAD3FD2"))
                     {
-                        ModelState.AddModelError("EmailAddress", "This email address is already in use.");
+                        ModelState.AddModelError("EmailAddressUser", "This email address is already in use.");
                         hasError = true;
                     }
                     //Error for phone number alreday in use
-                    if (sqlEx.Message.Contains("UQ__Users__85FB4E38A995260E")) 
+                    if (sqlEx.Message.Contains("UQ__Users__85FB4E38A995260E"))
                     {
-                        ModelState.AddModelError("PhoneNumber", "This phone number is already in use.");
+                        ModelState.AddModelError("PhoneNumberUser", "This phone number is already in use.");
                         hasError = true;
                     }
                     //Error for username alreday in use
-                    if (sqlEx.Message.Contains("UQ__Users__536C85E48E43F32B")) 
+                    if (sqlEx.Message.Contains("UQ__Users__536C85E4802C7F28"))
                     {
                         ModelState.AddModelError("Username", "This username is already taken.");
                         hasError = true;
