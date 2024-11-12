@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection.Metadata.Ecma335;
+using System.Security.Cryptography;
 
 
 namespace OrtizAbrahamSprint3.Pages
@@ -73,10 +74,7 @@ namespace OrtizAbrahamSprint3.Pages
         [Required(ErrorMessage = "Please enter your password")]
         public string UserPassword { get; set; }
 
-        //Bind the property to post into the database
-        [BindProperty]
-        public Users MyUsers { get; set; }
-
+       
         //Use the SelecList class from drop down list
         public SelectList listofstylesdances { get; set; }
 
@@ -144,13 +142,12 @@ namespace OrtizAbrahamSprint3.Pages
             int ageGuardian = CalculateAge(BirthdayGuardian);
             int ageUser = CalculateAge(BirthdayUser);
 
-
             // Validate the age range 
             //If the user is not in the range
             if (ageUser < 4 || ageUser > 120)
             {
                 MessageAgeRangeUser = "Users must be between 4 and 120";
-
+                return Page();
             }
             //If the user needs a guardian
             else if (ageUser < 18 && ageGuardian > 120)
@@ -165,14 +162,39 @@ namespace OrtizAbrahamSprint3.Pages
                 ModelState.Remove("BirthdayGuardian");
                 return Page();
             }
+            else if (ageGuardian < 18 || ageGuardian > 120)
+            {
+                MessageAgeRangeGuardian = "Guardians must be between 18 and 120";
+                return Page();
+            }
+
+            //Hash and salt the password entered on the form if there is not age restriction
+            CreatePasswordHash(UserPassword, out byte[] passwordHash, out byte[] passwordSalt);
+
+            var user = new Users
+            {
+                FirstNameUser = FirstNameUser,
+                LastNameUser = LastNameUser,
+                EmailAddressUser = EmailAddressUser,
+                PhoneNumberUser = PhoneNumberUser,
+                BirthdayUser = BirthdayUser,
+                FirstNameGuardian = FirstNameGuardian,
+                LastNameGuardian = LastNameGuardian,
+                EmailAddressGuardian = EmailAddressGuardian,
+                PhoneNumberGuardian = PhoneNumberGuardian,
+                BirthdayGuardian = BirthdayGuardian,
+                Username = Username,
+                UserPasswordHash = passwordHash,
+                UserPasswordSalt = passwordSalt,
+                UserCreationDate = DateOnly.FromDateTime(DateTime.Today)
+            };
 
 
             try
             {
-                MyUsers.UserCreationDate = DateOnly.FromDateTime(DateTime.Today);
-                _myApplicationDbContext.Users.Add(MyUsers);
+                _myApplicationDbContext.Users.Add(user);
                 await _myApplicationDbContext.SaveChangesAsync();
-                return RedirectToPage("./Index");
+                return RedirectToPage("/SignIn");
             }
 
             //Check if there are errors
@@ -215,6 +237,17 @@ namespace OrtizAbrahamSprint3.Pages
             }
 
             return Page();
+        }
+
+        public void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+        {
+            //Existing classes to hash ans salt will be used
+            using (var hmac = new HMACSHA512())
+            {
+                passwordSalt = hmac.Key;
+                passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+            }
+
         }
     }
 }

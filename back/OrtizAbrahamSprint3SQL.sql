@@ -105,7 +105,8 @@ CREATE TABLE dbo.Users
     PhoneNumberGuardian varchar(15),
 	BirthdayGuardian date,
 	Username varchar(50) NOT NULL UNIQUE,
-	UserPassword varchar(20) NOT NULL,
+	UserPasswordHash varbinary(1024),
+	UserPasswordSalt varbinary(1024),
 	UserCreationDate date NOT NULL DEFAULT GETDATE()
 )
 GO
@@ -189,16 +190,16 @@ GO
 
 --Users Table
 INSERT INTO dbo.Users 
-(FirstNameUser, LastNameUser, EmailAddressUser, PhoneNumberUser, BirthdayUser, FirstNameGuardian, LastNameGuardian, EmailAddressGuardian, PhoneNumberGuardian, BirthdayGuardian, Username, UserPassword)
+(FirstNameUser, LastNameUser, EmailAddressUser, PhoneNumberUser, BirthdayUser, FirstNameGuardian, LastNameGuardian, EmailAddressGuardian, PhoneNumberGuardian, BirthdayGuardian, Username)
 VALUES 
-('John', 'Doe', 'john.doe@hotmail.com', '555-1234', '2019-01-01','Juan', 'Serino', 'juan.ser@hotmail.com', '555-1234', '2019-01-01', 'johndoe', 'Dance532%@#')
+('John', 'Doe', 'john.doe@hotmail.com', '555-1234', '2019-01-01','Juan', 'Serino', 'juan.ser@hotmail.com', '555-1234', '2019-01-01', 'johndoe')
 GO
 
 INSERT INTO dbo.Users 
-(FirstNameUser, LastNameUser, EmailAddressUser, PhoneNumberUser, BirthdayUser, Username, UserPassword)
+(FirstNameUser, LastNameUser, EmailAddressUser, PhoneNumberUser, BirthdayUser, Username)
 VALUES 
-('Jane', 'Smith', 'jane.smith@gmail.com', '555-5678', '2010-02-02', 'janesmith', 'Folk323#$.'),
-('Alice', 'Johnson', 'alice.johnson@gmail.com', '555-8765', '1988-03-03', 'alicej', 'Jazz88392k#%')
+('Jane', 'Smith', 'jane.smith@gmail.com', '555-5678', '2010-02-02', 'janesmith'),
+('Alice', 'Johnson', 'alice.johnson@gmail.com', '555-8765', '1988-03-03', 'alicej')
 GO
 
 --ClassUser Table

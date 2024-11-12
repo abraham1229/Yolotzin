@@ -17,7 +17,8 @@ namespace OrtizAbrahamSprint3.Data.Entities
         public string PhoneNumberGuardian { get; set; }
         public DateOnly BirthdayGuardian { get; set; }
         public string Username { get; set; }
-        public string UserPassword { get; set; }
+        public byte[] UserPasswordHash { get; set; }
+        public byte[] UserPasswordSalt { get; set; }
         public DateOnly UserCreationDate { get; set; }
     }
 }
