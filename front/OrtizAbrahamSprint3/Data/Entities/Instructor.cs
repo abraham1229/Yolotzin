@@ -11,5 +11,6 @@ namespace OrtizAbrahamSprint3.Data.Entities
         public string EmailAddressInstructor { get; set; }
         public string PhoneNumberInstructor { get; set; }
         public DateOnly BirthdayInstructor { get; set; }
+        public int StyleID { get; set; }
     }
 }
