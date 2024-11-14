@@ -48,8 +48,19 @@
                         <li class="link-container">
                             <a class="link-text" asp-area="" asp-page="/Classes">Classes</a>
                         </li>
+                        <li class="link-container">
+                            <a class="link-text" asp-area="" asp-page="/Registrations">Enroll</a>
+                        </li>
                     </ul>
-                    <a class="btn button-log-in my-3 my-md-0" asp-area="" asp-page="/SignIn">Sign In</a>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a id="log-out" class="btn button-log-in my-3 my-md-0" asp-area="" asp-page="/SignOut">Log Out</a>
+                    }
+                    else
+                    {
+
+                        <a class="btn button-log-in my-3 my-md-0" asp-area="" asp-page="/SignIn">Sign In</a>
+                    }
                 </div>          
             </div>
         </nav>

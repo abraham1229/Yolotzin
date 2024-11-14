@@ -13,30 +13,6 @@
 
 @*Form rows*@
 <form method="post" class="all-data-container">
-    @*Instructor row*@
-    <div class="enter-data-container">
-        <label>Instructor</label>
-        <select name="InstructorID" asp-for="InstructorID" asp-items="@Model.listofinstructors">
-            <option value="0"> Select the instuctor </option>
-        </select>
-        <span asp-validation-for="InstructorID"></span>
-    </div>
-    @*Style row*@
-    <div class="enter-data-container">
-        <label>Style</label>
-        <select name="StyleID" asp-for="StyleID" asp-items="@Model.listofstyles">
-            <option value="0"> Select the style </option>
-        </select>
-        <span asp-validation-for="StyleID"></span>
-    </div>
-    @*Level row*@
-    <div class="enter-data-container">
-        <label>Level</label>
-        <select name="LevelID" asp-for="LevelID" asp-items="@Model.listoflevels">
-            <option value="0"> Select the level </option>
-        </select>
-        <span asp-validation-for="LevelID"></span>
-    </div>
     @*Age range row*@
     <div class="enter-data-container">
         <label>Age range</label>
@@ -45,18 +21,30 @@
         </select>
         <span asp-validation-for="AgeRangeID"></span>
     </div>
-    @*Week days row*@
+
+    @*Level row*@
     <div class="enter-data-container">
-        <label>Days of the week</label>
-        <select name="WeekDaysID" asp-for="WeekDaysID" asp-items="@Model.listofweekdays">
-            <option value="0"> Select the weeks of the day </option>
+        <label>Level</label>
+        <select name="LevelID" asp-for="LevelID" asp-items="@Model.listoflevels">
+            <option value="0"> Select the level </option>
         </select>
-        <span asp-validation-for="WeekDaysID"></span>
+        <span asp-validation-for="LevelID"></span>
     </div>
+
+
+    @*Style row*@
+    <div class="enter-data-container">
+        <label>Style</label>
+        <select name="StyleID" asp-for="StyleID" asp-items="@Model.listofstyles">
+            <option value="0"> Select the style </option>
+        </select>
+        <span asp-validation-for="StyleID"></span>
+    </div>
+
     @*Buttons rows*@
     <div class="data-buttons-container">
-        <input asp-page-handler="ClearForm" type="submit" value="Clear Form" class="clear-button" />
-        <input asp-page-handler="AddUser" type="submit" value="Add User" class="submit-button" />
+        <input asp-page-handler="ClearForm" type="submit" value="Clear" class="clear-button" />
+        <input asp-page-handler="Enroll" type="submit" value="Enroll" class="submit-button" />
     </div>
 
     
