@@ -2,14 +2,13 @@ use FA24_ksaortizc
 
 
 
---Drop table if exist (9 tables)
-DROP TABLE if exists dbo.ClassUser
+--Drop table if exist (8 tables)
 DROP TABLE if exists dbo.Classes
 DROP TABLE if exists dbo.Users
-DROP TABLE if exists dbo.WeekDays
 DROP TABLE if exists dbo.Instructor
-DROP TABLE if exists dbo.Style
 DROP TABLE if exists dbo.Levels
+DROP TABLE if exists dbo.WeekDays
+DROP TABLE if exists dbo.Style
 DROP TABLE if exists dbo.AgeRange
 GO 
 
@@ -17,27 +16,21 @@ GO
 
 
 
---Create tables
+--CREATE TABLES
 --Children tables for classes and users
+
 --Create AgeRange Table
---To make sure the age range classes is clear
+--To make sure the age range and price is clear
 CREATE TABLE dbo.AgeRange
 (
 	AgeRangeID int IDENTITY(1,1) NOT NULL CONSTRAINT pkAgeRangeID PRIMARY KEY,
 	MinimumAge int NOT NULL, 
-	MaximumAge int NOT NULL,
-	RangeName varchar(20) NOT NULL
+	MaximumAge int NOT NULL, 
+	RangeName varchar(20) NOT NULL,
+	Price decimal(5,2) NOT NULL
 )
 GO
 
---Create Levels table
---To store all the possible levels
-CREATE TABLE dbo.Levels
-(
-	LevelID int IDENTITY(1,1) NOT NULL CONSTRAINT pkLevelID PRIMARY KEY,
-	LevelName varchar(30) NOT NULL
-)
-GO
 
 --Create Style table
 --To store all the possible styles
@@ -57,8 +50,20 @@ CREATE TABLE dbo.WeekDays
 )
 GO
 
+--Create Levels table
+--To store all the possible levels and when this will be
+CREATE TABLE dbo.Levels
+(
+	LevelID int IDENTITY(1,1) NOT NULL CONSTRAINT pkLevelID PRIMARY KEY,
+	LevelName varchar(30) NOT NULL,
+	StartHour varchar(4) NOT NULL,
+	EndHour varchar(4) NOT NUll,
+	WeekDaysID int not null constraint fkLevelsToWeekDays Foreign Key REFERENCES dbo.WeekDays(WeekDaysID)
+)
+GO
+
 --Create Instuctor table
---To store all the possible instructors
+--To store all the possible instructors and the style they teach
 CREATE TABLE dbo.Instructor
 (
 	InstructorID int IDENTITY(1,1) NOT NULL CONSTRAINT pkInstructorID PRIMARY KEY,
@@ -66,12 +71,13 @@ CREATE TABLE dbo.Instructor
 	LastNameInstructor varchar(30) NOT NULL,
 	EmailAddressInstructor varchar(100) NOT NULL UNIQUE, 
 	PhoneNumberInstructor varchar(15) NOT NULL UNIQUE,
-	BirthdayInstructor date NOT NULL
+	BirthdayInstructor date NOT NULL,
+	StyleID int not null constraint fkInstructorToStyle Foreign Key REFERENCES dbo.Style(StyleID)
 )
 GO
 
 
---Child table for the many to many classes
+--Child table for the classes table
 --Create users table
 --To store all the users
 CREATE TABLE dbo.Users
@@ -94,57 +100,28 @@ CREATE TABLE dbo.Users
 )
 GO
 
---Parent table and children table for many to many groups
+--Parent table to store all the users and the class selected
 --Create classes table
---To store all the classes available in the moment
+--To store the class the user has selected
 CREATE TABLE dbo.Classes
 (
 	ClassID int IDENTITY(1,1) NOT NULL CONSTRAINT pkClassID PRIMARY KEY,
-	Price decimal(5,2) NOT NULL, 
-	StartHour varchar(4) NOT NULL,
-	EndHour varchar(4) NOT NUll,
 	AgeRangeID int not null constraint fkClassesToAgeRange Foreign Key REFERENCES dbo.AgeRange(AgeRangeID),
 	LevelID int not null constraint fkClassesToLevel Foreign Key REFERENCES dbo.Levels(LevelID),
 	StyleID int not null constraint fkClassesToStyle Foreign Key REFERENCES dbo.Style(StyleID),
-	WeekDaysID int not null constraint fkClassesToWeekDays Foreign Key REFERENCES dbo.WeekDays(WeekDaysID),
-	InstructorID int not null constraint fkClassesToInstructor Foreign Key REFERENCES dbo.Instructor(InstructorID),
 	UserID int not null constraint fkClassesToUsers Foreign Key REFERENCES dbo.Users(UserID)
-
-
 )
 GO
-
---Create table many to many for users and classes
---To store all the users in each class (many to many)
-CREATE TABLE dbo.ClassUser
-(
-	ClassUserID int IDENTITY(1,1) NOT NULL CONSTRAINT pkClassUserID PRIMARY KEY,
-	EnrollmentDate date NOT NULL DEFAULT GETDATE(),
-	ClassID int not null constraint fkClassUserToClasses Foreign Key REFERENCES dbo.Classes(ClassID),
-	UserID int not null constraint fkClassUserToUsers Foreign Key REFERENCES dbo.Users(UserID),
-	CONSTRAINT uc_UserClass UNIQUE (UserID,ClassId)
-)
-GO
-
-
-
 
 --Insert data to table
 --Age Range Table
 INSERT INTO dbo.AgeRange
-(MinimumAge, MaximumAge,RangeName)
+(MinimumAge, MaximumAge,RangeName,Price)
 VALUES
-(4,10,'Children'),
-(11,17,'Youth'),
-(18,120,'Adults'),
-(4,120,'All Ages')
-GO
-
---Levels Table
-INSERT INTO dbo.Levels
-(LevelName)
-VALUES
-('Beginner'),('Intermediate'),('Advanced'),('Troupe')
+(4,10,'Children',200),
+(11,17,'Youth',180),
+(18,120,'Adults',150),
+(4,120,'All Ages',150)
 GO
 
 --Style Table
@@ -154,109 +131,38 @@ VALUES
 ('Folklore'),('Jazz'),('Ballet'),('Stretching')
 GO
 
---Days Table
+--Weekdays options Table
 INSERT INTO dbo.WeekDays
 (WeekDaysName)
 VALUES
 ('Mon/Wed'),('Thu/Tue'),('Fri/Sun'),('Mon-Fri')
 GO
 
+--Levels Table
+INSERT INTO dbo.Levels
+(LevelName,StartHour,EndHour,WeekDaysID)
+VALUES
+('Beginner','15','17',1),
+('Intermediate','15','17',2),
+('Advanced','10','12',3),
+('Troupe','17','19',4)
+GO
+
+
+
+
 --Instructor table
 INSERT INTO dbo.Instructor
-(FirstNameInstructor, LastNameInstructor, EmailAddressInstructor, PhoneNumberInstructor, BirthdayInstructor)
+(FirstNameInstructor, LastNameInstructor, EmailAddressInstructor, PhoneNumberInstructor, BirthdayInstructor,StyleID)
 VALUES
-('Luis', 'Mejia', 'luis@gmail.com', '+52555-1234', '1975-03-10')
-
-
---Classes Table
---INSERT INTO dbo.Classes
---(Price,StartHour,EndHour,AgeRangeID,LevelID,StyleID,WeekDaysID, InstructorID)
---VALUES 
---(200.00, '15', '17', 1, 1, 1, 1, 1),
---(200.00, '15', '17', 1, 2, 1, 2, 1),
---(200.00, '17', '19', 2, 1, 1, 1, 1),
---(180.00, '17', '19', 2, 2, 1, 2, 1),
---(180.00, '19', '21', 2, 3, 1, 4, 1),
---(150.00, '09', '11', 3, 1, 1, 3, 1),
---(150.00, '11', '13', 3, 2, 1, 3, 1),
---(150.00, '13', '15', 3, 3, 1, 4, 1),
---(150.00, '15', '17', 4, 1, 2, 1, 1),
---(150.00, '15', '17', 4, 2, 2, 1, 1),
---(150.00, '17', '19', 4, 3, 2, 1, 1),
---(150.00, '17', '19', 4, 1, 3, 1, 1),
---(150.00, '19', '21', 4, 2, 3, 1, 1),
---(150.00, '09', '11', 4, 3, 3, 1, 1),
---(150.00, '11', '13', 4, 1, 4, 1, 1),
---(150.00, '13', '15', 4, 2, 4, 1, 1),
---(150.00, '15', '17', 4, 3, 4, 1, 1)
---GO
-
---Users Table
---INSERT INTO dbo.Users 
---(FirstNameUser, LastNameUser, EmailAddressUser, PhoneNumberUser, BirthdayUser, FirstNameGuardian, LastNameGuardian, EmailAddressGuardian, PhoneNumberGuardian, BirthdayGuardian, Username)
---VALUES 
---('John', 'Doe', 'john.doe@hotmail.com', '555-1234', '2019-01-01','Juan', 'Serino', 'juan.ser@hotmail.com', '555-1234', '2019-01-01', 'johndoe')
---GO
-
---INSERT INTO dbo.Users 
---(FirstNameUser, LastNameUser, EmailAddressUser, PhoneNumberUser, BirthdayUser, Username)
---VALUES 
---('Jane', 'Smith', 'jane.smith@gmail.com', '555-5678', '2010-02-02', 'janesmith'),
---('Alice', 'Johnson', 'alice.johnson@gmail.com', '555-8765', '1988-03-03', 'alicej')
---GO
-
---ClassUser Table
---INSERT INTO dbo.ClassUser 
---(ClassID, UserID)
---VALUES 
---(1, 1),
---(5, 2),
---(13, 2),
---(7, 3)
---GO
+('Luis', 'Mejia', 'luis@gmail.com', '525551234', '1975-03-10',1),
+('Juan', 'Lopez', 'juan-lopez@gmail.com', '2223344444', '1990-06-01',2),
+('Maria', 'Solano', 'maria-solano@gmail.com', '1234531985', '1998-12-24',3)
 
 --SELECT 
---	u.FirstName,
---	u.LastName,
---	u.EmailAddress,
---	ar.RangeName AS AgeRange,
---	s.StyleName AS Style,
---	l.LevelName AS Level,
---	c.StartHour,
---	c.EndHour,
---	t.FirstName
---FROM 
---    dbo.ClassUser cu
---JOIN 
---    dbo.Users u ON cu.UserID = u.UserID
---JOIN 
---    dbo.Classes c ON cu.ClassID = c.ClassID
---JOIN 
---    dbo.AgeRange ar ON c.AgeRangeID = ar.AgeRangeID
---JOIN 
---    dbo.Style s ON c.StyleID = s.StyleID
---JOIN 
---    dbo.Levels l ON c.LevelID = l.LevelID
---JOIN
---	dbo.Instructor t ON c.InstructorID = t.InstructorID
-
---GO
-
---SELECT 
---	i.FirstNameInstructor AS Name,
---	s.StyleName AS Style,
---	l.LevelName AS Level,
---	ag.RangeName AS 'Age Range',
---	wd.WeekDaysName AS 'Days of the week'
+--	i.FirstNameInstructor,
+--	s.StyleName
 --FROM
---	dbo.Classes c
+--	dbo.Instructor i
 --JOIN
---	dbo.Instructor i ON c.InstructorID = i.InstructorID
---JOIN
---	dbo.Style s ON c.StyleID = s.StyleID
---JOIN 
---	dbo.Levels l ON c.LevelID = l.LevelID
---JOIN
---	dbo.AgeRange ag ON c.AgeRangeID = ag.AgeRangeID
---JOIN
---	dbo.WeekDays wd ON c.WeekDaysID = wd.WeekDaysID
+--	dbo.Style s ON i.StyleID = s.StyleID
