@@ -26,7 +26,10 @@
     @*Buttons rows*@
     <div class="data-buttons-container">
         <input asp-page-handler="ClearForm" type="submit" value="Clear Form" class="clear-button" />
-        <input asp-page-handler="AddUser" type="submit" value="Add User" class="submit-button" />
+        <input asp-page-handler="SignIn" type="submit" value="Sign In" class="submit-button" />
+    </div>
+    <div>
+        <span class="text-danger">@Model.Message</span>
     </div>
 </form>
 

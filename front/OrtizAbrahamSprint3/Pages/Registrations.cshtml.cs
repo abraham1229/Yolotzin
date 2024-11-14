@@ -1,10 +1,12 @@
-    using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using OrtizAbrahamSprint3.Data;
 
     namespace OrtizAbrahamSprint3.Pages
     {
+        [Authorize]
         public class RegistrationsModel : PageModel
         {
             //Declare the class for every ID

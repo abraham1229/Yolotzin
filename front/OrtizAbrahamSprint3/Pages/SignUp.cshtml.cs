@@ -65,16 +65,18 @@ namespace OrtizAbrahamSprint3.Pages
         public DateOnly BirthdayUser { get; set; }
 
         [BindProperty]
-        [RegularExpression(@"^[a-zA-Z0-9_.-]{5,20}$", ErrorMessage = "Username must be 5-20 characters long and may contain letters, numbers, underscores, and dashes.")]
-        [Required(ErrorMessage = "Please enter your username")]
+        //[RegularExpression(@"^[a-zA-Z0-9_.-]{5,20}$", ErrorMessage = "Username must be 5-20 characters long and may contain letters, numbers, underscores, and dashes.")]
+        //[Required(ErrorMessage = "Please enter your username")]
         public string Username { get; set; }
 
         [BindProperty]
-        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$", ErrorMessage = "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.")]
-        [Required(ErrorMessage = "Please enter your password")]
+        //[RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$", ErrorMessage = "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.")]
+        //[Required(ErrorMessage = "Please enter your password")]
         public string UserPassword { get; set; }
 
-       
+        public string MessageError { get; set; }
+
+
         //Use the SelecList class from drop down list
         public SelectList listofstylesdances { get; set; }
 
@@ -162,11 +164,6 @@ namespace OrtizAbrahamSprint3.Pages
                 ModelState.Remove("BirthdayGuardian");
                 return Page();
             }
-            else if (ageGuardian < 18 || ageGuardian > 120)
-            {
-                MessageAgeRangeGuardian = "Guardians must be between 18 and 120";
-                return Page();
-            }
 
             //Hash and salt the password entered on the form if there is not age restriction
             CreatePasswordHash(UserPassword, out byte[] passwordHash, out byte[] passwordSalt);
@@ -194,7 +191,7 @@ namespace OrtizAbrahamSprint3.Pages
             {
                 _myApplicationDbContext.Users.Add(user);
                 await _myApplicationDbContext.SaveChangesAsync();
-                return RedirectToPage("/SignIn");
+                return RedirectToPage("/Index");
             }
 
             //Check if there are errors
@@ -226,13 +223,13 @@ namespace OrtizAbrahamSprint3.Pages
                     //Another error
                     if (!hasError)
                     {
-                        ModelState.AddModelError("", "A unique constraint error occurred.");
+                        MessageError = "There was an authentication error";
                     }
                 }
                 else
                 {
                     // Handle any other unexpected errors
-                    ModelState.AddModelError("", "An unexpected error occurred. Please try again.");
+                    MessageError = "An unexpected error occurred. Please try again.";
                 }
             }
 
