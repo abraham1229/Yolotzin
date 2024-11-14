@@ -2,7 +2,7 @@ use FA24_ksaortizc
 
 
 
---Drop table if exist (8 tables)
+--Drop table if exist (7 tables)
 DROP TABLE if exists dbo.Classes
 DROP TABLE if exists dbo.Users
 DROP TABLE if exists dbo.Instructor

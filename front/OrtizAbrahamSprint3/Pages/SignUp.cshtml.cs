@@ -108,15 +108,12 @@ namespace OrtizAbrahamSprint3.Pages
 
         public void OnGet()
         {
-            //populate de dropdown list
-            //listofstylesdances = new SelectList(_myApplicationDbContext.Levels, "LevelID", "LevelName");
-            //return Page();
+
         }
 
         public void OnPostClearForm()
         {
-
-            // Limpiar propiedades del formulario
+            // Clean form properties
             FirstNameGuardian = String.Empty;
             LastNameGuardian = String.Empty;
             EmailAddressGuardian = String.Empty;
@@ -132,9 +129,8 @@ namespace OrtizAbrahamSprint3.Pages
             Username = String.Empty;
             UserPassword = String.Empty;
 
-            // Limpiar ModelState
+            // Clean ModelState
             ModelState.Clear();
-
         }
 
 
@@ -164,27 +160,58 @@ namespace OrtizAbrahamSprint3.Pages
                 ModelState.Remove("BirthdayGuardian");
                 return Page();
             }
+            else if (ageUser < 18 && ageGuardian < 120)
+            {
+                ClassNameDisplayGuardian = String.Empty;
+            }
 
             //Hash and salt the password entered on the form if there is not age restriction
             CreatePasswordHash(UserPassword, out byte[] passwordHash, out byte[] passwordSalt);
 
-            var user = new Users
+            var user = new Users();
+            //Assign the data for the tutor as well
+            if (ageUser < 18)
             {
-                FirstNameUser = FirstNameUser,
-                LastNameUser = LastNameUser,
-                EmailAddressUser = EmailAddressUser,
-                PhoneNumberUser = PhoneNumberUser,
-                BirthdayUser = BirthdayUser,
-                FirstNameGuardian = FirstNameGuardian,
-                LastNameGuardian = LastNameGuardian,
-                EmailAddressGuardian = EmailAddressGuardian,
-                PhoneNumberGuardian = PhoneNumberGuardian,
-                BirthdayGuardian = BirthdayGuardian,
-                Username = Username,
-                UserPasswordHash = passwordHash,
-                UserPasswordSalt = passwordSalt,
-                UserCreationDate = DateOnly.FromDateTime(DateTime.Today)
-            };
+                user = new Users
+                {
+                    FirstNameUser = FirstNameUser,
+                    LastNameUser = LastNameUser,
+                    EmailAddressUser = EmailAddressUser,
+                    PhoneNumberUser = PhoneNumberUser,
+                    BirthdayUser = BirthdayUser,
+                    FirstNameGuardian = FirstNameGuardian,
+                    LastNameGuardian = LastNameGuardian,
+                    EmailAddressGuardian = EmailAddressGuardian,
+                    PhoneNumberGuardian = PhoneNumberGuardian,
+                    BirthdayGuardian = BirthdayGuardian,
+                    Username = Username,
+                    UserPasswordHash = passwordHash,
+                    UserPasswordSalt = passwordSalt,
+                    UserCreationDate = DateOnly.FromDateTime(DateTime.Today)
+                };
+            }
+
+            else
+            {
+                user = new Users
+                {
+                    FirstNameUser = FirstNameUser,
+                    LastNameUser = LastNameUser,
+                    EmailAddressUser = EmailAddressUser,
+                    PhoneNumberUser = PhoneNumberUser,
+                    BirthdayUser = BirthdayUser,
+                    FirstNameGuardian = "none",
+                    LastNameGuardian = "none",
+                    EmailAddressGuardian = "none",
+                    PhoneNumberGuardian = "none",
+                    BirthdayGuardian = new DateOnly(2001, 1, 1),
+                    Username = Username,
+                    UserPasswordHash = passwordHash,
+                    UserPasswordSalt = passwordSalt,
+                    UserCreationDate = DateOnly.FromDateTime(DateTime.Today)
+                };
+            }
+
 
 
             try
@@ -203,19 +230,19 @@ namespace OrtizAbrahamSprint3.Pages
                     bool hasError = false;
 
                     //Error for email adrress alreday in use
-                    if (sqlEx.Message.Contains("UQ__Users__49A14740AEAD3FD2"))
+                    if (sqlEx.Message.Contains("UQ__Users__8D36702B7E96A773"))
                     {
                         ModelState.AddModelError("EmailAddressUser", "This email address is already in use.");
                         hasError = true;
                     }
                     //Error for phone number alreday in use
-                    if (sqlEx.Message.Contains("UQ__Users__85FB4E38A995260E"))
+                    if (sqlEx.Message.Contains("UQ__Users__935CD30FDA6F163F"))
                     {
                         ModelState.AddModelError("PhoneNumberUser", "This phone number is already in use.");
                         hasError = true;
                     }
                     //Error for username alreday in use
-                    if (sqlEx.Message.Contains("UQ__Users__536C85E4802C7F28"))
+                    if (sqlEx.Message.Contains("UQ__Users__536C85E4A57A524C"))
                     {
                         ModelState.AddModelError("Username", "This username is already taken.");
                         hasError = true;
@@ -232,8 +259,10 @@ namespace OrtizAbrahamSprint3.Pages
                     MessageError = "An unexpected error occurred. Please try again.";
                 }
             }
-
             return Page();
+
+
+
         }
 
         public void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
