@@ -64,7 +64,7 @@ namespace OrtizAbrahamSprint3.Pages
             var authProperties = new AuthenticationProperties
             {
                 IsPersistent = true, //keep the user logged in even after the browser closes.\
-                ExpiresUtc = DateTime.UtcNow.AddMinutes(1)
+                ExpiresUtc = DateTime.UtcNow.AddMinutes(120)
             };
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));

@@ -1,0 +1,14 @@
+﻿@page
+@model OrtizAbrahamSprint3.Pages.SignOutModel
+@{
+    ViewData["Title"] = "Sign Out";
+}
+
+<h2>Are you sure you want to log out?</h2>
+<form method="post">
+    @*Buttons rows*@
+    <div class="data-buttons-container">
+        <input asp-page-handler="Cancel" type="submit" value="Cancel" class="clear-button" />
+        <input asp-page-handler="SignOut" type="submit" value="Sign Out" class="submit-button" />
+    </div>
+</form>

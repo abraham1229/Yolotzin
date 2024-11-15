@@ -19,7 +19,7 @@
         <select name="AgeRangeID" asp-for="AgeRangeID" asp-items="@Model.listofagerange">
             <option value="0"> Select the age range </option>
         </select>
-        <span asp-validation-for="AgeRangeID"></span>
+        <span>@Model.MessageAgeRange</span>
     </div>
 
     @*Level row*@
@@ -28,7 +28,7 @@
         <select name="LevelID" asp-for="LevelID" asp-items="@Model.listoflevels">
             <option value="0"> Select the level </option>
         </select>
-        <span asp-validation-for="LevelID"></span>
+        <span>@Model.MessageLevel</span>
     </div>
 
 
@@ -38,7 +38,7 @@
         <select name="StyleID" asp-for="StyleID" asp-items="@Model.listofstyles">
             <option value="0"> Select the style </option>
         </select>
-        <span asp-validation-for="StyleID"></span>
+        <span>@Model.MessageStyle</span>
     </div>
 
     @*Buttons rows*@
