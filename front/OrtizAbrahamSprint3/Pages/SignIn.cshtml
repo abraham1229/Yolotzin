@@ -14,7 +14,7 @@
     @*Username row*@
     <div class="enter-data-container">
         <label>Username</label>
-        <input asp-for="Username" type="text" />
+        <input asp-for="Username" type="text"/>
         <span asp-validation-for="Username"></span>
     </div>
     @*Password row*@
@@ -28,9 +28,10 @@
         <input asp-page-handler="ClearForm" type="submit" value="Clear Form" class="clear-button" />
         <input asp-page-handler="SignIn" type="submit" value="Sign In" class="submit-button" />
     </div>
-    <div>
-        <span class="text-danger">@Model.Message</span>
-    </div>
+    
+    @*Erorr Message Row*@
+    <span class="error-message">@Model.Message</span>
+
 </form>
 
 @*Row link to sign up*@

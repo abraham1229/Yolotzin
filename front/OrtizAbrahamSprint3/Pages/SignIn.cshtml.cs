@@ -14,9 +14,11 @@ namespace OrtizAbrahamSprint3.Pages
     public class SignInModel : PageModel
     {
         [BindProperty]
+        [Required(ErrorMessage = "Please enter your username")]
         public string Username { get; set; }
 
         [BindProperty]
+        [Required(ErrorMessage = "Please enter your password")]
         public string UserPassword { get; set; }
 
         public string Message { get; set; }
@@ -43,7 +45,7 @@ namespace OrtizAbrahamSprint3.Pages
 
             if (user == null || !VerifyPasswordHash(UserPassword, user.UserPasswordHash, user.UserPasswordSalt) )
             {
-                Message = "Invalid login credentials, please try again";
+                Message = "Invalid login credentials";
                 ModelState.AddModelError(string.Empty, "Invalid login attempt.");
 
                 return Page();

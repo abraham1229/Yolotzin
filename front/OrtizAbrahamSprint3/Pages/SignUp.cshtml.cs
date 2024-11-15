@@ -65,13 +65,13 @@ namespace OrtizAbrahamSprint3.Pages
         public DateOnly BirthdayUser { get; set; }
 
         [BindProperty]
-        //[RegularExpression(@"^[a-zA-Z0-9_.-]{5,20}$", ErrorMessage = "Username must be 5-20 characters long and may contain letters, numbers, underscores, and dashes.")]
-        //[Required(ErrorMessage = "Please enter your username")]
+        [RegularExpression(@"^[a-zA-Z0-9_.-]{5,20}$", ErrorMessage = "Username must be 5-20 characters long and may contain letters, numbers, underscores, and dashes.")]
+        [Required(ErrorMessage = "Please enter your username")]
         public string Username { get; set; }
 
         [BindProperty]
-        //[RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$", ErrorMessage = "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.")]
-        //[Required(ErrorMessage = "Please enter your password")]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$", ErrorMessage = "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.")]
+        [Required(ErrorMessage = "Please enter your password")]
         public string UserPassword { get; set; }
 
         public string MessageError { get; set; }
@@ -232,19 +232,19 @@ namespace OrtizAbrahamSprint3.Pages
                     //Error for email adrress alreday in use
                     if (sqlEx.Message.Contains("UQ__Users__8D36702B7E96A773"))
                     {
-                        ModelState.AddModelError("EmailAddressUser", "This email address is already in use.");
+                        ModelState.AddModelError("EmailAddressUser", "This email address is already in use");
                         hasError = true;
                     }
                     //Error for phone number alreday in use
                     if (sqlEx.Message.Contains("UQ__Users__935CD30FDA6F163F"))
                     {
-                        ModelState.AddModelError("PhoneNumberUser", "This phone number is already in use.");
+                        ModelState.AddModelError("PhoneNumberUser", "This phone number is already in use");
                         hasError = true;
                     }
                     //Error for username alreday in use
                     if (sqlEx.Message.Contains("UQ__Users__536C85E4A57A524C"))
                     {
-                        ModelState.AddModelError("Username", "This username is already taken.");
+                        ModelState.AddModelError("Username", "This username is already taken");
                         hasError = true;
                     }
                     //Another error
@@ -256,7 +256,7 @@ namespace OrtizAbrahamSprint3.Pages
                 else
                 {
                     // Handle any other unexpected errors
-                    MessageError = "An unexpected error occurred. Please try again.";
+                    MessageError = "An unexpected error occurred";
                 }
             }
             return Page();

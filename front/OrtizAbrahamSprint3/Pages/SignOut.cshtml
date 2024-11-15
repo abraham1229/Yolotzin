@@ -4,11 +4,16 @@
     ViewData["Title"] = "Sign Out";
 }
 
-<h2>Are you sure you want to log out?</h2>
-<form method="post">
+@*Title rows*@
+<div class="sign-up-title">
+    <h1>Are you sure you want to log out?</h1>
+</div>
+
+
+<form method="post" class="all-data-container">
     @*Buttons rows*@
     <div class="data-buttons-container">
         <input asp-page-handler="Cancel" type="submit" value="Cancel" class="clear-button" />
-        <input asp-page-handler="SignOut" type="submit" value="Sign Out" class="submit-button" />
+        <input asp-page-handler="SignOut" type="submit" value="Log Out" class="submit-button" />
     </div>
 </form>

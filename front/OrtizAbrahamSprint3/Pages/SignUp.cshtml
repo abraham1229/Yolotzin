@@ -13,6 +13,45 @@
 
 <form method="post" class="all-data-container ">
 
+    @*GUARDIAN SECTION*@
+    <h2 class="@Model.ClassNameDisplayGuardian">Guardian information</h2>
+    <p class="@Model.ClassNameDisplayGuardian">Since you are underage, you need a guardian.</p>
+
+    @*First name row*@
+    <div class="enter-data-container @Model.ClassNameDisplayGuardian">
+        <label>First name</label>
+        <input asp-for="FirstNameGuardian" type="text" />
+        <span asp-validation-for="FirstNameGuardian"></span>
+    </div>
+    @*Last name row*@
+    <div class="enter-data-container @Model.ClassNameDisplayGuardian">
+        <label>Last name</label>
+        <input asp-for="LastNameGuardian" type="text" />
+        <span asp-validation-for="LastNameGuardian"></span>
+    </div>
+    @*Email row*@
+    <div class="enter-data-container @Model.ClassNameDisplayGuardian">
+        <label>Email</label>
+        <input asp-for="EmailAddressGuardian" type="text" />
+        <span asp-validation-for="EmailAddressGuardian"></span>
+
+    </div>
+    @*Phone number row*@
+    <div class="enter-data-container @Model.ClassNameDisplayGuardian ">
+        <label>Phone number</label>
+        <input asp-for="PhoneNumberGuardian" type="tel" />
+        <span asp-validation-for="PhoneNumberGuardian"></span>
+
+    </div>
+    @*Date of birth row*@
+    <div class="enter-data-container @Model.ClassNameDisplayGuardian ">
+        <label>Date of birth</label>
+        <input asp-for="BirthdayGuardian" type="date" />
+        <span>@Model.MessageAgeRangeGuardian</span>
+    </div>
+
+
+
     @*USER SECTION*@
     <h2 class="">Student information</h2>
     @*First name row*@
@@ -62,50 +101,15 @@
     </div>
 
 
-    @*GUARDIAN SECTION*@
-    <h2 class="@Model.ClassNameDisplayGuardian">Guardian information</h2>
-    <p class="@Model.ClassNameDisplayGuardian">Since you are underage, you need a guardian.</p>
-
-    @*First name row*@
-    <div class="enter-data-container @Model.ClassNameDisplayGuardian">
-        <label>First name</label>
-        <input asp-for="FirstNameGuardian" type="text" />
-        <span asp-validation-for="FirstNameGuardian"></span>
-    </div>
-    @*Last name row*@
-    <div class="enter-data-container @Model.ClassNameDisplayGuardian">
-        <label>Last name</label>
-        <input asp-for="LastNameGuardian" type="text" />
-        <span asp-validation-for="LastNameGuardian"></span>
-    </div>
-    @*Email row*@
-    <div class="enter-data-container @Model.ClassNameDisplayGuardian">
-        <label>Email</label>
-        <input asp-for="EmailAddressGuardian" type="text" />
-        <span asp-validation-for="EmailAddressGuardian"></span>
-
-    </div>
-    @*Phone number row*@
-    <div class="enter-data-container @Model.ClassNameDisplayGuardian ">
-        <label>Phone number</label>
-        <input asp-for="PhoneNumberGuardian" type="tel" />
-        <span asp-validation-for="PhoneNumberGuardian"></span>
-
-    </div>
-    @*Date of birth row*@
-    <div class="enter-data-container @Model.ClassNameDisplayGuardian ">
-        <label>Date of birth</label>
-        <input asp-for="BirthdayGuardian" type="date" />
-        <span>@Model.MessageAgeRangeGuardian</span>
-    </div>
-
     @*Buttons rows*@
     <div class="data-buttons-container">
         <input asp-page-handler="ClearForm" type="submit" value="Clear Form" class="clear-button" />
         <input asp-page-handler="AddUser" type="submit" value="Add User" class="submit-button" />
     </div>
 
-    <div class="text-danger">@Model.MessageError</div>
+    @*Error message row*@
+
+    <div class="error-message">@Model.MessageError</div>
 
 </form>
 

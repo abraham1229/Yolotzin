@@ -6,7 +6,7 @@
     --accent-color: #D72483; /* Cerise*/
     --reset-color: #504f4fe9;
     --submit-color: #eb266e;
-    --error-color: #fd1515;
+    --error-color: #de2525;
 }
 
 /*Style for all the webpage*/
@@ -1186,6 +1186,7 @@ p {
     color: var(--error-color);
     margin-top: 0.5em;
     padding-left: 0.5vw;
+    font-size: 1.1em;
 }
 
 /*Style for buttons*/
@@ -1288,9 +1289,16 @@ p {
     transform: scale(0.95);
 }
 
+.error-message {
+    margin-top: 0.5em;
+    margin-bottom: 1.2em;
+    color: var(--error-color);
+    font-size: 1.2em;
+}
+
 @media (max-width: 768px) {
     .link-to-sign-container {
-        width: 90vw;
+        width: 80vw;
         flex-direction: column;
     }
 
@@ -1306,7 +1314,8 @@ p {
     padding: 0.5em;
     border: 0;
     font-weight: 350;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    font-weight:500;
 }
 
-.enter-data-container option {
-}

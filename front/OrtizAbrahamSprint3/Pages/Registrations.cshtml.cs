@@ -8,7 +8,7 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace OrtizAbrahamSprint3.Pages
 {
-    //[Authorize]
+    [Authorize]
     public class RegistrationsModel : PageModel
     {
         //Declare the class for every ID
@@ -82,7 +82,7 @@ namespace OrtizAbrahamSprint3.Pages
                 return Page();
             }
 
-            MyClasses.UserID = 1;
+            MyClasses.UserID = int.TryParse(User.FindFirst("UserID")?.Value, out var id) ? id : 0;
 
             _myApplicationDbContext.Classes.Add(MyClasses);
             await _myApplicationDbContext.SaveChangesAsync();
