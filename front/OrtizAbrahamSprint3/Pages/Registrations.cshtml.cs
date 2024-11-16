@@ -47,12 +47,25 @@ namespace OrtizAbrahamSprint3.Pages
             _myApplicationDbContext = myApplicationDbContext;
         }
 
-        public void OnGet()
+        public void OnGet(int? age, int? level, int? style)
         {
             //Populate the dropdownlist with all possible chair types from our database table.
             listofagerange = new SelectList(_myApplicationDbContext.AgeRange, "AgeRangeID", "RangeName");
             listoflevels = new SelectList(_myApplicationDbContext.Levels, "LevelID", "LevelName");
             listofstyles = new SelectList(_myApplicationDbContext.Style, "StyleID", "StyleName");
+
+            if (age.HasValue)
+            {
+                AgeRangeID = age.Value;
+            }
+            if (level.HasValue)
+            {
+                LevelID = level.Value;
+            }
+            if (style.HasValue)
+            {
+                StyleID = style.Value;
+            }
         }
 
         public async Task<IActionResult> OnPostEnroll()
