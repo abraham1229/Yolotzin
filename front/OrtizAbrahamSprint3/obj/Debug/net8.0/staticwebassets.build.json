@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "cPjvoSqhGScJSfNFAqPjXqJnDS+du1zQ4wKTb0jA+Ls=",
+  "Hash": "cqhHmjsSo6tukEzTm8PFU1Oictzve9JRxt4GP/j+cBE=",
   "Source": "OrtizAbrahamSprint3",
   "BasePath": "_content/OrtizAbrahamSprint3",
   "Mode": "Default",
@@ -511,6 +511,25 @@
       "OriginalItemSpec": "wwwroot\\images\\aboutUs\\journey.JPG"
     },
     {
+      "Identity": "C:\\Users\\Abraham1229\\OneDrive\\Documentos\\Web aplication development\\Yolotzin\\front\\OrtizAbrahamSprint3\\wwwroot\\images\\aboutUs\\prueba.png",
+      "SourceId": "OrtizAbrahamSprint3",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Abraham1229\\OneDrive\\Documentos\\Web aplication development\\Yolotzin\\front\\OrtizAbrahamSprint3\\wwwroot\\",
+      "BasePath": "_content/OrtizAbrahamSprint3",
+      "RelativePath": "images/aboutUs/prueba.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\aboutUs\\prueba.png"
+    },
+    {
       "Identity": "C:\\Users\\Abraham1229\\OneDrive\\Documentos\\Web aplication development\\Yolotzin\\front\\OrtizAbrahamSprint3\\wwwroot\\images\\aboutUs\\unique.jpeg",
       "SourceId": "OrtizAbrahamSprint3",
       "SourceType": "Discovered",
@@ -813,6 +832,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\home\\cta\\performances.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Abraham1229\\OneDrive\\Documentos\\Web aplication development\\Yolotzin\\front\\OrtizAbrahamSprint3\\wwwroot\\images\\home\\cta\\prueba.jpg",
+      "SourceId": "OrtizAbrahamSprint3",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Abraham1229\\OneDrive\\Documentos\\Web aplication development\\Yolotzin\\front\\OrtizAbrahamSprint3\\wwwroot\\",
+      "BasePath": "_content/OrtizAbrahamSprint3",
+      "RelativePath": "images/home/cta/prueba.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\home\\cta\\prueba.jpg"
     },
     {
       "Identity": "C:\\Users\\Abraham1229\\OneDrive\\Documentos\\Web aplication development\\Yolotzin\\front\\OrtizAbrahamSprint3\\wwwroot\\images\\LogoYolotzin.svg",

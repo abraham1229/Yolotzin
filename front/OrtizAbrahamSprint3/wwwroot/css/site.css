@@ -555,6 +555,9 @@ p {
         align-self: center;
     }
 
+    /*.video-container {
+        width: 100%;
+    }*/
 }
 
 /*Style for performance video*/
@@ -1319,3 +1322,10 @@ p {
     font-weight:500;
 }
 
+.log-out-title {
+    margin-top: 10vh;
+}
+
+.log-out-container {
+    margin-bottom: 30vh;
+}

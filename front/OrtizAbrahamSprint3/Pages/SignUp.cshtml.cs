@@ -163,6 +163,11 @@ namespace OrtizAbrahamSprint3.Pages
             else if (ageUser < 18 && ageGuardian < 120)
             {
                 ClassNameDisplayGuardian = String.Empty;
+                if (ageGuardian < 18)
+                {
+                    MessageAgeRangeGuardian = "Guardians must be older than 18";
+                    return Page();
+                }
             }
 
             //Hash and salt the password entered on the form if there is not age restriction
@@ -218,7 +223,7 @@ namespace OrtizAbrahamSprint3.Pages
             {
                 _myApplicationDbContext.Users.Add(user);
                 await _myApplicationDbContext.SaveChangesAsync();
-                return RedirectToPage("/Index");
+                return RedirectToPage("/SignIn");
             }
 
             //Check if there are errors
@@ -244,13 +249,13 @@ namespace OrtizAbrahamSprint3.Pages
                     //Error for username alreday in use
                     if (sqlEx.Message.Contains("UQ__Users__536C85E4A57A524C"))
                     {
-                        ModelState.AddModelError("Username", "This username is already taken");
+                        MessageError = "There was an authentication error";
                         hasError = true;
                     }
                     //Another error
                     if (!hasError)
                     {
-                        MessageError = "There was an authentication error";
+                        MessageError = "An unexpected error occurred";
                     }
                 }
                 else
