@@ -1200,6 +1200,7 @@ p {
 }
 
 .clear-button {
+    order: 1;
     margin-top: 0.5em;
     font-weight: 700;
     margin-bottom: 1em;
@@ -1212,6 +1213,7 @@ p {
 }
 
 .submit-button {
+    order: 2;
     margin-bottom: 1em;
     font-weight: 700;
     border-radius: 0.5em;
