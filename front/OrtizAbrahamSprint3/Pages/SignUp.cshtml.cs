@@ -14,14 +14,14 @@ namespace OrtizAbrahamSprint3.Pages
 {
     public class SignUpModel : PageModel
     {
-        //Tutor information
+        //Guardian information
         [BindProperty]
-        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Only letters are allowed.")]
+        [RegularExpression(@"^[a-zA-Z ]{1,30}$", ErrorMessage = "Only letters are allowed.")]
         [Required(ErrorMessage = "Please enter guardian's first name")]
         public string FirstNameGuardian { get; set; }
 
         [BindProperty]
-        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Only letters are allowed.")]
+        [RegularExpression(@"^[a-zA-Z ]{1,30}$", ErrorMessage = "Only letters are allowed.")]
         [Required(ErrorMessage = "Please enter guardian's last name")]
         public string LastNameGuardian { get; set; }
 
@@ -31,7 +31,7 @@ namespace OrtizAbrahamSprint3.Pages
         public string EmailAddressGuardian { get; set; }
 
         [BindProperty]
-        [RegularExpression(@"^\+?\d{0,3}[-.\s]?\(?\d{1,4}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,9}$", ErrorMessage = "Please enter a valid phone number.")]
+        [RegularExpression(@"^\+?\d{10,30}$", ErrorMessage = "Please enter a valid phone number.")]
         [Required(ErrorMessage = "Please enter guardian's phone number")]
         public string PhoneNumberGuardian { get; set; }
 
@@ -41,12 +41,12 @@ namespace OrtizAbrahamSprint3.Pages
 
         //User information
         [BindProperty]
-        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Only letters are allowed.")]
+        [RegularExpression(@"^[a-zA-Z ]{1,30}$", ErrorMessage = "Only letters are allowed.")]
         [Required(ErrorMessage = "Please enter your first name")]
         public string FirstNameUser { get; set; }
 
         [BindProperty]
-        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Only letters are allowed.")]
+        [RegularExpression(@"^[a-zA-Z ]{1,30}$", ErrorMessage = "Only letters are allowed.")]
         [Required(ErrorMessage = "Please enter your last name")]
         public string LastNameUser { get; set; }
 
@@ -56,7 +56,7 @@ namespace OrtizAbrahamSprint3.Pages
         public string EmailAddressUser { get; set; }
 
         [BindProperty]
-        [RegularExpression(@"^\+?\d{0,3}[-.\s]?\(?\d{1,4}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,9}$", ErrorMessage = "Please enter a valid phone number.")]
+        [RegularExpression(@"^\+?\d{10,13}$", ErrorMessage = "Please enter a valid phone number.")]
         [Required(ErrorMessage = "Please enter your phone number")]
         public string PhoneNumberUser { get; set; }
 
@@ -65,12 +65,12 @@ namespace OrtizAbrahamSprint3.Pages
         public DateOnly BirthdayUser { get; set; }
 
         [BindProperty]
-        [RegularExpression(@"^[a-zA-Z0-9_.-]{5,20}$", ErrorMessage = "Username must be 5-20 characters long and may contain letters, numbers, underscores, and dashes.")]
+        [RegularExpression(@"^[a-zA-Z0-9_.-]{5,50}$", ErrorMessage = "Username must be 5-50 characters long and may contain letters, numbers, underscores, and dashes.")]
         [Required(ErrorMessage = "Please enter your username")]
         public string Username { get; set; }
 
         [BindProperty]
-        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$", ErrorMessage = "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.")]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W)[A-Za-z\d\W]{8,}$", ErrorMessage = "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.")]
         [Required(ErrorMessage = "Please enter your password")]
         public string UserPassword { get; set; }
 
