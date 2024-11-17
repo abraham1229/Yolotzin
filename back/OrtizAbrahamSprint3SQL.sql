@@ -79,7 +79,7 @@ GO
 
 --Child table for the classes table
 --Create users table
---To store all the users
+--To store all the users and possible guardians
 CREATE TABLE dbo.Users
 (
 	UserID int IDENTITY(1,1) NOT NULL CONSTRAINT pkUserID PRIMARY KEY,
@@ -112,6 +112,9 @@ CREATE TABLE dbo.Classes
 	UserID int not null constraint fkClassesToUsers Foreign Key REFERENCES dbo.Users(UserID)
 )
 GO
+
+
+
 
 --Insert data to table
 --Age Range Table
@@ -148,9 +151,6 @@ VALUES
 ('Troupe','17','19',4)
 GO
 
-
-
-
 --Instructor table
 INSERT INTO dbo.Instructor
 (FirstNameInstructor, LastNameInstructor, EmailAddressInstructor, PhoneNumberInstructor, BirthdayInstructor,StyleID)
@@ -159,6 +159,8 @@ VALUES
 ('Juan', 'Lopez', 'juan-lopez@gmail.com', '2223344444', '1990-06-01',2),
 ('Maria', 'Solano', 'maria-solano@gmail.com', '1234531985', '1998-12-24',3)
 
+
+--User and Classes???
 --SELECT 
 --	i.FirstNameInstructor,
 --	s.StyleName
