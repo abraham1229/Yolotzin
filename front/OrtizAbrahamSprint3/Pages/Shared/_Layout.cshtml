@@ -26,17 +26,17 @@
         @*Navbar row*@
        <nav class="navbar navbar-dark navbar-expand-md navbar-toggleable-md">
             <div class="container-fluid justify-content-between">
-
+                @*Button if it is in medium viewports or smaller*@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-              
+                @*Logo in the navbar*@
                 <a class="navbar-brand d-flex align-items-center" asp-area="" asp-page="/Index">
                     <img src="~/images/logoyolotzin.svg" alt="Logo Yolotzin" class="d-inline-block align-content-center navbar-logo" />
                     <h1 class="title-brand">Yolotzin</h1>
                 </a>
-
+                @*Links to other pages*@
                 <div class="navbar-collapse collapse d-md-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="link-container">
@@ -52,6 +52,7 @@
                             <a class="link-text" asp-area="" asp-page="/Registrations">Enroll</a>
                         </li>
                     </ul>
+                    @*Check if there is a user logged in*@
                     @if (User.Identity.IsAuthenticated)
                     {
                         <a id="log-out" class="btn button-log-in my-3 my-md-0" asp-area="" asp-page="/SignOut">Log Out</a>
@@ -73,6 +74,7 @@
     </div>
     @*Footer row*@
     <footer class="container-fluid m-0 p-0">
+        @*Direct contact row*@
         <div class="row footer-container">
             <div class="col-md-3 container-footer-logo">
                 <img src="~/images/logoyolotzin.svg" alt="Logo Yolotzin" class="d-inline-block align-content-center footer-image" />
@@ -86,6 +88,7 @@
                     </a>
                 </div>
             </div>
+            @*Social media column*@
             <div class="col-md-3 stay-touch-container mt-5 mt-md-0">
                 <h3 class="sub-title-footer">Stay in touch!</h3>
                 <p class="join-text">Join our Newsletter to receive notifications from us!</p>
@@ -105,11 +108,13 @@
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26005.02210515992!2d-97.55245872089841!3d35.43925000000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87b21449024279f7%3A0x4d726aac674135f1!2sY%C3%BAmare%20Mexican%20Folkloric%20Dancers%20Inc.!5e0!3m2!1ses-419!2sus!4v1730217211439!5m2!1ses-419!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" no-referrer class="maps-location"></iframe>
             </div>
 
+            @*Links to another pages*@
             <div class="col-md-3 links-footer-container mt-5 mt-md-0">
                 <h3 class="sub-title-footer">Navigation</h3> 
                 <a class="links-footer" asp-area="" asp-page="/Index">Home</a>
                 <a class="links-footer" asp-area="" asp-page="/AboutUs">About Us</a>
                 <a class="links-footer" asp-area="" asp-page="/Classes">Classes</a>
+                @*Check if the user is logged in*@
                 @if (User.Identity.IsAuthenticated)
                 {
 
