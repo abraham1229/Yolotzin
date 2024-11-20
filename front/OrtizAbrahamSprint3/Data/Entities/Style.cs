@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
+//To store all the possible styles
+
 namespace OrtizAbrahamSprint3.Data.Entities
 {
     public class Style

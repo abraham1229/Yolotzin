@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
+//To store all the users and possible guardians
+
 namespace OrtizAbrahamSprint3.Data.Entities
 {
     public class Users

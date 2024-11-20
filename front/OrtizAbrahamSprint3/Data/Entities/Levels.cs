@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
+//To store all the possible levels and when this will be
+
 namespace OrtizAbrahamSprint3.Data.Entities
 {
     public class Levels

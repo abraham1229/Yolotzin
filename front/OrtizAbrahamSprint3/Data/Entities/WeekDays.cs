@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
+//To store the days options for every class
+
 namespace OrtizAbrahamSprint3.Data.Entities
 {
     public class WeekDays

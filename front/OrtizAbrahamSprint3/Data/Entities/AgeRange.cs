@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
+//To make sure the age range and price is clear
+
 namespace OrtizAbrahamSprint3.Data.Entities
 {
     public class AgeRange

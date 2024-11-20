@@ -6,10 +6,10 @@ namespace OrtizAbrahamSprint3.Data
 {
     public class MyApplicationDbContext : DbContext
     {   
-        //DbContext creation, where I need to write the name of all my tables
+        //DbContext creation, here is the name for all my tables.
         public MyApplicationDbContext(DbContextOptions<MyApplicationDbContext> options) : base(options)
         { }
-        //Tables 
+        //Tables declaration
         public DbSet<Classes> Classes { get; set; }
         public DbSet<Users> Users { get; set; }
         public DbSet<Instructor> Instructor { get; set; }

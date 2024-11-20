@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
+//To store the class the user has selected
+
 namespace OrtizAbrahamSprint3.Data.Entities
 {
     public class Classes

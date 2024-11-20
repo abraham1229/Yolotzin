@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
+//To store all the possible instructors and the style they teach
+
 namespace OrtizAbrahamSprint3.Data.Entities
 {
     public class Instructor

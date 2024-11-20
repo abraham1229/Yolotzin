@@ -4,9 +4,9 @@
     --secondary-color: #FDFFFF; /* Twilight blue*/
     --layout-color: #1E1E1E; /*Gray*/
     --accent-color: #D72483; /* Cerise*/
-    --reset-color: #504f4fe9;
-    --submit-color: #eb266e;
-    --error-color: #de2525;
+    --reset-color: #504f4fe9; /*Dark Gray*/
+    --submit-color: #eb266e; /*Light Pink */
+    --error-color: #de2525; /*Red*/
 }
 
 /*Style for all the webpage*/
@@ -554,10 +554,6 @@ p {
     .button-about-us {
         align-self: center;
     }
-
-    /*.video-container {
-        width: 100%;
-    }*/
 }
 
 /*Style for performance video*/
@@ -1122,8 +1118,7 @@ p {
 
 
 
-/*Styles for the forms*/
-
+/*FORMS STYLES*/
 /*Style for the title rows*/
 
 .sign-up-title {
