@@ -41,7 +41,7 @@ namespace OrtizAbrahamSprint3.Pages
             //Create a variable for the user record
             var user = await _myApplicationDbContext.Users.FirstOrDefaultAsync(u => u.Username == Username);
 
-            //Check if the user variable is n ull or if it is not verified with a valid password
+            //Check if the user variable is null or if it is not verified with a valid password
 
             if (user == null || !VerifyPasswordHash(UserPassword, user.UserPasswordHash, user.UserPasswordSalt) )
             {

@@ -54,6 +54,7 @@ namespace OrtizAbrahamSprint3.Pages
             listoflevels = new SelectList(_myApplicationDbContext.Levels, "LevelID", "LevelName");
             listofstyles = new SelectList(_myApplicationDbContext.Style, "StyleID", "StyleName");
 
+            //Chechk for the values to autopopulate list values (received in the argument of the funtion)
             if (age.HasValue)
             {
                 AgeRangeID = age.Value;
@@ -70,7 +71,10 @@ namespace OrtizAbrahamSprint3.Pages
 
         public async Task<IActionResult> OnPostEnroll()
         {
+            //Declare bool to know if there was an error
             bool hasError = false;
+
+            //Check if the user did not select all the data, if something is missing, return and ask to select data.
             if (AgeRangeID == 0)
             {
                 MessageAgeRange = "Please select an age range";
@@ -95,12 +99,14 @@ namespace OrtizAbrahamSprint3.Pages
                 return Page();
             }
 
+            //If the user has selected everything, check for the ID and assign it to the userID forgein key
             MyClasses.UserID = int.TryParse(User.FindFirst("UserID")?.Value, out var id) ? id : 0;
 
+            //Insert data into the database
             _myApplicationDbContext.Classes.Add(MyClasses);
             await _myApplicationDbContext.SaveChangesAsync();
 
-
+            //Return to the home page
             return RedirectToPage("/Index");
         }
     }
