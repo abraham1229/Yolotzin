@@ -8,7 +8,7 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace OrtizAbrahamSprint3.Pages
 {
-    [Authorize]
+    //[Authorize]
     public class RegistrationsModel : PageModel
     {
         //Declare the class for every ID
@@ -47,12 +47,28 @@ namespace OrtizAbrahamSprint3.Pages
             _myApplicationDbContext = myApplicationDbContext;
         }
 
+        //NOOSEEE
+        public IList<AgeRange> listofagerangedata { get; set; }
+        public IList<Levels> listoflevelsedata { get; set; }
+        public IList<WeekDays> listofweekedata { get; set; }
+
         public void OnGet(int? age, int? level, int? style)
         {
+
+            //NOSE
+            listofagerangedata = _myApplicationDbContext.AgeRange.ToList();
+
+            listoflevelsedata = _myApplicationDbContext.Levels.ToList();
+
+            listofweekedata = _myApplicationDbContext.WeekDays.ToList();
+
+
             //Populate the dropdownlist with all possible chair types from our database table.
             listofagerange = new SelectList(_myApplicationDbContext.AgeRange, "AgeRangeID", "RangeName");
             listoflevels = new SelectList(_myApplicationDbContext.Levels, "LevelID", "LevelName");
             listofstyles = new SelectList(_myApplicationDbContext.Style, "StyleID", "StyleName");
+
+
 
             //Chechk for the values to autopopulate list values (received in the argument of the funtion)
             if (age.HasValue)

@@ -41,6 +41,35 @@
         <span>@Model.MessageStyle</span>
     </div>
 
+    @*NOSEEEE*@
+    <div>
+        @foreach (var item in Model.listofagerangedata)
+        {
+            if (item.AgeRangeID == Model.AgeRangeID)
+            {
+                <p>Price: @item.Price</p>
+            }
+        }
+
+
+        @foreach (var item in Model.listoflevelsedata)
+        {
+            if (item.LevelID == Model.LevelID)
+            {
+                <p>Start Hour: @item.StartHour</p>
+                <p>End Hour: @item.EndHour</p>
+                @foreach (var item2 in Model.listofweekedata)
+                {
+                    if (item2.WeekDaysID == item.WeekDaysID)
+                    {
+                        <p>Days: @item2.WeekDaysName</p>
+                    }
+                }
+
+        }
+        }
+    </div>
+
     @*Buttons rows*@
     <div class="data-buttons-container">
         <input asp-page-handler="Enroll" type="submit" value="Enroll" class="submit-button" />
