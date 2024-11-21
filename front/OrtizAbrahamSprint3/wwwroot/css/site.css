@@ -391,6 +391,27 @@ p {
     }
 }
 
+/*Style for the welcome message*/
+
+.welcome-message-container {
+    margin: 0;
+    margin-top: 5em;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.container-below-welcome {
+    margin: 10vw;
+    margin-top: 5em;
+}
+
+@media (max-width: 768px) {
+    .container-below-welcome {
+        margin: 4em 0;
+    }
+}
+
 /*Style for cta in webpage*/
 .cta-img-container {
     position: relative;

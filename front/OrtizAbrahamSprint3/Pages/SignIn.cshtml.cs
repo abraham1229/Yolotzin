@@ -46,7 +46,7 @@ namespace OrtizAbrahamSprint3.Pages
             if (user == null || !VerifyPasswordHash(UserPassword, user.UserPasswordHash, user.UserPasswordSalt) )
             {
                 Message = "Invalid login credentials";
-                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                ModelState.AddModelError(string.Empty, "Invalid login attempt");
 
                 return Page();
             }
@@ -66,7 +66,7 @@ namespace OrtizAbrahamSprint3.Pages
             var authProperties = new AuthenticationProperties
             {
                 IsPersistent = true, //keep the user logged in even after the browser closes.\
-                ExpiresUtc = DateTime.UtcNow.AddMinutes(120)
+                ExpiresUtc = DateTime.UtcNow.AddMinutes(1)
             };
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));

@@ -111,6 +111,7 @@ namespace OrtizAbrahamSprint3.Pages
 
         }
 
+        //OnClick for the clear button
         public void OnPostClearForm()
         {
             // Clean form properties
@@ -133,7 +134,7 @@ namespace OrtizAbrahamSprint3.Pages
             ModelState.Clear();
         }
 
-
+        //OnClick for the Sign Up button
         public async Task<IActionResult> OnPostAddUser()
         {
             // Calculate age
@@ -160,6 +161,7 @@ namespace OrtizAbrahamSprint3.Pages
                 ModelState.Remove("BirthdayGuardian");
                 return Page();
             }
+            //If guardians are under age
             else if (ageUser < 18 && ageGuardian < 120)
             {
                 ClassNameDisplayGuardian = String.Empty;
@@ -174,7 +176,8 @@ namespace OrtizAbrahamSprint3.Pages
             CreatePasswordHash(UserPassword, out byte[] passwordHash, out byte[] passwordSalt);
 
             var user = new Users();
-            //Assign the data for the tutor as well
+
+            //Assign the data for the guardian if the use is underage
             if (ageUser < 18)
             {
                 user = new Users
@@ -196,6 +199,7 @@ namespace OrtizAbrahamSprint3.Pages
                 };
             }
 
+            //Assign none to the guardian if the user is older than 18
             else
             {
                 user = new Users
@@ -218,7 +222,7 @@ namespace OrtizAbrahamSprint3.Pages
             }
 
 
-
+            //Inject data to the data base
             try
             {
                 _myApplicationDbContext.Users.Add(user);
@@ -269,7 +273,8 @@ namespace OrtizAbrahamSprint3.Pages
 
 
         }
-
+        
+        //Function to create thw hash ans salt for the password
         public void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
             //Existing classes to hash ans salt will be used

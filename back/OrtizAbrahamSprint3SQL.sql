@@ -162,9 +162,22 @@ VALUES
 
 --User and Classes???
 --SELECT 
---	i.FirstNameInstructor,
---	s.StyleName
+--	ag.RangeName,
+--	l.LevelName,
+--	s.StyleName,
+--	l.StartHour,
+--	l.EndHour,
+--	l.WeekDaysID,
+--	ag.Price,
+--	u.FirstNameUser
 --FROM
---	dbo.Instructor i
+--	dbo.Classes c
 --JOIN
---	dbo.Style s ON i.StyleID = s.StyleID
+--	dbo.AgeRange ag ON c.AgeRangeID = ag.AgeRangeID
+--JOIN
+--	dbo.Levels l ON c.LevelID = l.LevelID
+--JOIN
+--	dbo.Style s ON c.StyleID = s.StyleID
+--JOIN
+--	dbo.Users u ON c.UserID = u.UserID
+

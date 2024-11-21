@@ -54,8 +54,16 @@
     </button>
 </div>
 
+@*Welcome row*@
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="welcome-message-container">
+        <h1>Welcome, @User.Identity.Name!</h1>
+    </div>
+}
+
 @*About us row (cta) *@
-<div class="row">
+<div class="row container-below-welcome">
     <div class="col-md-5 cta-about-us-container">
         <h1>
             Yolotzin <span class="few-words"> in a few words ...</span>
