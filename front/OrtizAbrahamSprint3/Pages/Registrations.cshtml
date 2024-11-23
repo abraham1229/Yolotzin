@@ -8,11 +8,14 @@
 @*Title rows*@
 <div class="sign-up-title">
     <h1>Enroll a class here!</h1>
-    <p>Please select the desire options</p>
 </div>
 
 @*Form rows*@
 <form method="post" class="all-data-container">
+
+    @*Choose options*@
+    <h2>Select the desire options</h2>
+
     @*Age range row*@
     <div class="enter-data-container">
         <label>Age range</label>
@@ -42,13 +45,19 @@
     </div>
 
     @*Class Information rows*@
+
+
+    <h2>Class information</h2>
+
     <div class="information-class-container">
-        <p>Price: @Model.classPrice</p>
-        <p>Start Hour: @Model.classStartHour</p>
-        <p>End Hour: @Model.classEndHour</p>
-        <p>Days: @Model.classDays</p>
+        <p>Price: $200</p>
+        <p>Hours: 15 - 17</p>
+        <p>Days: Mon/Wed</p>
+        <p>Instructor: Luis Mejia</p>
+       
 
     </div>
+
 
     @*Buttons rows*@
     <div class="data-buttons-container">

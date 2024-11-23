@@ -1177,6 +1177,10 @@ p {
     margin-top: 0.5em;
 }
 
+.all-data-container p {
+    text-align: center;
+}
+
 .enter-data-container {
     display: flex;
     flex-direction: column;
@@ -1350,5 +1354,23 @@ p {
 
 /*Styles for classes information*/
 .information-class-container {
-
+    background-color: var(--primary-color);
+    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12em, 1fr));
+    justify-items: center;
+    padding: 3em 1em;
+    border-radius: 1em;
+    gap: 0.5em;
+    margin: 2em 0;
 }
+
+
+@media (max-width: 768px) {
+    .information-class-container{
+        justify-items: left;
+    }
+}
+
+
+
