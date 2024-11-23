@@ -47,84 +47,157 @@ namespace OrtizAbrahamSprint3.Pages
             _myApplicationDbContext = myApplicationDbContext;
         }
 
-        //NOOSEEE
+        //Lists to show class information
         public IList<AgeRange> listofagerangedata { get; set; }
         public IList<Levels> listoflevelsedata { get; set; }
-        public IList<WeekDays> listofweekedata { get; set; }
+        public IList<WeekDays> listofweekdata { get; set; }
 
-        public void OnGet(int? age, int? level, int? style)
-        {
+        //Classs information values
+        public decimal classPrice { get; set; }
+        public string classStartHour { get; set; }
+        public string classEndHour { get; set; }
+        public string classDays { get; set; }
 
-            //NOSE
-            listofagerangedata = _myApplicationDbContext.AgeRange.ToList();
+    //    public void OnGet(int? age, int? level, int? style)
+    //    {
 
-            listoflevelsedata = _myApplicationDbContext.Levels.ToList();
-
-            listofweekedata = _myApplicationDbContext.WeekDays.ToList();
-
-
-            //Populate the dropdownlist with all possible chair types from our database table.
-            listofagerange = new SelectList(_myApplicationDbContext.AgeRange, "AgeRangeID", "RangeName");
-            listoflevels = new SelectList(_myApplicationDbContext.Levels, "LevelID", "LevelName");
-            listofstyles = new SelectList(_myApplicationDbContext.Style, "StyleID", "StyleName");
+    //        //Populate the dropdownlist with all possible chair types from our database table.
+    //        listofagerange = new SelectList(_myApplicationDbContext.AgeRange, "AgeRangeID", "RangeName");
+    //        listoflevels = new SelectList(_myApplicationDbContext.Levels, "LevelID", "LevelName");
+    //        listofstyles = new SelectList(_myApplicationDbContext.Style, "StyleID", "StyleName");
 
 
 
-            //Chechk for the values to autopopulate list values (received in the argument of the funtion)
-            if (age.HasValue)
-            {
-                AgeRangeID = age.Value;
-            }
-            if (level.HasValue)
-            {
-                LevelID = level.Value;
-            }
-            if (style.HasValue)
-            {
-                StyleID = style.Value;
-            }
-        }
+    //        //Chechk for the values to autopopulate list values (received in the argument of the funtion)
+    //        if (age.HasValue)
+    //        {
+    //            AgeRangeID = age.Value;
+    //        }
+    //        if (level.HasValue)
+    //        {
+    //            LevelID = level.Value;
+    //        }
+    //        if (style.HasValue)
+    //        {
+    //            StyleID = style.Value;
+    //        }
 
-        public async Task<IActionResult> OnPostEnroll()
-        {
-            //Declare bool to know if there was an error
-            bool hasError = false;
+    //        //Load and show options information
+    //        listofagerangedata = _myApplicationDbContext.AgeRange.ToList();
 
-            //Check if the user did not select all the data, if something is missing, return and ask to select data.
-            if (AgeRangeID == 0)
-            {
-                MessageAgeRange = "Please select an age range";
-                listofagerange = new SelectList(_myApplicationDbContext.AgeRange, "AgeRangeID", "RangeName");
-                hasError = true;
-            }
-            if (LevelID == 0) 
-            {
-                MessageLevel = "Please select a level";
-                listoflevels = new SelectList(_myApplicationDbContext.Levels, "LevelID", "LevelName");
-                hasError = true;
-            }
-            if (StyleID == 0)
-            {
-                MessageStyle = "Please select an sytle";
-                listofstyles = new SelectList(_myApplicationDbContext.Style, "StyleID", "StyleName");
-                hasError = true;
-            }
+    //        listoflevelsedata = _myApplicationDbContext.Levels.ToList();
 
-            if (hasError)
-            {
-                return Page();
-            }
+    //        listofweekdata = _myApplicationDbContext.WeekDays.ToList();
 
-            //If the user has selected everything, check for the ID and assign it to the userID forgein key
-            MyClasses.UserID = int.TryParse(User.FindFirst("UserID")?.Value, out var id) ? id : 0;
+    //        //Check for the values
+    //        foreach (var item in listofagerangedata)
+    //        {
+    //            if (item.AgeRangeID == AgeRangeID)
+    //            {
+    //                classPrice = item.Price;
+    //            }
+    //        }
 
-            //Insert data into the database
-            _myApplicationDbContext.Classes.Add(MyClasses);
-            await _myApplicationDbContext.SaveChangesAsync();
+    //        foreach(var item in listoflevelsedata)
+    //        {
+    //            if (item.LevelID == LevelID)
+    //            {
+    //                classStartHour = item.StartHour;
+    //                classEndHour = item.EndHour;
+           
+    //            foreach(var item2 in listofweekdata)
+    //                {
+    //                    if (item2.WeekDaysID == item.WeekDaysID)
+    //                    {
+    //                        classDays = item2.WeekDaysName;
+    //                    }
+    //                }
 
-            //Return to the home page
-            return RedirectToPage("/Index");
-        }
+    //            }
+    //        }
+    //    }
+
+    //    public void OnPost()
+    //    {
+    //        //Load and show options information
+    //        listofagerangedata = _myApplicationDbContext.AgeRange.ToList();
+
+    //        listoflevelsedata = _myApplicationDbContext.Levels.ToList();
+
+    //        listofweekdata = _myApplicationDbContext.WeekDays.ToList();
+
+    //        //Check for the values
+    //        foreach (var item in listofagerangedata)
+    //        {
+    //            if (item.AgeRangeID == AgeRangeID)
+    //            {
+    //                classPrice = item.Price;
+    //            }
+    //        }
+
+    //        foreach (var item in listoflevelsedata)
+    //        {
+    //            if (item.LevelID == LevelID)
+    //            {
+    //                classStartHour = item.StartHour;
+    //                classEndHour = item.EndHour;
+
+    //                foreach (var item2 in listofweekdata)
+    //                {
+    //                    if (item2.WeekDaysID == item.WeekDaysID)
+    //                    {
+    //                        classDays = item2.WeekDaysName;
+    //                    }
+    //                }
+
+    //            }
+    //        }
+    //        //Populate the dropdownlist with all possible chair types from our database table.
+    //        listofagerange = new SelectList(_myApplicationDbContext.AgeRange, "AgeRangeID", "RangeName");
+    //        listoflevels = new SelectList(_myApplicationDbContext.Levels, "LevelID", "LevelName");
+    //        listofstyles = new SelectList(_myApplicationDbContext.Style, "StyleID", "StyleName");
+    //    }
+
+    //    public async Task<IActionResult> OnPostEnroll()
+    //    {
+    //        //Declare bool to know if there was an error
+    //        bool hasError = false;
+
+    //        //Check if the user did not select all the data, if something is missing, return and ask to select data.
+    //        if (AgeRangeID == 0)
+    //        {
+    //            MessageAgeRange = "Please select an age range";
+    //            listofagerange = new SelectList(_myApplicationDbContext.AgeRange, "AgeRangeID", "RangeName");
+    //            hasError = true;
+    //        }
+    //        if (LevelID == 0) 
+    //        {
+    //            MessageLevel = "Please select a level";
+    //            listoflevels = new SelectList(_myApplicationDbContext.Levels, "LevelID", "LevelName");
+    //            hasError = true;
+    //        }
+    //        if (StyleID == 0)
+    //        {
+    //            MessageStyle = "Please select an sytle";
+    //            listofstyles = new SelectList(_myApplicationDbContext.Style, "StyleID", "StyleName");
+    //            hasError = true;
+    //        }
+
+    //        if (hasError)
+    //        {
+    //            return Page();
+    //        }
+
+    //        //If the user has selected everything, check for the ID and assign it to the userID forgein key
+    //        MyClasses.UserID = int.TryParse(User.FindFirst("UserID")?.Value, out var id) ? id : 0;
+
+    //        //Insert data into the database
+    //        _myApplicationDbContext.Classes.Add(MyClasses);
+    //        await _myApplicationDbContext.SaveChangesAsync();
+
+    //        //Return to the home page
+    //        return RedirectToPage("/Index");
+    //    }
     }
         
 }

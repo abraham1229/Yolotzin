@@ -25,7 +25,7 @@
     @*Level row*@
     <div class="enter-data-container">
         <label>Level</label>
-        <select name="LevelID" asp-for="LevelID" asp-items="@Model.listoflevels">
+        <select name="LevelID" asp-for="LevelID" asp-items="@Model.listoflevels" onchange="this.form.submit()">
             <option value="0"> Select the level </option>
         </select>
         <span>@Model.MessageLevel</span>
@@ -35,39 +35,19 @@
     @*Style row*@
     <div class="enter-data-container">
         <label>Style</label>
-        <select name="StyleID" asp-for="StyleID" asp-items="@Model.listofstyles">
+        <select name="StyleID" asp-for="StyleID" asp-items="@Model.listofstyles" onchange="this.form.submit()">
             <option value="0"> Select the style </option>
         </select>
         <span>@Model.MessageStyle</span>
     </div>
 
-    @*NOSEEEE*@
-    <div>
-        @foreach (var item in Model.listofagerangedata)
-        {
-            if (item.AgeRangeID == Model.AgeRangeID)
-            {
-                <p>Price: @item.Price</p>
-            }
-        }
+    @*Class Information rows*@
+    <div class="information-class-container">
+        <p>Price: @Model.classPrice</p>
+        <p>Start Hour: @Model.classStartHour</p>
+        <p>End Hour: @Model.classEndHour</p>
+        <p>Days: @Model.classDays</p>
 
-
-        @foreach (var item in Model.listoflevelsedata)
-        {
-            if (item.LevelID == Model.LevelID)
-            {
-                <p>Start Hour: @item.StartHour</p>
-                <p>End Hour: @item.EndHour</p>
-                @foreach (var item2 in Model.listofweekedata)
-                {
-                    if (item2.WeekDaysID == item.WeekDaysID)
-                    {
-                        <p>Days: @item2.WeekDaysName</p>
-                    }
-                }
-
-        }
-        }
     </div>
 
     @*Buttons rows*@
