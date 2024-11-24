@@ -3,16 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\Abraham1229\\OneDrive\\Documentos\\Web aplication development\\Yolotzin\\front\\OrtizAbrahamSprint3\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B64D49A9-03EE-48A6-A12A-DD7978CEEC9A}|OrtizAbrahamSprint3.csproj|c:\\users\\abraham1229\\onedrive\\documentos\\web aplication development\\yolotzin\\front\\ortizabrahamsprint3\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{B64D49A9-03EE-48A6-A12A-DD7978CEEC9A}|OrtizAbrahamSprint3.csproj|solutionrelative:wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{B64D49A9-03EE-48A6-A12A-DD7978CEEC9A}|OrtizAbrahamSprint3.csproj|c:\\users\\abraham1229\\onedrive\\documentos\\web aplication development\\yolotzin\\front\\ortizabrahamsprint3\\pages\\registrations.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B64D49A9-03EE-48A6-A12A-DD7978CEEC9A}|OrtizAbrahamSprint3.csproj|solutionrelative:pages\\registrations.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B64D49A9-03EE-48A6-A12A-DD7978CEEC9A}|OrtizAbrahamSprint3.csproj|c:\\users\\abraham1229\\onedrive\\documentos\\web aplication development\\yolotzin\\front\\ortizabrahamsprint3\\pages\\registrations.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{B64D49A9-03EE-48A6-A12A-DD7978CEEC9A}|OrtizAbrahamSprint3.csproj|solutionrelative:pages\\registrations.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B64D49A9-03EE-48A6-A12A-DD7978CEEC9A}|OrtizAbrahamSprint3.csproj|c:\\users\\abraham1229\\onedrive\\documentos\\web aplication development\\yolotzin\\front\\ortizabrahamsprint3\\pages\\registrations.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B64D49A9-03EE-48A6-A12A-DD7978CEEC9A}|OrtizAbrahamSprint3.csproj|solutionrelative:pages\\registrations.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B64D49A9-03EE-48A6-A12A-DD7978CEEC9A}|OrtizAbrahamSprint3.csproj|c:\\users\\abraham1229\\onedrive\\documentos\\web aplication development\\yolotzin\\front\\ortizabrahamsprint3\\pages\\signup.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B64D49A9-03EE-48A6-A12A-DD7978CEEC9A}|OrtizAbrahamSprint3.csproj|solutionrelative:pages\\signup.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B64D49A9-03EE-48A6-A12A-DD7978CEEC9A}|OrtizAbrahamSprint3.csproj|c:\\users\\abraham1229\\onedrive\\documentos\\web aplication development\\yolotzin\\front\\ortizabrahamsprint3\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{B64D49A9-03EE-48A6-A12A-DD7978CEEC9A}|OrtizAbrahamSprint3.csproj|solutionrelative:wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B64D49A9-03EE-48A6-A12A-DD7978CEEC9A}|OrtizAbrahamSprint3.csproj|c:\\users\\abraham1229\\onedrive\\documentos\\web aplication development\\yolotzin\\front\\ortizabrahamsprint3\\data\\entities\\instructor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B64D49A9-03EE-48A6-A12A-DD7978CEEC9A}|OrtizAbrahamSprint3.csproj|solutionrelative:data\\entities\\instructor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,30 +30,56 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
+              "Title": "SignUp.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Abraham1229\\OneDrive\\Documentos\\Web aplication development\\Yolotzin\\front\\OrtizAbrahamSprint3\\Pages\\SignUp.cshtml.cs",
+              "RelativeDocumentMoniker": "Pages\\SignUp.cshtml.cs",
+              "ToolTip": "C:\\Users\\Abraham1229\\OneDrive\\Documentos\\Web aplication development\\Yolotzin\\front\\OrtizAbrahamSprint3\\Pages\\SignUp.cshtml.cs",
+              "RelativeToolTip": "Pages\\SignUp.cshtml.cs",
+              "ViewState": "AgIAAJwAAAAAAAAAAAAowLkAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-24T04:08:32.727Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Instructor.cs",
+              "DocumentMoniker": "C:\\Users\\Abraham1229\\OneDrive\\Documentos\\Web aplication development\\Yolotzin\\front\\OrtizAbrahamSprint3\\Data\\Entities\\Instructor.cs",
+              "RelativeDocumentMoniker": "Data\\Entities\\Instructor.cs",
+              "ToolTip": "C:\\Users\\Abraham1229\\OneDrive\\Documentos\\Web aplication development\\Yolotzin\\front\\OrtizAbrahamSprint3\\Data\\Entities\\Instructor.cs",
+              "RelativeToolTip": "Data\\Entities\\Instructor.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-24T03:41:42.02Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "site.css",
               "DocumentMoniker": "C:\\Users\\Abraham1229\\OneDrive\\Documentos\\Web aplication development\\Yolotzin\\front\\OrtizAbrahamSprint3\\wwwroot\\css\\site.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\site.css",
               "ToolTip": "C:\\Users\\Abraham1229\\OneDrive\\Documentos\\Web aplication development\\Yolotzin\\front\\OrtizAbrahamSprint3\\wwwroot\\css\\site.css",
               "RelativeToolTip": "wwwroot\\css\\site.css",
-              "ViewState": "AgIAAEYFAAAAAAAAAAAIwOkEAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAEYFAAAAAAAAAAAIwEwFAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2024-11-23T00:52:22.684Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Registrations.cshtml.cs",
               "DocumentMoniker": "C:\\Users\\Abraham1229\\OneDrive\\Documentos\\Web aplication development\\Yolotzin\\front\\OrtizAbrahamSprint3\\Pages\\Registrations.cshtml.cs",
               "RelativeDocumentMoniker": "Pages\\Registrations.cshtml.cs",
               "ToolTip": "C:\\Users\\Abraham1229\\OneDrive\\Documentos\\Web aplication development\\Yolotzin\\front\\OrtizAbrahamSprint3\\Pages\\Registrations.cshtml.cs",
               "RelativeToolTip": "Pages\\Registrations.cshtml.cs",
-              "ViewState": "AgIAAEwAAAAAAAAAAAAQwMgAAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAAHQAAAAAAAAAAAAqwAoAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-21T15:41:17.384Z",
               "EditorCaption": ""
@@ -58,7 +92,7 @@
               "RelativeDocumentMoniker": "Pages\\Registrations.cshtml",
               "ToolTip": "C:\\Users\\Abraham1229\\OneDrive\\Documentos\\Web aplication development\\Yolotzin\\front\\OrtizAbrahamSprint3\\Pages\\Registrations.cshtml",
               "RelativeToolTip": "Pages\\Registrations.cshtml",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAAADQAAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADMAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-11-21T15:44:43.362Z",
               "EditorCaption": ""

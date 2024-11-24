@@ -19,7 +19,7 @@
     @*Age range row*@
     <div class="enter-data-container">
         <label>Age range</label>
-        <select name="AgeRangeID" asp-for="AgeRangeID" asp-items="@Model.listofagerange">
+        <select name="AgeRangeID" asp-for="AgeRangeID" asp-items="@Model.listofagerange" onchange="this.form.submit()">
             <option value="0"> Select the age range </option>
         </select>
         <span>@Model.MessageAgeRange</span>
@@ -47,14 +47,14 @@
     @*Class Information rows*@
 
 
-    <h2>Class information</h2>
+    <h2 class="@Model.displayClassInformation">Class information</h2>
 
-    <div class="information-class-container">
-        <p>Price: $200</p>
-        <p>Hours: 15 - 17</p>
-        <p>Days: Mon/Wed</p>
-        <p>Instructor: Luis Mejia</p>
-       
+    <div class="information-class-container @Model.displayClassInformation">
+        <p>Price: $@Model.classPrice</p>
+        <p>Hours: @Model.classHour</p>
+        <p>Days: @Model.classDays</p>
+        <p>Instructor: @Model.classInstructor</p>
+
 
     </div>
 

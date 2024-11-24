@@ -1365,6 +1365,10 @@ p {
     margin: 2em 0;
 }
 
+.hide-information {
+    display: none;
+}
+
 
 @media (max-width: 768px) {
     .information-class-container{
