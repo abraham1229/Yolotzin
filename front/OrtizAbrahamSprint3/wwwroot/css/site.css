@@ -1263,6 +1263,7 @@ p {
         width: 90vw;
         margin: auto;
         margin-top: 2em;
+        margin-bottom: 1em;
         text-align: center;
     }
 
@@ -1359,7 +1360,7 @@ p {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(12em, 1fr));
     justify-items: center;
-    padding: 3em 1em;
+    padding: 3em 0;
     border-radius: 1em;
     gap: 0.5em;
     margin: 2em 0;
@@ -1371,8 +1372,9 @@ p {
 
 
 @media (max-width: 768px) {
-    .information-class-container{
+    .information-class-container {
         justify-items: left;
+        padding: 3em 1em;
     }
 }
 

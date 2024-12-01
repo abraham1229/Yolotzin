@@ -71,7 +71,7 @@ namespace OrtizAbrahamSprint3.Pages
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
 
-            return RedirectToPage("/Index");
+            return RedirectToPage("/Registrations");
         }
 
         public bool VerifyPasswordHash(string password, byte[] storedHash, byte[] storedSalt)

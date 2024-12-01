@@ -66,12 +66,8 @@ namespace OrtizAbrahamSprint3.Pages
         public void OnGet(int? age, int? level, int? style)
         {
 
-            //Populate the dropdownlist with all possible chair types from our database table.
-            listofagerange = new SelectList(_myApplicationDbContext.AgeRange, "AgeRangeID", "RangeName");
-            listoflevels = new SelectList(_myApplicationDbContext.Levels, "LevelID", "LevelName");
-            listofstyles = new SelectList(_myApplicationDbContext.Style, "StyleID", "StyleName");
-
-
+            //Call populate dropdown function
+            PopulateDropDown();
 
             //Check for the values to autopopulate list values (received in the argument of the funtion)
             if (age.HasValue)
@@ -91,55 +87,8 @@ namespace OrtizAbrahamSprint3.Pages
             //Display information just untill they choose the 3 options
             if (AgeRangeID != 0 && LevelID != 0 && StyleID != 0)
             {
-                //Load and show options information
-                listofagerangedata = _myApplicationDbContext.AgeRange.ToList();
-                listoflevelsedata = _myApplicationDbContext.Levels.ToList();
-                listofweekdata = _myApplicationDbContext.WeekDays.ToList();
-                listofstyledata = _myApplicationDbContext.Style.ToList();
-                listofinstructordata = _myApplicationDbContext.Instructor.ToList();
-
-                //Check for the values
-                foreach (var item in listofagerangedata)
-                {
-                    if (item.AgeRangeID == AgeRangeID)
-                    {
-                        classPrice = item.Price;
-                    }
-                }
-
-                foreach (var item in listoflevelsedata)
-                {
-                    if (item.LevelID == LevelID)
-                    {
-                        classHour = $"{item.StartHour} - {item.EndHour}";
-
-                        foreach (var item2 in listofweekdata)
-                        {
-                            if (item2.WeekDaysID == item.WeekDaysID)
-                            {
-                                classDays = item2.WeekDaysName;
-                            }
-                        }
-
-                    }
-                }
-
-                foreach (var item in listofstyledata)
-                {
-                    if (item.StyleID == StyleID)  
-                    {
-                        foreach (var item2 in listofinstructordata)
-                        {
-                            if (item2.StyleID == item.StyleID)
-                            {
-                                classInstructor = item2.FirstNameInstructor;
-                            }
-                        }
-
-                    }
-                }
-
-                displayClassInformation = String.Empty;
+                //Call the load information function
+                LoadClassInformation();
             }
             else
             {
@@ -152,55 +101,8 @@ namespace OrtizAbrahamSprint3.Pages
             //Display information just untill they choose the 3 options
             if (AgeRangeID != 0 && LevelID != 0 && StyleID != 0)
             {
-                //Load and show options information
-                listofagerangedata = _myApplicationDbContext.AgeRange.ToList();
-                listoflevelsedata = _myApplicationDbContext.Levels.ToList();
-                listofweekdata = _myApplicationDbContext.WeekDays.ToList();
-                listofstyledata = _myApplicationDbContext.Style.ToList();
-                listofinstructordata = _myApplicationDbContext.Instructor.ToList();
-
-                //Check for the values
-                foreach (var item in listofagerangedata)
-                {
-                    if (item.AgeRangeID == AgeRangeID)
-                    {
-                        classPrice = item.Price;
-                    }
-                }
-
-                foreach (var item in listoflevelsedata)
-                {
-                    if (item.LevelID == LevelID)
-                    {
-                        classHour = $"{item.StartHour} - {item.EndHour}";
-
-                        foreach (var item2 in listofweekdata)
-                        {
-                            if (item2.WeekDaysID == item.WeekDaysID)
-                            {
-                                classDays = item2.WeekDaysName;
-                            }
-                        }
-
-                    }
-                }
-
-                foreach (var item in listofstyledata)
-                {
-                    if (item.StyleID == StyleID)
-                    {
-                        foreach (var item2 in listofinstructordata)
-                        {
-                            if (item2.StyleID == item.StyleID)
-                            {
-                                classInstructor = item2.FirstNameInstructor;
-                            }
-                        }
-
-                    }
-                }
-
-                displayClassInformation = String.Empty;
+                //Call the load information function
+                LoadClassInformation();
             }
             else
             {
@@ -208,10 +110,8 @@ namespace OrtizAbrahamSprint3.Pages
             }
 
 
-            //Populate the dropdownlist with all possible chair types from our database table.
-            listofagerange = new SelectList(_myApplicationDbContext.AgeRange, "AgeRangeID", "RangeName");
-            listoflevels = new SelectList(_myApplicationDbContext.Levels, "LevelID", "LevelName");
-            listofstyles = new SelectList(_myApplicationDbContext.Style, "StyleID", "StyleName");
+            //Call populate dropdown function
+            PopulateDropDown();
         }
 
         public async Task<IActionResult> OnPostEnroll()
@@ -254,6 +154,68 @@ namespace OrtizAbrahamSprint3.Pages
             //Return to the home page
             return RedirectToPage("/Index");
         }
-    }
-        
+
+        //Function to populate the dropdownlist with all possible values from our database tables.
+        private void PopulateDropDown()
+        {
+            listofagerange = new SelectList(_myApplicationDbContext.AgeRange, "AgeRangeID", "RangeName");
+            listoflevels = new SelectList(_myApplicationDbContext.Levels, "LevelID", "LevelName");
+            listofstyles = new SelectList(_myApplicationDbContext.Style, "StyleID", "StyleName");
+        }
+
+        // Function to load and validate class information based on selected options
+        private void LoadClassInformation()
+        {
+            // Load all required data from the database tables
+            listofagerangedata = _myApplicationDbContext.AgeRange.ToList();
+            listoflevelsedata = _myApplicationDbContext.Levels.ToList();
+            listofweekdata = _myApplicationDbContext.WeekDays.ToList();
+            listofstyledata = _myApplicationDbContext.Style.ToList();
+            listofinstructordata = _myApplicationDbContext.Instructor.ToList();
+
+            // Check the selected age range and retrieve the price
+            foreach (var item in listofagerangedata)
+            {
+                if (item.AgeRangeID == AgeRangeID)
+                {
+                    classPrice = item.Price;
+                }
+            }
+
+            // Check the selected level and retrieve hours and days
+            foreach (var item in listoflevelsedata)
+            {
+                if (item.LevelID == LevelID)
+                {
+                    classHour = $"{item.StartHour} - {item.EndHour}";
+
+                    foreach (var week in listofweekdata)
+                    {
+                        if (week.WeekDaysID == item.WeekDaysID)
+                        {
+                            classDays = week.WeekDaysName;
+                        }
+                    }
+                }
+            }
+
+            // Check the selected style and retrieve instructor information
+            foreach (var style in listofstyledata)
+            {
+                if (style.StyleID == StyleID)
+                {
+                    foreach (var instructor in listofinstructordata)
+                    {
+                        if (instructor.StyleID == style.StyleID)
+                        {
+                            classInstructor = instructor.FirstNameInstructor;
+                        }
+                    }
+                }
+            }
+
+            // Set display information status
+            displayClassInformation = String.Empty;
+        }
+    }        
 }

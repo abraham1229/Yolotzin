@@ -97,15 +97,6 @@ namespace OrtizAbrahamSprint3.Pages
         [BindProperty]
         public string ClassNameDisplayGuardian { get; set; } = "hide";
 
-        // Method to calculate age based on the birthday
-        static int CalculateAge(DateOnly birthDate)
-        {
-            var today = DateOnly.FromDateTime(DateTime.Today);
-            int age = today.Year - birthDate.Year;
-            if (birthDate > today.AddYears(-age)) age--;
-            return age;
-        }
-
         public void OnGet()
         {
 
@@ -247,7 +238,16 @@ namespace OrtizAbrahamSprint3.Pages
 
 
         }
-        
+
+        // Function to calculate age based on the birthday
+        static int CalculateAge(DateOnly birthDate)
+        {
+            var today = DateOnly.FromDateTime(DateTime.Today);
+            int age = today.Year - birthDate.Year;
+            if (birthDate > today.AddYears(-age)) age--;
+            return age;
+        }
+
         //Function to create thw hash ans salt for the password
         public void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
