@@ -27,7 +27,9 @@ CREATE TABLE dbo.AgeRange
 	MinimumAge int NOT NULL, 
 	MaximumAge int NOT NULL, 
 	RangeName varchar(20) NOT NULL,
-	Price decimal(5,2) NOT NULL
+	Price decimal(5,2) NOT NULL,
+	StartHour varchar(4) NOT NULL,
+	EndHour varchar(4) NOT NUll
 )
 GO
 
@@ -56,8 +58,6 @@ CREATE TABLE dbo.Levels
 (
 	LevelID int IDENTITY(1,1) NOT NULL CONSTRAINT pkLevelID PRIMARY KEY,
 	LevelName varchar(30) NOT NULL,
-	StartHour varchar(4) NOT NULL,
-	EndHour varchar(4) NOT NUll,
 	WeekDaysID int not null constraint fkLevelsToWeekDays Foreign Key REFERENCES dbo.WeekDays(WeekDaysID)
 )
 GO
@@ -119,19 +119,22 @@ GO
 --Insert data to table
 --Age Range Table
 INSERT INTO dbo.AgeRange
-(MinimumAge, MaximumAge,RangeName,Price)
+(MinimumAge,MaximumAge,RangeName,Price,StartHour,EndHour)
 VALUES
-(4,10,'Children',200),
-(11,17,'Youth',180),
-(18,120,'Adults',150),
-(4,120,'All Ages',150)
+(4,10,'Children',200,'15','16'),
+(11,17,'Youth',180,'16','17'),
+(18,120,'Adults',150,'17','18'),
+(4,120,'All Ages',150,'18','19')
 GO
 
 --Style Table
 INSERT INTO dbo.Style
 (StyleName)
 VALUES
-('Folklore'),('Jazz'),('Ballet'),('Stretching')
+('Folklore'),
+('Jazz'),
+('Ballet'),
+('Stretching')
 GO
 
 --Weekdays options Table
@@ -143,12 +146,12 @@ GO
 
 --Levels Table
 INSERT INTO dbo.Levels
-(LevelName,StartHour,EndHour,WeekDaysID)
+(LevelName,WeekDaysID)
 VALUES
-('Beginner','15','17',1),
-('Intermediate','15','17',2),
-('Advanced','10','12',3),
-('Troupe','17','19',4)
+('Beginner',1),
+('Intermediate',2),
+('Advanced',3),
+('Troupe',4)
 GO
 
 --Instructor table
@@ -212,8 +215,8 @@ SELECT
 	ag.RangeName as Range,
 	l.LevelName as Level,
 	s.StyleName as Style,
-	l.StartHour as Start,
-	l.EndHour as Finish,
+	ag.StartHour as Start,
+	ag.EndHour as Finish,
 	wd.WeekDaysName as WeekDays,
 	ag.Price
 FROM

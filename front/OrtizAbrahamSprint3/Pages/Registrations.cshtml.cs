@@ -179,6 +179,8 @@ namespace OrtizAbrahamSprint3.Pages
                 if (item.AgeRangeID == AgeRangeID)
                 {
                     classPrice = item.Price;
+
+                    classHour = $"{item.StartHour} - {item.EndHour}";
                 }
             }
 
@@ -187,8 +189,6 @@ namespace OrtizAbrahamSprint3.Pages
             {
                 if (item.LevelID == LevelID)
                 {
-                    classHour = $"{item.StartHour} - {item.EndHour}";
-
                     foreach (var week in listofweekdata)
                     {
                         if (week.WeekDaysID == item.WeekDaysID)
@@ -202,6 +202,8 @@ namespace OrtizAbrahamSprint3.Pages
             // Check the selected style and retrieve instructor information
             foreach (var style in listofstyledata)
             {
+
+                
                 if (style.StyleID == StyleID)
                 {
                     foreach (var instructor in listofinstructordata)

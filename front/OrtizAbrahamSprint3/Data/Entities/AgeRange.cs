@@ -12,5 +12,7 @@ namespace OrtizAbrahamSprint3.Data.Entities
         public int MaximumAge { get; set; }
         public string RangeName { get; set; }
         public decimal Price { get; set; }
+        public string StartHour { get; set; }
+        public string EndHour { get; set; }
     }
 }
