@@ -36,6 +36,17 @@ namespace OrtizAbrahamSprint3.Pages
         {
         }
 
+        public void OnPostClearForm() 
+        {
+            // Clean form properties
+
+            Username = String.Empty;
+            UserPassword = String.Empty;
+
+            // Clean ModelState
+            ModelState.Clear();
+        }
+
         public async Task<IActionResult> OnPostSignIn() 
         {
             //Create a variable for the user record

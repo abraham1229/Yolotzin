@@ -114,6 +114,21 @@ namespace OrtizAbrahamSprint3.Pages
             PopulateDropDown();
         }
 
+        public void OnPostClearForm()
+        {
+            //Reset dropdown lists values
+            AgeRangeID = 0;
+            LevelID = 0;
+            StyleID = 0;
+
+            // Hide class information
+            displayClassInformation = "hide-information";
+
+            //Populate dropdown lists
+            PopulateDropDown();
+
+        }
+
         public async Task<IActionResult> OnPostEnroll()
         {
             //Declare bool to know if there was an error
@@ -174,24 +189,24 @@ namespace OrtizAbrahamSprint3.Pages
             listofinstructordata = _myApplicationDbContext.Instructor.ToList();
 
             // Check the selected age range and retrieve the price
-            foreach (var item in listofagerangedata)
+            foreach (var agerange in listofagerangedata)
             {
-                if (item.AgeRangeID == AgeRangeID)
+                if (agerange.AgeRangeID == AgeRangeID)
                 {
-                    classPrice = item.Price;
+                    classPrice = agerange.Price;
 
-                    classHour = $"{item.StartHour} - {item.EndHour}";
+                    classHour = $"{agerange.StartHour} hrs - {agerange.EndHour} hrs";
                 }
             }
 
             // Check the selected level and retrieve hours and days
-            foreach (var item in listoflevelsedata)
+            foreach (var level in listoflevelsedata)
             {
-                if (item.LevelID == LevelID)
+                if (level.LevelID == LevelID)
                 {
                     foreach (var week in listofweekdata)
                     {
-                        if (week.WeekDaysID == item.WeekDaysID)
+                        if (week.WeekDaysID == level.WeekDaysID)
                         {
                             classDays = week.WeekDaysName;
                         }
@@ -210,7 +225,7 @@ namespace OrtizAbrahamSprint3.Pages
                     {
                         if (instructor.StyleID == style.StyleID)
                         {
-                            classInstructor = instructor.FirstNameInstructor;
+                            classInstructor = $"{instructor.FirstNameInstructor} {instructor.LastNameInstructor}" ;
                         }
                     }
                 }

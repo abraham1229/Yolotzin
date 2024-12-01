@@ -141,7 +141,7 @@ GO
 INSERT INTO dbo.WeekDays
 (WeekDaysName)
 VALUES
-('Mon/Wed'),('Thu/Tue'),('Fri/Sun'),('Mon-Fri')
+('Mon/Wed'),('Thu/Tue'),('Fri/Sun')
 GO
 
 --Levels Table
@@ -151,7 +151,7 @@ VALUES
 ('Beginner',1),
 ('Intermediate',2),
 ('Advanced',3),
-('Troupe',4)
+('Troupe',3)
 GO
 
 --Instructor table
@@ -205,7 +205,7 @@ VALUES
 INSERT INTO dbo.Classes 
 (AgeRangeID, LevelID, StyleID, UserID)
 VALUES 
-(3, 4, 1, 1);
+(3, 3, 1, 1);
 
 
 --Join to see classes information
@@ -218,7 +218,8 @@ SELECT
 	ag.StartHour as Start,
 	ag.EndHour as Finish,
 	wd.WeekDaysName as WeekDays,
-	ag.Price
+	ag.Price,
+	i.FirstNameInstructor as 'Instructor name'
 FROM
 	dbo.Classes c
 JOIN
@@ -231,3 +232,5 @@ JOIN
 	dbo.Users u ON c.UserID = u.UserID
 JOIN
 	dbo.WeekDays wd ON l.LevelID = wd.WeekDaysID
+JOIN 
+	dbo.Instructor i ON s.StyleID = i.StyleID
