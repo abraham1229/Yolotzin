@@ -202,10 +202,11 @@ VALUES
 );
 
 
+--Classes Table
 INSERT INTO dbo.Classes 
 (AgeRangeID, LevelID, StyleID, UserID)
 VALUES 
-(3, 3, 1, 1);
+(3, 4, 1, 1);
 
 
 --Join to see classes information
@@ -231,6 +232,6 @@ JOIN
 JOIN
 	dbo.Users u ON c.UserID = u.UserID
 JOIN
-	dbo.WeekDays wd ON l.LevelID = wd.WeekDaysID
+	dbo.WeekDays wd ON l.WeekDaysID = wd.WeekDaysID
 JOIN 
 	dbo.Instructor i ON s.StyleID = i.StyleID

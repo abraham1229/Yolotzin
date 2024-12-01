@@ -96,7 +96,7 @@ namespace OrtizAbrahamSprint3.Pages
             }
         }
 
-        public void OnPost()
+        public IActionResult OnPost()
         {
             //Display information just untill they choose the 3 options
             if (AgeRangeID != 0 && LevelID != 0 && StyleID != 0)
@@ -112,9 +112,11 @@ namespace OrtizAbrahamSprint3.Pages
 
             //Call populate dropdown function
             PopulateDropDown();
+
+            return Page();
         }
 
-        public void OnPostClearForm()
+        public IActionResult OnPostClearForm()
         {
             //Reset dropdown lists values
             AgeRangeID = 0;
@@ -124,8 +126,15 @@ namespace OrtizAbrahamSprint3.Pages
             // Hide class information
             displayClassInformation = "hide-information";
 
+            //Reset Messages
+            MessageAgeRange = string.Empty;
+            MessageLevel = string.Empty;
+            MessageStyle = string.Empty;
+
             //Populate dropdown lists
             PopulateDropDown();
+
+            return RedirectToPage();
 
         }
 
