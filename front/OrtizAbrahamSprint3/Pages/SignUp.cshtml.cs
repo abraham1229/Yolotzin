@@ -31,7 +31,7 @@ namespace OrtizAbrahamSprint3.Pages
         public string EmailAddressGuardian { get; set; }
 
         [BindProperty]
-        [RegularExpression(@"^\+?\d{10,30}$", ErrorMessage = "Please enter a valid phone number.")]
+        [RegularExpression(@"^\+?\d{8,30}$", ErrorMessage = "Please enter a valid phone number.")]
         [Required(ErrorMessage = "Please enter guardian's phone number")]
         public string PhoneNumberGuardian { get; set; }
 
@@ -142,7 +142,7 @@ namespace OrtizAbrahamSprint3.Pages
             int ageUser = CalculateAge(BirthdayUser);
 
             // Validate the age range 
-            //If the user is not in the range
+            //If the user is not between the range
             if (ageUser < 4 || ageUser > 120)
             {
                 MessageAgeRangeUser = "Users must be between 4 and 120";
@@ -161,7 +161,7 @@ namespace OrtizAbrahamSprint3.Pages
                 ModelState.Remove("BirthdayGuardian");
                 return Page();
             }
-            //If guardians are under age
+            //If guardian is under age
             else if (ageUser < 18 && ageGuardian < 120)
             {
                 ClassNameDisplayGuardian = String.Empty;
@@ -173,11 +173,16 @@ namespace OrtizAbrahamSprint3.Pages
             }
 
             //Hash and salt the password entered on the form if there is not age restriction
+            if (UserPassword == null)
+            {
+                return Page();
+            }
+
             CreatePasswordHash(UserPassword, out byte[] passwordHash, out byte[] passwordSalt);
 
             var user = new Users();
 
-            //Assign the data for the guardian if the use is underage
+            //Assign the data for the guardian if the user is underage
             if (ageUser < 18)
             {
                 user = new Users
@@ -222,7 +227,7 @@ namespace OrtizAbrahamSprint3.Pages
             }
 
 
-            //Inject data to the data base
+            //Inject data to the database
             try
             {
                 _myApplicationDbContext.Users.Add(user);
@@ -231,44 +236,13 @@ namespace OrtizAbrahamSprint3.Pages
             }
 
             //Check if there are errors
-            catch (DbUpdateException ex)
+            catch (Exception)
             {
-                if (ex.InnerException is SqlException sqlEx && sqlEx.Number == 2627)
-                {
-                    // Checks for each unique constraint and adds corresponding errors
-                    bool hasError = false;
+                MessageError = "An unexpected error occurred";
 
-                    //Error for email adrress alreday in use
-                    if (sqlEx.Message.Contains("UQ__Users__8D36702B7E96A773"))
-                    {
-                        ModelState.AddModelError("EmailAddressUser", "This email address is already in use");
-                        hasError = true;
-                    }
-                    //Error for phone number alreday in use
-                    if (sqlEx.Message.Contains("UQ__Users__935CD30FDA6F163F"))
-                    {
-                        ModelState.AddModelError("PhoneNumberUser", "This phone number is already in use");
-                        hasError = true;
-                    }
-                    //Error for username alreday in use
-                    if (sqlEx.Message.Contains("UQ__Users__536C85E4A57A524C"))
-                    {
-                        MessageError = "There was an authentication error";
-                        hasError = true;
-                    }
-                    //Another error
-                    if (!hasError)
-                    {
-                        MessageError = "An unexpected error occurred";
-                    }
-                }
-                else
-                {
-                    // Handle any other unexpected errors
-                    MessageError = "An unexpected error occurred";
-                }
+                return Page();
             }
-            return Page();
+            
 
 
 

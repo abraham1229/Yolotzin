@@ -77,7 +77,7 @@ CREATE TABLE dbo.Instructor
 GO
 
 
---Child table for the classes table
+	--Child table for the classes table
 --Create users table
 --To store all the users and possible guardians
 CREATE TABLE dbo.Users
@@ -157,27 +157,74 @@ INSERT INTO dbo.Instructor
 VALUES
 ('Luis', 'Mejia', 'luis@gmail.com', '525551234', '1975-03-10',1),
 ('Juan', 'Lopez', 'juan-lopez@gmail.com', '2223344444', '1990-06-01',2),
-('Maria', 'Solano', 'maria-solano@gmail.com', '1234531985', '1998-12-24',3)
+('Maria', 'Solano', 'maria-solano@gmail.com', '1234531985', '1998-12-24',3),
+('Vero', 'Guzman', 'vero-gusman@gmail.com', '3449090900', '2000-01-04',4)
 
 
---User and Classes???
---SELECT 
---	ag.RangeName,
---	l.LevelName,
---	s.StyleName,
---	l.StartHour,
---	l.EndHour,
---	l.WeekDaysID,
---	ag.Price,
---	u.FirstNameUser
---FROM
---	dbo.Classes c
---JOIN
---	dbo.AgeRange ag ON c.AgeRangeID = ag.AgeRangeID
---JOIN
---	dbo.Levels l ON c.LevelID = l.LevelID
---JOIN
---	dbo.Style s ON c.StyleID = s.StyleID
---JOIN
---	dbo.Users u ON c.UserID = u.UserID
+--User table
+INSERT INTO dbo.Users 
+(
+    FirstNameUser, 
+    LastNameUser, 
+    EmailAddressUser, 
+    PhoneNumberUser, 
+    BirthdayUser, 
+    FirstNameGuardian, 
+    LastNameGuardian, 
+    EmailAddressGuardian, 
+    PhoneNumberGuardian, 
+    BirthdayGuardian, 
+    Username, 
+    UserPasswordHash, 
+    UserPasswordSalt, 
+    UserCreationDate
+)
+--Password is Aoc1229#
+VALUES 
+(
+    'Abraham', 
+    'Ortiz', 
+    'abrahamortizcastro1229@gmail.com', 
+    '2223085976', 
+    '2003-12-29', 
+    'none', 
+    'none', 
+    'none', 
+    'none', 
+    '0001-01-01', 
+    'abraham1229', 
+	0xB3A9212463037C61F60772F7270B22C1953B2B99882FBFBE324FAE2F0853373D1078B0FC0F7EF4A13D4F6332D6C28E559EB579B46E2ECEBE3D2D3E9696D149BF,
+	0x8C946CD1C9A9349F8EBBDB61AFB7B8F5E9A83323DAE365A1A6DC28A97004D261100EC80D57C221D2180D21FFEFF8B579967977165F77E39B195E1255EE8084896BEC53DDD80AC3D3F2E36CB84D8BEBCEE41F9099961EB2DBC07E44AA56C06803EB9ED5BDF9F59B528F736C0DCCD05FEC1FF6F522F01C4AD3516CFB498610F8BC, 
+    '2023-11-21'
+);
 
+
+INSERT INTO dbo.Classes 
+(AgeRangeID, LevelID, StyleID, UserID)
+VALUES 
+(3, 4, 1, 1);
+
+
+--Join to see classes information
+SELECT 
+	u.FirstNameUser,
+	u.Username,
+	ag.RangeName as Range,
+	l.LevelName as Level,
+	s.StyleName as Style,
+	l.StartHour as Start,
+	l.EndHour as Finish,
+	wd.WeekDaysName as WeekDays,
+	ag.Price
+FROM
+	dbo.Classes c
+JOIN
+	dbo.AgeRange ag ON c.AgeRangeID = ag.AgeRangeID
+JOIN
+	dbo.Levels l ON c.LevelID = l.LevelID
+JOIN
+	dbo.Style s ON c.StyleID = s.StyleID
+JOIN
+	dbo.Users u ON c.UserID = u.UserID
+JOIN
+	dbo.WeekDays wd ON l.LevelID = wd.WeekDaysID
