@@ -210,28 +210,28 @@ VALUES
 
 
 --Join to see classes information
-SELECT 
-	u.FirstNameUser,
-	u.Username,
-	ag.RangeName as Range,
-	l.LevelName as Level,
-	s.StyleName as Style,
-	ag.StartHour as Start,
-	ag.EndHour as Finish,
-	wd.WeekDaysName as WeekDays,
-	ag.Price,
-	i.FirstNameInstructor as 'Instructor name'
-FROM
-	dbo.Classes c
-JOIN
-	dbo.AgeRange ag ON c.AgeRangeID = ag.AgeRangeID
-JOIN
-	dbo.Levels l ON c.LevelID = l.LevelID
-JOIN
-	dbo.Style s ON c.StyleID = s.StyleID
-JOIN
-	dbo.Users u ON c.UserID = u.UserID
-JOIN
-	dbo.WeekDays wd ON l.WeekDaysID = wd.WeekDaysID
-JOIN 
-	dbo.Instructor i ON s.StyleID = i.StyleID
+--SELECT 
+--	u.FirstNameUser,
+--	u.Username,
+--	ag.RangeName as Range,
+--	l.LevelName as Level,
+--	s.StyleName as Style,
+--	ag.StartHour as Start,
+--	ag.EndHour as Finish,
+--	wd.WeekDaysName as WeekDays,
+--	ag.Price,
+--	i.FirstNameInstructor as 'Instructor name'
+--FROM
+--	dbo.Classes c
+--JOIN
+--	dbo.AgeRange ag ON c.AgeRangeID = ag.AgeRangeID
+--JOIN
+--	dbo.Levels l ON c.LevelID = l.LevelID
+--JOIN
+--	dbo.Style s ON c.StyleID = s.StyleID
+--JOIN
+--	dbo.Users u ON c.UserID = u.UserID
+--JOIN
+--	dbo.WeekDays wd ON l.WeekDaysID = wd.WeekDaysID
+--JOIN 
+--	dbo.Instructor i ON s.StyleID = i.StyleID

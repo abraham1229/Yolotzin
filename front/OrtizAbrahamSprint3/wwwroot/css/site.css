@@ -864,6 +864,7 @@ p {
 /*Style company members*/
 .members-container {
     margin-top: 10vh;
+    margin-bottom: 3vh;
 }
 
 .title-members {
@@ -1386,7 +1387,11 @@ p {
     .information-class-container {
         justify-items: left;
         padding: 3em 1em;
-    }   
+    }
+
+    .enter-data-container select:focus {
+        max-width: 80%;
+    }
 }
 
 
