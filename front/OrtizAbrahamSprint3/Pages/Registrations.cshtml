@@ -10,6 +10,14 @@
     <h1>Enroll a class here!</h1>
 </div>
 
+@*Welcome row*@
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="welcome-message-container">
+        <h2>Welcome, @User.Identity.Name!</h2>
+    </div>
+}
+
 @*Form rows*@
 <form method="post" class="all-data-container">
 

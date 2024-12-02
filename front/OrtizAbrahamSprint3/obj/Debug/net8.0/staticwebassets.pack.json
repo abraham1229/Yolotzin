@@ -401,10 +401,6 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
-      "Id": "C:\\Users\\Abraham1229\\OneDrive\\Documentos\\Web aplication development\\Yolotzin\\front\\OrtizAbrahamSprint3\\wwwroot\\videos\\PerformanceVideo.mp4",
-      "PackagePath": "staticwebassets\\videos\\PerformanceVideo.mp4"
-    },
-    {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.OrtizAbrahamSprint3.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

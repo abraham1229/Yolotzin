@@ -31,7 +31,7 @@ namespace OrtizAbrahamSprint3.Pages
         public string EmailAddressGuardian { get; set; }
 
         [BindProperty]
-        [RegularExpression(@"^\+?\d{8,30}$", ErrorMessage = "Please enter a valid phone number.")]
+        [RegularExpression(@"^\+?\d{10,13}$", ErrorMessage = "Please enter a valid phone number.")]
         [Required(ErrorMessage = "Please enter guardian's phone number")]
         public string PhoneNumberGuardian { get; set; }
 
@@ -70,7 +70,7 @@ namespace OrtizAbrahamSprint3.Pages
         public string Username { get; set; }
 
         [BindProperty]
-        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W)[A-Za-z\d\W]{8,}$", ErrorMessage = "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.")]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W)[A-Za-z\d\W]{8,}$", ErrorMessage = "Password must be at least 8 characters long and include uppercase, lowercase, number and a special character.")]
         [Required(ErrorMessage = "Please enter your password")]
         public string UserPassword { get; set; }
 

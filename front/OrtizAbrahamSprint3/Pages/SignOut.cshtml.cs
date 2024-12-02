@@ -12,7 +12,7 @@ namespace OrtizAbrahamSprint3.Pages
         }
 
         //If the user cancels, go to home page
-        public async Task<IActionResult> OnPostCancel()
+        public IActionResult OnPostCancel()
         {
             return RedirectToPage("/Index");
         }

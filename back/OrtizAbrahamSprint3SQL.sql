@@ -94,8 +94,8 @@ CREATE TABLE dbo.Users
     PhoneNumberGuardian varchar(15),
 	BirthdayGuardian date,
 	Username varchar(50) NOT NULL UNIQUE,
-	UserPasswordHash varbinary(1024),
-	UserPasswordSalt varbinary(1024),
+	UserPasswordHash varbinary(1024) NOT NULL,
+	UserPasswordSalt varbinary(1024) NOT NULL,
 	UserCreationDate date NOT NULL DEFAULT GETDATE()
 )
 GO
